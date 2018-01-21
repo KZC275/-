@@ -1,0 +1,16 @@
+@import '../sass/public.scss';
+.header{
+      height:0.8rem;
+      line-height:0.8rem;
+      width:100%;
+      background-color:$bgcolor;
+      position: fixed;
+      top: 0;
+      z-index: 9999;
+      .left{
+        float:left;
+      }
+      .right{
+        float:right;
+      }
+    }

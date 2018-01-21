@@ -1,0 +1,28 @@
+@import '../../sass/public.scss';
+.app_main {
+  height:100%;
+  
+  	.message{
+      margin-top:1rem;
+  	}
+  	.bottom{
+  		width:100%;
+  		position:fixed;
+  		bottom:0;
+      display:flex;
+      justify-content:space-around;
+      a {
+
+        text-decoration: none;
+        width: 25%;
+        height: 0.6rem;
+        display: inline-block;
+        background-color: #ccc;
+        color: green;
+      }
+
+  	}
+    
+  }
+
+
