@@ -1,23 +1,29 @@
 <template>
   <div class="diary">
   <global-header>
-       <span slot='left'>back</span>
-       <span >图片</span>
+       <!-- <span slot='left'>back</span> -->
+       <span >test</span>
   </global-header>
     <div class="box">
         
-        <list :data='dataList' class="sssddd"
+        <list 
+              :data='dataList' class="sssddd"
               v-on:pullup="pullup"
               v-on:pulldown="pulldown"
+              :pullDown="true"
+              :pullUp="true"
               >
             <img v-for="item in dataList" :src="baseUrl+item.src" alt="image">
         </list>
     </div>
+
+   
   </div>
 </template>
 
 <script>
  import Pheader from '../../components/Pheader'
+ import { mapGetters, mapActions, mapMutations } from 'vuex'
  import List from './list'
 export default {
   name: 'Diary',
@@ -28,7 +34,7 @@ export default {
         // {src:'123456'}
       ],
       from:0,
-      to:5,
+      to:10,
       finishUp:false,
       finishDown:false,
       baseUrl:''
@@ -40,13 +46,37 @@ export default {
       'global-header':Pheader,
       'list': List
   },
+  computed: mapGetters([
+    'evenOrOdd'
+  ]),
   created(){
       this.baseUrl=app.baseUrl+'/';
-      this.pulldown()
      
 
     },
+    mounted(){
+      setTimeout(()=>{
+          this.pulldown()
+          console.log(111111)
+
+      },2000)
+
+    },
     methods:{
+      ...mapActions([
+        'increment_add',
+        'decrement_add',
+
+      ]),
+      ...mapMutations([
+        'increment',
+        'decrement',
+
+      ]),
+      'add' () {
+        //    console.log(this.$store.dispatch({type:'incrementIfOdd'}))
+        this.increment_add();
+      },
       pulldown(){
         
         this.from=0;
@@ -56,8 +86,9 @@ export default {
               from:self.from,
               to:self.to
             }, function(d) {
+              console.log(d)
                 self.dataList=d;
-                self.finishDown=true;
+                // self.finishDown=true;
             })
       },
       pullup(){
@@ -70,7 +101,7 @@ export default {
             to:self.to
           }, function(d) {
               self.dataList=self.dataList.concat(d);
-              self.finishUp=true;
+              // self.finishUp=true;
           })
       }
     }

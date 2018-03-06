@@ -2,10 +2,10 @@ export default {
 	namespaced:true,
 	state:{
 		test:'mynote',
-		list:[3,4,5],
+		list:[{what:'dsdf'}],
 		nomore:false,
 		from:0,
-		to:15
+		to:15,
 	},
 	mutations:{
 		changeList(state,params){
@@ -19,30 +19,39 @@ export default {
 	},
 	actions:{
 		// 请求列表页数据
-		noteList({commit,state},params){
+		pulldown({commit,state},params){
+
 			state.from=0;
-			state.to=15;
-			$.post(app.baseUrl+'/php/reg.php', {
+			$.post('/php/reg.php', {
 					type: 'checkNote',
 					from:state.from,
-					to:state.to
+					to:state.to,
+					xhrFields: {
+					    withCredentials: true
+					},
+					crossDomain: true,
 				}, function(d) {
+					console.log(JSON.stringify(d));
 					state.nomore=false;
 					//下拉加载复位
 					if(params){
-						params.finishPullDown();
+						// params.finishPullDown();
 					}
-					commit('changeList',d);
+					commit('changeList',d.data);
 				})
 
 		},
 		// 上拉加载
 		pullup({commit,state},params){
-			state.from+=15;
-			$.post(app.baseUrl+'/php/reg.php', {
+			state.from+=state.to;
+			$.post('/php/reg.php', {
 					type: 'checkNote',
 					from:state.from,
-					to:state.to
+					to:state.to,
+					xhrFields: {
+					    withCredentials: true
+					},
+					crossDomain: true,
 				}, function(d) {
 					if(d.length==0){
 						state.nomore=true;
@@ -50,9 +59,9 @@ export default {
 					console.log(d)
 					//复位
 					if(params){
-						params.finishPullUp()
+						// params.finishPullUp()
 					}
-					commit('pullup',d);
+					commit('pullup',d.data);
 				})
 		}
 	},

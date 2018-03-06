@@ -8,37 +8,68 @@
 
 <template>
   <div class="friend">
-    <global-header name='broadcast' type='alert'>
-        <span slot="left">back</span>
-        <span slot="right">celebrate</span>
-    </global-header>
-    <h1>{{ msg }}</h1>
-    <p>location : {{str}}</p>
-    <p>今日天气</p>
-    <p>明日天气</p>
-    <iframe id="iframe" name="iframe" src="http://i.tianqi.com/index.php?c=code&id=19&icon=1&py=guangzhou&num=5" frameborder="0">抱歉，无法获取天气</iframe>
+    <div>
+        <global-header name='sayings' >
+            <!-- <span slot="left">back</span> -->
+            <span slot="right" @touchend.stop="something">留言</span>
+        </global-header>
+    </div>
+    
+    <div class="friendList">
+        <slider 
+        ref=scroll
+        :pullDown="false"
+        :pullUp="false"
+        :data="list"
+        >
+            <div>
+                <div class="listNum" v-for="(item,index) in list">
+                <strong>{{item.nickName}} 说：</strong>
+                <p>{{item.content}} </p>
+                <!-- <span>{{item.time}}</span> -->
+                </div>
+            </div>
+        </slider>
+        
+
+    </div>
+    <div class="content" v-if="showt">
+        <textarea v-model="msg" placeholder="你想说什么？"></textarea>
+        <input v-model="name" type="text" placeholder="你的昵称？">
+        <span @touchend="send(msg,name)">发送</span>
+    </div>
+    
+
+    
     
   </div>
 </template>
 
 <script>
   import Pheader from '../../components/Pheader'
+  import slider from '../diary/list.vue'
 export default {
   name: 'Friend',
   data () {
     return {
       msg: 'Welcome',
-      str:''
+      str:'',
+      list:[],
+      showt:false,
+      msg:'',
+      name:'',
+      i:''
     }
     
   },
   components:{
-      'global-header':Pheader
+      'global-header':Pheader,
+      slider
   },
   created(){
       // console.log(this)
-        this.location()
-        this.weather()
+        // this.location()
+        this.askList()
        
       
 
@@ -47,7 +78,93 @@ export default {
         
     },
     methods:{
+        something(){
+            this.showt=true;
+            this.$store.state.showMask=true;
+            this.$store.state.isShutDown=()=>{
+                this.showt=false;
+                this.$store.state.showMask=false;
+            };
+            // console.log(this.$refs.scroll.scroll.scrollTo(0,-3000))
+            // console.log(this.$refs.scroll.scroll.maxScrollY)
+            // console.log(this.$refs.scroll.scroll.y)
 
+        },
+      send(msg,name){
+        //获取better-scroll实例
+        var _scroll=this.$refs.scroll.scroll;
+
+        var self=this;
+        if(msg){
+            name=name.trim()?name.trim():'匿名者';
+            //如果已经登录，取用户名
+            if(self.$store.state.username&&name=='匿名者'){
+                name=self.$store.state.username;
+            }
+            name= '('+ ++self.i+' floor '+')'+name;
+            //获取时间
+            var date = new Date();
+            // console.log(date);
+            var year = date.getFullYear();
+            var month = date.getMonth();
+            var day = date.getDate();
+            var h = date.getHours();
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            var TimeStr = year + '年' + (month + 1) + '月' + day + '日' + h + '时' + m + '分' + s + '秒';
+                app.post({
+                    url:'/php/reg.php',
+                    data: {
+                        "type":'add',
+                        "number": self.i,
+                        "nickName": (name),
+                        "content": (msg),
+                        "time": (TimeStr)
+                    }
+
+                }).then((data)=>{
+                    app.maskCallBack(self.$store.state.isShutDown);
+                    
+                    self.showt=false;
+                    self.list.push({time:TimeStr,content:msg,nickName:name,number:self.i})
+                    app.toast('发送成功')
+                    move()
+
+                })
+                function move (){
+                    var temp=_scroll.y;
+                    var timer=setInterval(function(){
+                        if(temp<=_scroll.maxScrollY){
+                            clearInterval(timer);
+                            console.log(222)
+                        }else{
+                            temp-=30;
+                            _scroll.scrollTo(0,temp)
+                        }
+                    },1)
+                }
+
+
+        }else{
+            app.toast('信息不能为空噢')
+        }
+      },
+      
+      askList(){
+                app.post({
+                    url: '/php/reg.php',
+                    data:{
+                        type:'check'
+                    }
+                }).then((data)=>{
+                    // console.log(data)
+                    if(data.length>0){
+
+                            this.list=data;
+                            this.i=data.length;
+                    }
+                })
+      },
       weather(){
         if(app.isBrowser)return false;
         //http://www.sojson.com/open/api/weather/json.shtml?city=%E9%A1%BA%E5%BE%B7
@@ -58,7 +175,7 @@ export default {
         if(app.isBrowser)return false;
           var self=this;
           plus.geolocation.getCurrentPosition( geoInf, function ( e ) {
-              alert( "获取定位位置信息失败："+e.message );
+              app.toast( "获取定位位置信息失败："+e.message );
             },{geocode:true});
 
           function geoInf( position ) {

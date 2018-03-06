@@ -133,7 +133,7 @@
 		mounted() {
 			// 保证在DOM渲染完毕后初始化better-scroll
 			setTimeout(() => {
-				this.$refs.wrapper.style.height = window.screen.height - 50 + 'px';
+				// this.$refs.wrapper.style.height = window.screen.height - 50 + 'px';
 				this._initScroll()
 			}, 20)
 		},
@@ -168,7 +168,7 @@
 					// this.scroll.refresh()
 					setTimeout(() => {
 						console.log($('.list ul').height())
-						this.$refs.wrapper.style.height = $('.list ul').height() - 5 + 'px'
+						// this.$refs.wrapper.style.height = $('.list ul').height() - 5 + 'px'
 					}, 22)
 
 				})
@@ -268,7 +268,10 @@
 <style lang="scss" rel="stylesheet/scss">
 	$cube-size: 10px; // 项目中用了scss，没用的话，替换掉样式中的变量即可
 	.better-scroll-root {
-		margin-top: 50px;
+		.better-scroll-container{
+			margin-top:0.2rem;
+		}
+		height:100%;
 		.loading-pos,
 		.pulldown-tip {
 			position: absolute;

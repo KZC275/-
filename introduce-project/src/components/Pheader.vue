@@ -1,10 +1,10 @@
 <template>
       <div class="header">
           <div class="left" @click='back(leftName)'>
-              <slot name='left'><span>back</span></slot>
+              <slot name='left'><span class="icon"><img src="../assets/img/back.png" alt=""></span></slot>
           </div>
           <slot>{{name}}</slot>
-          <div class="right" @click="home(rightName)">
+          <div class="right" @touchend="home(rightName)">
               <slot name='right'></slot>
           </div>
       </div>
@@ -44,13 +44,15 @@ export default {
         this.$router.back()
       },
       home(type){
+        event.cancelBubble=true;
+        event.stopPropagation();
+        console.log('Pheader.scss')
             if(type){
             	console.log(type)
-            	this.$router.push({name:type,params:'home'})
+            	this.$router.push({name:type,params:type});
             	return;
 
             }
-            this.$router.push({name:'index',params:'home'})
       }
 
   }

@@ -2,16 +2,16 @@
 <keep-alive>
 	<div class="addNote">
 		<global-header>
-			<span slot="left">back</span>
+			<!-- <span slot="left">back</span> -->
 			<span>添加</span>
-			<span slot="right">home</span>
+			<!-- <span slot="right">home</span> -->
 		</global-header>
-		<div>
+		<div class="input">
 			<input v-model="when" type="text" placeholder="when" />
 			<input v-model="where" type="text" placeholder="where" />
 			<input v-model="who" type="text" placeholder="who" />
 			<textarea v-model="what" name="" rows="" cols="" placeholder="what happen"></textarea>
-			<span class="save" @click="save()">save</span>
+			<span class="save" @click="save()">添加</span>
 		</div>
 	</div>
 </keep-alive>
@@ -46,15 +46,24 @@
 
 			},
 			save() {
-				let self=this;
-					$.post(app.baseUrl+'/php/reg.php', {
-						type: 'addNote',
-						when:self.when,
-						where:self.where,
-						who:self.who,
-						what:self.what
-					}, function(d) {
-						console.log(d)
+					app.post({
+						url:'/php/reg.php',
+						data:{
+							type: 'addNote',
+							when:this.when,
+							where:this.where,
+							who:this.who,
+							what:this.what
+						}
+					}).then((data)=>{
+						console.log(data)
+						app.toast('添加成功')
+						if(data==true){
+							this.$router.push({
+							  name: 'myNote',
+							  params: 'from add'
+							})
+						}
 					})
 				
 				

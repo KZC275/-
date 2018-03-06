@@ -1,10 +1,13 @@
 <template>
   <div id="app">
     <transition :name="transition" >
-        <keep-alive include="addNote">  <!-- addNote组件会被缓存 -->
+        <keep-alive include="info,addNote">  <!-- addNote组件会被缓存,为空的话缓存所有组件 -->
             <router-view></router-view>
         </keep-alive>
     </transition>
+
+    <div class="app_cover" v-if="$store.state.showMask" @touchend="hideMask"></div>
+    <span class="ac_toast"></span>
   </div>
 </template>
 <script>
@@ -20,9 +23,12 @@ export default {
     // 'isBack'
   ]),
   created(){
-
+      // console.log(app)
   },
   methods:{
+      hideMask(){
+        window.app.maskCallBack(this.$store.state.isShutDown)
+      },
       ...mapMutations([
           'transitionChange',
           'isBack'
@@ -82,18 +88,23 @@ body {
   width:100%;
   height:100%;  
   text-align: center;
-  height: 100%;
   -moz-user-select: none;   /*长按无法选择文字*/
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	-khtml-user-select: none;
 	user-select: none;
-   font-size:0.15rem;
+   font-size:0.3rem;
+   color: black;
 }
 
 html {
 
   height: 100%;
+}
+.app_cover{
+  background:yellow;
+  opacity:0.2;
+  z-index: 999;
 }
 #app{
   height: 100%;
@@ -102,6 +113,9 @@ html {
   position:absolute;
   top:0px;
   width:100%;
+  height: 100%;
+  display: flex;
+  flex-direction:column;
 }
 ul,li,p,h1,h2,h3,h4{
   padding: 0;
@@ -110,4 +124,20 @@ ul,li,p,h1,h2,h3,h4{
 ul,a{
   list-style: none;
 }
+#app .ac_toast{
+  /*height: 1rem;*/
+  /*line-height: 1rem;*/
+  padding: 0.1rem 0.2rem;
+  /*width: 30%;*/
+  border-radius: 0.1rem;
+  text-align: center;
+  background:black;
+  display:none;
+  color:white;
+  position:absolute;
+  left:50%;
+  top:30%;
+  transform:translateX(-50%);
+}
+
 </style>

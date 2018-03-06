@@ -1,29 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-// import couponCenter from '../module/cgb_coupon_center/store'
-// import myNote from '../module/myNote/store'
+import couponCenter from '../module/cgb_coupon_center/store'
+import myNote from '../module/myNote/store'
 
 Vue.use(Vuex)
 
 const state = {
+  isLogin:false,
+  username:'',
+  showMask:false,//遮罩
+  isShutDown:null,//点击遮罩回调函数
   count: 18,
   isBack:false,
   transition:'right-to-left',
-  src:{
-      num1:'',
-      num2:'./static/img/1.jpg',
-      num3:'./static/img/1.jpg',
-      num4:'./static/img/2.jpg',
-      num6:'',
-  },
-  path:{
-      num1:'',
-      num2:'',
-      num3:'',
-      num4:'',
-  },
-  locationStr:""
+
 }
 //改变状态的事件
 const mutations = {
@@ -82,8 +73,8 @@ const getters = {
 }
 
 const modules = {
-	// couponCenter,
-  // myNote
+	couponCenter,
+  myNote
 }
 
 // A Vuex instance is created by combining the state, mutations, actions,
