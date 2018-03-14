@@ -70,16 +70,16 @@ export default {
   created() {
     // this.location()
     this.askList();
-    this.$vux.alert.show({
-      title: "Vux is Cool",
-      content: "Do you agree?",
-      onShow() {
-        console.log("Plugin: I'm showing");
-      },
-      onHide() {
-        console.log("Plugin: I'm hiding");
-      }
-    });
+    // this.$vux.alert.show({
+    //   title: "Vux is Cool",
+    //   content: "Do you agree?",
+    //   onShow() {
+    //     console.log("Plugin: I'm showing");
+    //   },
+    //   onHide() {
+    //     console.log("Plugin: I'm hiding");
+    //   }
+    // });
 
     // window.open('http://www.baidu.com')
   },

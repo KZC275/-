@@ -7,8 +7,10 @@ import router from './router'
 import store from './store'
 import app from './utils/common.js'
 
-import  { AlertPlugin } from 'vux'
+import  { AlertPlugin,ToastPlugin,LoadingPlugin } from 'vux'
 Vue.use(AlertPlugin)
+Vue.use(ToastPlugin)
+Vue.use(LoadingPlugin)
 
 Vue.config.productionTip = false
 
@@ -18,7 +20,7 @@ Vue.config.productionTip = false
 window.__store=store;
 window.__router=router;
 window.app=app;
-var vm_bank=new Vue({
+window.vm_bank=new Vue({
   el: '#app',
   store,
   router,

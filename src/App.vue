@@ -104,7 +104,7 @@ html {
 .app_cover{
   background:yellow;
   opacity:0.2;
-  z-index: 999;
+  z-index: 99;
 }
 #app{
   height: 100%;

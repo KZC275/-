@@ -22,92 +22,90 @@
 </template>
 
 <script>
- import Pheader from '../../components/Pheader'
- import { mapGetters, mapActions, mapMutations } from 'vuex'
- import List from './list'
+import Pheader from "../../components/Pheader";
+import { mapGetters, mapActions, mapMutations } from "vuex";
+import List from "./list";
 export default {
-  name: 'Diary',
-  data () {
+  name: "Diary",
+  data() {
     return {
-      msg: 'Welcome2',
-      dataList:[
+      msg: "Welcome2",
+      dataList: [
         // {src:'123456'}
       ],
-      from:0,
-      to:10,
-      finishUp:false,
-      finishDown:false,
-      baseUrl:''
-
-    }
-    
+      from: 0,
+      to: 10,
+      finishUp: false,
+      finishDown: false,
+      baseUrl: ""
+    };
   },
-   components:{
-      'global-header':Pheader,
-      'list': List
+  components: {
+    "global-header": Pheader,
+    list: List
   },
-  computed: mapGetters([
-    'evenOrOdd'
-  ]),
-  created(){
-      this.baseUrl=app.baseUrl+'/';
-     
-
+  computed: mapGetters(["evenOrOdd"]),
+  created() {
+    this.baseUrl = app.baseUrl + "/";
+  },
+  mounted() {
+    setTimeout(() => {
+      this.pulldown();
+    }, 1000);
+  },
+  methods: {
+    ...mapActions(["increment_add", "decrement_add"]),
+    ...mapMutations(["increment", "decrement"]),
+    add() {
+      //    console.log(this.$store.dispatch({type:'incrementIfOdd'}))
+      this.increment_add();
     },
-    mounted(){
-      setTimeout(()=>{
-          this.pulldown()
-
-      },1000)
-
+    pulldown() {
+      this.from = 0;
+      app
+        .post({
+          url: "/php/reg.php",
+          data: {
+            type: "checkImg",
+            from: this.from,
+            to: this.to
+          }
+        })
+        .then(data => {
+          if (data) {
+            this.dataList = data;
+          } else {
+            app.toast("失败");
+          }
+        })
+        .catch(error => {
+          app.toast("请求失败");
+        });
     },
-    methods:{
-      ...mapActions([
-        'increment_add',
-        'decrement_add',
-
-      ]),
-      ...mapMutations([
-        'increment',
-        'decrement',
-
-      ]),
-      'add' () {
-        //    console.log(this.$store.dispatch({type:'incrementIfOdd'}))
-        this.increment_add();
-      },
-      pulldown(){
-        
-        this.from=0;
-          var self=this;
-          $.post(app.baseUrl+'/php/reg.php', {
-              type: 'checkImg',
-              from:self.from,
-              to:self.to
-            }, function(d) {
-              console.log(d)
-                self.dataList=d;
-                // self.finishDown=true;
-            })
-      },
-      pullup(){
-        console.log('upupupupup')
-        this.from+=5;
-        var self=this;
-        $.post(app.baseUrl+'/php/reg.php', {
-            type: 'checkImg',
-            from:self.from,
-            to:self.to
-          }, function(d) {
-              self.dataList=self.dataList.concat(d);
-              // self.finishUp=true;
-          })
-      }
+    pullup() {
+      console.log("upupupupup");
+      this.from += 5;
+      app
+        .post({
+          url: "/php/reg.php",
+          data: {
+            type: "checkImg",
+            from: this.from,
+            to: this.to
+          }
+        })
+        .then(data => {
+          this.dataList = this.dataList.concat(data);
+        })
+        .catch(error => {
+          app.toast("请求失败");
+        });
     }
-}
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='scss' scoped>
-    @import './diary.scss';
+@import "./diary.scss";
 </style>
