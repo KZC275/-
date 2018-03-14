@@ -71,15 +71,16 @@ export default {
     // this.location()
     this.askList();
     this.$vux.alert.show({
-  title: 'Vux is Cool',
-  content: 'Do you agree?',
-  onShow () {
-    console.log('Plugin: I\'m showing')
-  },
-  onHide () {
-    console.log('Plugin: I\'m hiding')
-  }
-})
+      title: "Vux is Cool",
+      content: "Do you agree?",
+      onShow() {
+        console.log("Plugin: I'm showing");
+      },
+      onHide() {
+        console.log("Plugin: I'm hiding");
+      }
+    });
+
     // window.open('http://www.baidu.com')
   },
   mounted() {},
@@ -111,7 +112,7 @@ export default {
         name = "(" + ++self.i + " floor " + ")" + name;
         //获取时间
         var date = new Date();
-        // console.log(date);
+        // console.log(date);s
         var year = date.getFullYear();
         var month = date.getMonth();
         var day = date.getDate();
@@ -154,6 +155,10 @@ export default {
             });
             app.toast("发送成功");
             this.move();
+          })
+          .catch(error => {
+            app.maskCallBack(self.$store.state.isShutDown);
+            self.showt = false;
           });
       } else {
         app.toast("信息不能为空噢");
