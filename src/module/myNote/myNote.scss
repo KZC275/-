@@ -1,0 +1,19 @@
+.myNote{
+  .noteList{
+    flex-grow:2;
+    overflow:auto;
+    height:100%;
+    // margin-top:0.2rem;
+    
+  }
+    .list{
+        // height: 300px;
+    }
+  ul{
+  	li{
+  		height:60px;
+  		background:#ccc;
+  		margin-bottom:5px;
+  	}
+  }
+}

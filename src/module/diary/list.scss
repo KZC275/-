@@ -1,0 +1,25 @@
+	$cube-size: 0.2rem; // 项目中用了scss，没用的话，替换掉样式中的变量即可
+	.root {
+		color: black;
+		position: relative;
+		// height:100%;
+		>div:first-child{
+			padding-top:0.2rem;
+		}
+		.pulldownTip {
+			position: absolute;
+			left: 0;
+			top: -0.8rem;
+			width: 100%;
+			height: 0.8rem;
+			
+			text-align: center;
+			z-index: 2000;
+		}
+		.pullupTip{
+			width:100%;
+			position:absolute;
+			text-align:center;
+		}
+		
+	}

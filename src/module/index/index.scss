@@ -1,0 +1,29 @@
+@import '../../sass/public.scss';
+.app_main {
+  height: 100%;
+  display: flex;
+  flex-direction:column;
+  .headerTop{
+
+  }
+  .message {
+    // margin-top: 1rem;
+    flex-grow:2;
+  }
+  .bottom {
+    width: 100%;
+    // position: fixed;
+    // bottom: 0;
+    display: flex;
+    // justify-content: space-around;
+    a {
+      flex-grow:1;
+      text-decoration: none;
+      width: 25%;
+      height: 0.6rem;
+      display: inline-block;
+      background-color: #ccc;
+      color: green;
+    }
+  }
+}

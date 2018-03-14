@@ -1,0 +1,34 @@
+@import '../sass/public.scss';
+.clear:after{
+    display:block;
+    content:'';
+    height:0;
+    clear:both;
+
+}
+.header{
+      height:0.8rem;
+      line-height:0.8rem;
+      width:100%;
+      background-color:$bgcolor;
+      flex-shrink:0; /*不缩小*/
+      // position: fixed;
+      // top: 0;
+      // z-index: 9999;
+      .left{
+        float:left;
+        .icon{
+          display:inline-block;
+          height:0.8rem;
+          width:0.8rem;
+          img{
+            width:100%;
+            vertical-align:middle;
+          }
+        }
+        
+      }
+      .right{
+        float:right;
+      }
+    }

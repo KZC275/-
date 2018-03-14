@@ -1,0 +1,15 @@
+.diary{
+	color:green;
+	.box{
+		width: 100%;
+		// height: 300px;
+		overflow: auto;
+		flex-grow:2;
+		// margin-top:50px;
+		img{
+			display:block;
+			width: 100%;
+			min-height:50px;
+		}
+	}
+}
