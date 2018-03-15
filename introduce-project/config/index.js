@@ -46,6 +46,10 @@ module.exports = {
     proxyTable: {
       '/php':{
         target:'https://www.kzc275.top/',
+        // target:'http://60.205.39.154/',
+        // target:'http://localhost/AAAAAHTML/onlinePro',
+
+        
         secure:true, //https协议
         changeOrigin: true  //跨域
       }

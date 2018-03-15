@@ -57,9 +57,8 @@ export default {
     mounted(){
       setTimeout(()=>{
           this.pulldown()
-          console.log(111111)
 
-      },2000)
+      },1000)
 
     },
     methods:{

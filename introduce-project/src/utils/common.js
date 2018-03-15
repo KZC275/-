@@ -94,7 +94,7 @@ export default {
         return new Promise((resolve,reject)=>{
             $.ajax(param)
             .done(function(data) {
-              console.log(data)
+              // console.log(data)
               resolve(data);
             })
             .fail(function(error) {
@@ -102,8 +102,8 @@ export default {
               reject(error);
             })
             .always(function(complete) {
-              console.log(complete);
-              console.log("complete");
+              // console.log(complete);
+              // console.log("complete");
             });
 
         })

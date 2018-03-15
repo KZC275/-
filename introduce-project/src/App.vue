@@ -127,7 +127,7 @@ ul,a{
 #app .ac_toast{
   /*height: 1rem;*/
   /*line-height: 1rem;*/
-  padding: 0.1rem 0.2rem;
+  padding: 0.3rem 1rem;
   /*width: 30%;*/
   border-radius: 0.1rem;
   text-align: center;

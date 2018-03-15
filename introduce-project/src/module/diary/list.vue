@@ -127,7 +127,6 @@ v-on:pulldown="pulldown"
 				// console.log(this.$refs.wrapper.parentNode.clientHeight)
 
 				this._initScroll()
-				 console.log(22222222)
 			}, 1000)
 		},
 		methods: {
@@ -195,7 +194,6 @@ v-on:pulldown="pulldown"
 					}
 					if(pos.y>=50&&flag){
 						flag=false;
-						console.log(888888888)
 						this.pulldownTip = {
 							text: '松开刷新...', // 松开立即刷新
 							rotate: '' // icon-rotate
@@ -205,7 +203,7 @@ v-on:pulldown="pulldown"
 				this.scroll.on('touchEnd', (pos) => {
 					// 下拉动作
 					if(pos.y > 50) {
-						console.log('touchEnd')
+						// console.log('touchEnd')
 					}
 				});
 

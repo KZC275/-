@@ -26,7 +26,7 @@
                 <div class="listNum" v-for="(item,index) in list">
                 <strong>{{item.nickName}} 说：</strong>
                 <p>{{item.content}} </p>
-                <!-- <span>{{item.time}}</span> -->
+                <span>{{item.time}}</span>
                 </div>
             </div>
         </slider>
@@ -70,6 +70,7 @@ export default {
       // console.log(this)
         // this.location()
         this.askList()
+        // window.open('http://www.baidu.com')
        
       
 
