@@ -87,6 +87,7 @@ export default {
     },
     destroyed () {
       clearInterval(this.timer_ac)
+      console.log('fllfllf')
     },
     mounted(){
       var _this=this;

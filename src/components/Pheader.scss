@@ -15,8 +15,11 @@
       // position: fixed;
       // top: 0;
       // z-index: 9999;
+      display: flex;
       .left{
-        float:left;
+        width: 20%;
+        height: 100%;
+        text-align: left;
         .icon{
           display:inline-block;
           height:0.8rem;
@@ -28,7 +31,12 @@
         }
         
       }
+      .middle{
+        flex-grow: 2;
+
+      }
       .right{
-        float:right;
+        width: 20%;
+        height: 100%;
       }
     }

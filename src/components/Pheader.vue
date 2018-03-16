@@ -3,7 +3,9 @@
           <div class="left" @click='back(leftName)'>
               <slot name='left'><span class="icon"><img src="../assets/img/back.png" alt=""></span></slot>
           </div>
-          <slot>{{name}}</slot>
+          <div class="middle">
+              <slot>{{name}}</slot>
+          </div>
           <div class="right" @touchend="home(rightName)">
               <slot name='right'></slot>
           </div>

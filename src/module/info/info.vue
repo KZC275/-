@@ -58,7 +58,7 @@ export default {
             });
             console.log(data.currentUid);
           } else {
-            app.toast("登录失败");
+            app.toast(data.returnCode);
           }
         })
         .catch(error => {
@@ -75,6 +75,8 @@ export default {
           console.log(data);
           if (data.returnCode == true) {
             app.toast("注册成功");
+          }else{
+             app.toast(data.returnCode);
           }
         });
     },

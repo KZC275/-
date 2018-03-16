@@ -220,19 +220,21 @@ v-on:pulldown="pulldown"
 			data(newVal,oldVal) {
 				setTimeout(() => {
 					console.log(newVal,oldVal);
+					this.$refs.wrapper.style.height =this.$refs.wrapper.parentNode.clientHeight + 'px';
+					
 					if(this.$refs.content.clientHeight<this.$refs.wrapper.parentNode.clientHeight){
 						this.isFirst=false;
 						//第一页数据高度不足
-						this.pullupTip.text='没有更多了';
+						// this.pullupTip.text='没有更多了';
+						this.$refs.wrapper.style.height =this.$refs.wrapper.childNodes[0].clientHeight-1 + 'px';
+						
 					}
 					//设置盒子高度
-					this.$refs.wrapper.style.height =this.$refs.wrapper.parentNode.clientHeight + 'px';
 					// console.log(this.$refs.wrapper.parentNode.clientHeight)
-					// console.log(this.$refs.content.clientHeight)
+					// console.log(this.$refs.wrapper.childNodes[0].clientHeight)
 					
-					
+					//只有下拉才会触发
 					if(this.pullingDown){
-						
 						this.pullingDown=false;
 						this.scroll.finishPullDown();
 						this.pulldownTip.text='下拉刷新';
@@ -240,11 +242,13 @@ v-on:pulldown="pulldown"
 					}
 					
 					if(this.pullingUp&&oldVal.length==newVal.length){
+						console.log(44433399999)
 						this.nomore=true;
 						this.scroll.finishPullUp();
 						this.pullupTip.text='没有更多了';
 						return false;
 					}
+					//只有上拉才会触发
 					if(this.pullingUp){
 						this.pullingUp=false;
 						this.scroll.finishPullUp();

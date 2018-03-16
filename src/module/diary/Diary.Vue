@@ -51,7 +51,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.pulldown();
-    }, 1000);
+    }, 100);
   },
   methods: {
     ...mapActions(["increment_add", "decrement_add"]),

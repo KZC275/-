@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <transition :name="transition" >
-        <keep-alive include="info,addNote">  <!-- addNote组件会被缓存,为空的话缓存所有组件 -->
+        <keep-alive include="info,addNote,myNote">  <!-- addNote组件会被缓存,为空的话缓存所有组件 -->
             <router-view></router-view>
         </keep-alive>
     </transition>
