@@ -22,6 +22,8 @@ const mutations = {
 		state.isBack=false;
 	},
   increment (state) {
+    console.log(this)
+    
   		state.count++
   },
   decrement (state) {

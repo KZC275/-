@@ -69,7 +69,6 @@ export default {
   },
   created() {
     // this.location()
-    this.askList();
     // this.$vux.alert.show({
     //   title: "Vux is Cool",
     //   content: "Do you agree?",
@@ -80,10 +79,14 @@ export default {
     //     console.log("Plugin: I'm hiding");
     //   }
     // });
-
     // window.open('http://www.baidu.com')
   },
-  mounted() {},
+  mounted() {
+    // console.log(vm_bank)
+    setTimeout(() => {
+      this.askList();
+    }, 100);
+  },
   methods: {
     something() {
       this.showt = true;
@@ -191,6 +194,9 @@ export default {
             this.list = data;
             this.i = data.length;
           }
+        })
+        .catch(err => {
+          console.log(err);
         });
     },
     weather() {

@@ -23,7 +23,9 @@ export default {
     // 'isBack'
   ]),
   created(){
-      // console.log(app)
+    console.log(location.href=location.href)
+    this.$router.push({name:'index'})
+     
   },
   methods:{
       hideMask(){

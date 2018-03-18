@@ -7,10 +7,11 @@ import router from './router'
 import store from './store'
 import app from './utils/common.js'
 
-import  { AlertPlugin,ToastPlugin,LoadingPlugin } from 'vux'
+import  { AlertPlugin,ToastPlugin,LoadingPlugin ,ConfirmPlugin} from 'vux'
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
 Vue.use(LoadingPlugin)
+Vue.use(ConfirmPlugin)
 
 Vue.config.productionTip = false
 
@@ -27,3 +28,6 @@ window.vm_bank=new Vue({
   template: '<App/>',
   components: { App }
 })
+
+
+

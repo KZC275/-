@@ -1,6 +1,5 @@
 // console.log(process.env.NODE_ENV)
 import store from '../store'
-
 export default {
   baseUrl: 'https://www.kzc275.top',
   isBrowser: process.env.NODE_ENV == 'development' ? true : false,
@@ -74,7 +73,6 @@ export default {
     //     }
 
     // },20)
-
     vm_bank.$vux.toast.show({
       text: msg,
       width: '2rem'
@@ -82,6 +80,7 @@ export default {
 
   },
   post: (params) => {
+    // console.log(this)
     let param = {};
     if (app.isBrowser) {
       //跨域请求
@@ -120,6 +119,8 @@ export default {
           // console.log("complete");
         });
 
+    }).catch((err)=>{
+      console.log(err)
     })
 
   }
