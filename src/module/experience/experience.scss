@@ -21,4 +21,13 @@
             /*margin: 20px;*/
         }
     }
+    .second{
+        flex-grow: 2;
+        overflow: auto;
+    }
+    .videotag{
+        video{
+            width: 100%;
+        }
+    }
 }

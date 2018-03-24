@@ -1,9 +1,10 @@
 <template>
   <div class="experience">
     <global-header>
-        <!-- <span slot='left'>back</span> -->
+        <span >组件</span>
     </global-header>
-    <h2>左右滑动组件</h2>
+    <div class="second">
+        <h2>左右滑动组件</h2>
     <slider style="background:red;" :menu="arrList">
       <li  v-for="(item,index) in arrList">
         <span>{{item.text}}</span>
@@ -24,6 +25,13 @@
        <h1>state：{{$store.state.count}}</h1>
        <h1>{{evenOrOdd}}</h1>
     </div>
+    
+
+    <div class="videotag">
+      <video preload="auto" src="../../../static/video/WeChatSight4.mp4" controls="controls"></video>
+    </div>
+    </div>
+    
     
   </div>
 </template>
@@ -87,7 +95,7 @@ export default {
     },
     destroyed () {
       clearInterval(this.timer_ac)
-      console.log('fllfllf')
+      // console.log('fllfllf')
     },
     mounted(){
       var _this=this;
