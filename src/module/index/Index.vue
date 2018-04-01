@@ -15,6 +15,7 @@
       </div>
       <div class="bottom">
           <router-link to="/experience">组件</router-link>
+          <router-link to="/analysis">统计</router-link>
           <router-link to="/diary">上拉下拉</router-link>
           <router-link to="/friend">留言板</router-link>
           <router-link to="/info">注册登录</router-link>

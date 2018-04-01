@@ -97,6 +97,7 @@ body {
 	user-select: none;
    font-size:0.3rem;
    color: black;
+   overflow-x: hidden;
 }
 
 html {
