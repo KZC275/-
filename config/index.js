@@ -58,7 +58,7 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
+    index: path.resolve(__dirname, '../dist/index_test.html'),
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
@@ -79,6 +79,7 @@ module.exports = {
     // npm install --save-dev compression-webpack-plugin
     productionGzip: false,
     productionGzipExtensions: ['js', 'css'],
+    outputZip:true,//输出压缩包
 
     // Run the build command with an extra argument to
     // View the bundle analyzer report after build finishes:
