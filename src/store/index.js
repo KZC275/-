@@ -14,6 +14,7 @@ const state = {
   count: 18,
   isBack:false,
   transition:'right-to-left',
+  backfromdetail:false,//从记事详情页返回列表页
 
 }
 //改变状态的事件
