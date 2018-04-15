@@ -45,8 +45,8 @@ module.exports = {
     // just be aware of this issue when enabling this option.
     proxyTable: {
       '/php':{
-        target:'https://www.kzc275.top/',
-        // target:'http://localhost/AAAAAHTML/onlinePro',
+        // target:'https://www.kzc275.top/',
+        target:'http://localhost/',
 
         
         secure:true, //https协议

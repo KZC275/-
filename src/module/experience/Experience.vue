@@ -75,21 +75,19 @@ export default {
 
   },
   created(){
-      $.ajax({
-        url: app.baseUrl+'/php/reg.php',
-        type: 'post',
-        data:{type:'check'}
+
+
+       app
+      .post({
+        url: "/php/register.php",
+        data: {
+         username:'bnbnbn',
+         psw:'123'
+        }
+      })
+      .then(data => {
+        console.log(data);
        
-      })
-      .done(function(data) {
-        // console.log(data)
-        console.log("success");
-      })
-      .fail(function() {
-        console.log("error");
-      })
-      .always(function() {
-        console.log("complete");
       });
 
     },

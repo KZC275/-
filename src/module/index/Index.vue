@@ -26,32 +26,32 @@
     </div>
 </template>
 <script>
-
-import Pheader from '../../components/Pheader'
+import Pheader from "../../components/Pheader";
 export default {
-  name: 'index',
-  data(){
+  name: "index",
+  data() {
     return {
-      my_Note:'',
-      weather:''
-      
-    }
+      my_Note: "",
+      weather: ""
+    };
   },
-  created(){
-	// $.post('http://www.kzc275.top/php/reg.php',{type:'check'},function(d){
-	// 	console.log(d)
-	// })
-    
-//        console.log(this.$store.state)
-    this.weather=this.$store.state.isLogin?this.$store.state.username:'游客'
-    this.my_Note=this.$store.state.count
+  created() {
+   
+
+
+
+    //        console.log(this.$store.state)
+    this.weather = this.$store.state.isLogin
+      ? this.$store.state.username
+      : "游客";
+    this.my_Note = this.$store.state.count;
   },
-  components:{
-      'global-header':Pheader
+  components: {
+    "global-header": Pheader
   }
-}
+};
 </script>
 
 <style lang='scss'>
-    @import './index.scss'
+@import "./index.scss";
 </style>

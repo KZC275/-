@@ -84,7 +84,6 @@
     },
 
     mounted() {
-      console.log(this)
       setTimeout(() => {
         this._initScroll();
       }, 20)
