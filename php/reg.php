@@ -39,7 +39,7 @@ if($_SERVER['REQUEST_METHOD']){
             
         }else if($_REQUEST['type']=='check'){
             // mysqli_query($con,"set names 'utf8'");
-            $sql = 'select * from users';
+            $sql = 'select * from users ORDER BY id';
             $res = $con->query($sql);
             // print_r(json_encode($res));
 
