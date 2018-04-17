@@ -76,20 +76,6 @@ export default {
   },
   created(){
 
-
-       app
-      .post({
-        url: "/php/register.php",
-        data: {
-         username:'bnbnbn',
-         psw:'123'
-        }
-      })
-      .then(data => {
-        console.log(data);
-       
-      });
-
     },
     destroyed () {
       clearInterval(this.timer_ac)
