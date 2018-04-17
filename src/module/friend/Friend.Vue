@@ -112,7 +112,7 @@ export default {
         if (self.$store.state.username && name == "匿名者") {
           name = self.$store.state.username;
         }
-        name = "(" + ++self.i + " floor " + ")" + name;
+        // name = "(" + ++self.i + " floor " + ")" + name;
         //获取时间
         var date = new Date();
         // console.log(date);s
@@ -140,7 +140,7 @@ export default {
             url: "/php/reg.php",
             data: {
               type: "add",
-              number: self.i,
+              // number: self.i,
               nickName: name,
               content: msg,
               time: TimeStr
@@ -154,7 +154,7 @@ export default {
               time: TimeStr,
               content: msg,
               nickName: name,
-              number: self.i
+              // number: self.i
             });
             app.toast("发送成功");
             this.move();
