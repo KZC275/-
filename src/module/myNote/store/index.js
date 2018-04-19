@@ -6,6 +6,7 @@ export default {
     nomore: false,
     from: 0,
     to: 15,
+    nodata:false,
   },
   mutations: {
     changeList(state, params) {
@@ -37,9 +38,10 @@ export default {
         .then(data => {
           console.log(data);
           if (data.returnCode == '000000') {
+            data.data.length==0?state.nodata=true:''
             state.nomore = false;
-			commit('changeList', data.data);
-			//console.log(www)//错误会被catch 捕获，程序继续向下执行
+            commit('changeList', data.data);
+            //console.log(www)//错误会被catch 捕获，程序继续向下执行
 
           } else {
             app.toast("失败");
@@ -50,7 +52,7 @@ export default {
         });
 
 
-     
+
 
     },
     // 上拉加载
@@ -59,7 +61,7 @@ export default {
       state
     }, params) {
       state.from += state.to;
-	  app
+      app
         .post({
           url: "/php/reg.php",
           data: {
@@ -72,9 +74,9 @@ export default {
           console.log(data);
           if (data.returnCode == '000000') {
             if (data.length == 0) {
-				state.nomore = true;
-			  }
-			  commit('pullup', data.data);
+              state.nomore = true;
+            }
+            commit('pullup', data.data);
 
           } else {
             app.toast("失败");
@@ -83,13 +85,14 @@ export default {
         .catch(error => {
           app.toast("请求失败");
         });
-	  
+
 
 
     }
   },
   getters: {
-    dataList: state => state.list
+    dataList: state => state.list,
+    nodata: state => state.nodata
   }
 
 }

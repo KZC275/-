@@ -16,6 +16,7 @@
 				<ul>
 					<li v-for="item in dataList" @click='goTo(item)' >{{item.what}}</li>
 				</ul>
+				<div v-if="nodata">没有数据</div>
 			</list>
 		</div>
 	</div>
@@ -33,7 +34,8 @@
 			}
 		},
 		computed:mapGetters({
-			'dataList':'myNote/dataList'
+			'dataList':'myNote/dataList',
+			'nodata':'myNote/nodata',
 		}),
 		beforeRouteUpdate() {
 			// console.log('beforeRouteEnter')
