@@ -79,9 +79,12 @@
 
             if ($con->query($sql) === TRUE) {
                 $res->createTable= "Table created successfully";
+
                 $res->returnCode=true;
+
+                $res->otherDes='通知成功';
             } else {
-                // $res->createTable= "创建数据表错误: " . $con->error;
+                $res->createTable= "创建数据表错误: " . $con->error;
                 $res->returnCode=false;
             }
         }else{
