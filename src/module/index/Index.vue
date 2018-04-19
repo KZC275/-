@@ -36,16 +36,16 @@ export default {
     };
   },
   created() {
-   // app.post({
-   //        url: "/php/email22.php",
-   //        data: {test:'kaskjdjkasdkjasdkjasdkj'}
-   //      })
-   //      .then(data => {
-   //        console.log(data);
-   //      })
-   //      .catch(error => {
-   //        app.toast("请求失败");
-   //      });
+   app.post({
+          url: "/php/sent_mail.php",
+          data: {test:'kaskjdjkasdkjasdkjasdkj'}
+        })
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          app.toast("请求失败");
+        });
 
 
 
