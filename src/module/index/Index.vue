@@ -4,7 +4,7 @@
           <global-header leftName="myNote" rightName="addNote">
             <span slot="left">my note</span>
             <span>index</span>
-            <span slot="right">add note</span>
+            <span slot="right">add</span>
           </global-header>
       </div>
       
@@ -36,7 +36,16 @@ export default {
     };
   },
   created() {
-   
+   // app.post({
+   //        url: "/php/email22.php",
+   //        data: {test:'kaskjdjkasdkjasdkjasdkj'}
+   //      })
+   //      .then(data => {
+   //        console.log(data);
+   //      })
+   //      .catch(error => {
+   //        app.toast("请求失败");
+   //      });
 
 
 
