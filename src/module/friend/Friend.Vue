@@ -242,6 +242,15 @@ export default {
         // outLine( str );
       }
     }
+  },
+  watch:{
+    name(newval,old){
+      if(newval.length>8&&newval.length>old.length){
+          this.name=old;
+          console.log(newval,old)
+          app.toast("你的昵称太长了噢",'warn');
+      }
+    }
   }
 };
 </script>

@@ -28,7 +28,7 @@
     
 
     <div class="videotag">
-      <video preload="auto" src="../../../static/video/WeChatSight4.mp4" controls="controls"></video>
+      <!-- <video preload="auto" src="../../../static/video/WeChatSight4.mp4" controls="controls"></video> -->
     </div>
     </div>
     

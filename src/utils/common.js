@@ -57,7 +57,7 @@ export default {
       return false;
     }
   },
-  toast: (msg) => {
+  toast: (msg,type) => {
     // $('.ac_toast').text(msg)
     // if($('.ac_toast').css('display')=='block')return;
     //  $('.ac_toast').css({
@@ -73,6 +73,14 @@ export default {
     //     }
 
     // },20)
+    if(type){
+        vm_bank.$vux.toast.show({
+        type:type,
+        text: msg,
+        width: '2rem'
+      })
+        return false;
+    }
     vm_bank.$vux.toast.show({
       text: msg,
       width: '2rem'
