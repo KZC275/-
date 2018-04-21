@@ -5,10 +5,11 @@
     </global-header>
     <div class="msg" v-if="this.$store.state.isLogin==false">
         <h3>登录/注册</h3>
+        <input  v-model="email" type="text" placeholder="example@163.com">
         <input v-model="username" type="text" placeholder="username">
         <input v-model="psw" type="password" placeholder="password">
         <div class="button">
-          <span @touchend="register(username,psw)">register</span>
+          <span @touchend="register(username,psw,email)">register</span>
           <span @touchend="login(username,psw)">login</span>
         </div>
     </div>
@@ -29,6 +30,7 @@ export default {
   data() {
     return {
       msg: "info",
+      email:'',
       username: "qwqw",
       psw: "123"
     };
@@ -40,6 +42,9 @@ export default {
    
   },
   methods: {
+    check(){
+      console.log(222)
+    },
     login(u, p) {
       let self = this;
       app
@@ -65,11 +70,11 @@ export default {
           app.toast("请求失败");
         });
     },
-    register(u, p) {
+    register(u, p,email) {
       app
         .post({
           url: "/php/register.php",
-          data: { username: u, psw: p }
+          data: { username: u, psw: p,email:email}
         })
         .then(data => {
           console.log(data);
