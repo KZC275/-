@@ -25,10 +25,20 @@
        <h1>state：{{$store.state.count}}</h1>
        <h1>{{evenOrOdd}}</h1>
     </div>
+    <!-- //click 改为touchstart后无法全屏 -->
+    <button @click="fullscreen" style="height:0.5rem;background:#ccc;margin-top:0.5rem">全屏</button>
     
 
     <div class="videotag">
-      <video id='video' preload="auto" src="@static/video/movie.mp4" controls="controls"></video>
+      <video id='video' 
+      ref='video'
+      preload="auto" 
+      src="@static/video/movie.mp4"
+      controls="controls" 
+      webkit-playsinline="true"
+      playsinline="true"
+      x5-playsinline
+      poster="@static/video/poster.jpg"></video>
     </div>
     </div>
     
@@ -78,6 +88,40 @@ export default {
     add() {
       //    console.log(this.$store.dispatch({type:'incrementIfOdd'}))
       this.increment_add();
+    },
+    //video 播放需要
+    initVideo() {
+      // let videoObj = document.getElementById("video");
+      let videoObj = this.$refs.video;
+      console.log(videoObj);
+      //监听全屏变化
+      document.addEventListener(
+        "webkitfullscreenchange",
+        () => {
+          //是否全屏
+          if (document.webkitIsFullScreen) {
+            console.log(true);
+            this.$refs.video.style.transform = "rotateZ(90deg)";
+          } else {
+            console.log(false);
+          }
+          console.log(22);
+        },
+        false
+      );
+    },
+    // 全屏
+    fullscreen() {
+      let element = this.$refs.video;
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      }
     }
   },
   created() {},
@@ -86,6 +130,8 @@ export default {
     // console.log('fllfllf')
   },
   mounted() {
+    this.initVideo();
+
     var _this = this;
     (function($) {
       // console.log(_this)
