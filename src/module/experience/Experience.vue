@@ -26,7 +26,7 @@
        <h1>{{evenOrOdd}}</h1>
     </div>
     <!-- //click 改为touchstart后无法全屏 -->
-    <button @click="fullscreen" style="height:0.5rem;background:#ccc;margin-top:0.5rem">全屏</button>
+    <button @touchstart="fullscreen" style="height:0.5rem;background:#ccc;margin-top:0.5rem">全屏</button>
     
 
     <div class="videotag">
@@ -93,25 +93,38 @@ export default {
     initVideo() {
       // let videoObj = document.getElementById("video");
       let videoObj = this.$refs.video;
-      console.log(videoObj);
+      // console.log(videoObj);
       //监听全屏变化
-      document.addEventListener(
-        "webkitfullscreenchange",
+      videoObj.addEventListener(
+        "webkitfullscreenchange", //ios 触发不了这个事件÷
         () => {
+          app.toast("3333");
           //是否全屏
           if (document.webkitIsFullScreen) {
+            app.toast("222");
             console.log(true);
-            this.$refs.video.style.transform = "rotateZ(90deg)";
+            // this.$refs.video.style.transform = "rotateZ(90deg)";
           } else {
+            app.toast("111");
+
             console.log(false);
           }
-          console.log(22);
+          // console.log(videojs);
         },
         false
       );
+
+      
     },
-    // 全屏
+    // 全屏（安卓可以）
     fullscreen() {
+      // var myPlayer = videojs("video");
+      // myPlayer.ready(function() {
+        //在回调函数中，this代表当前播放器，
+        //可以调用方法，也可以绑定事件。
+        // myPlayer.enterFullScreen()
+      // });
+
       let element = this.$refs.video;
       if (element.requestFullscreen) {
         element.requestFullscreen();
