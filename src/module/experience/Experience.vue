@@ -38,7 +38,7 @@
       webkit-playsinline="true"
       playsinline="true"
       x5-playsinline
-      poster="@static/video/poster.jpg"></video>
+      poster="@static/video/1234.png"></video>
     </div>
     </div>
     
