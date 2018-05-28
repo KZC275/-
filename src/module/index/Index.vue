@@ -39,10 +39,11 @@ export default {
   created() {
     // app
     //   .post({
-    //     url: "/php/connectMysql.php",
+    //     url: "/php/sent_mail.php",
+    //     data:{email:'1142308041@qq.com'}
     //   })
     //   .then(data => {
-    //     console.log(data);
+    //     console.log( JSON.parse(data));
     //   })
     //   .catch(error => {
     //     app.toast("请求失败");
