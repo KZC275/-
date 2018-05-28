@@ -33,22 +33,20 @@ export default {
     return {
       my_Note: "",
       weather: "",
-      jjkjjk:'sjsjjsjssjj'
+      jjkjjk: "sjsjjsjssjj"
     };
   },
   created() {
-  //  app.post({
-  //         url: "/php/sent_mail.php",
-  //         data: {test:'kaskjdjkasdkjasdkjasdkj'}
-  //       })
-  //       .then(data => {
-  //         console.log(data);
-  //       })
-  //       .catch(error => {
-  //         app.toast("请求失败");
-  //       });
-
-
+    // app
+    //   .post({
+    //     url: "/php/connectMysql.php",
+    //   })
+    //   .then(data => {
+    //     console.log(data);
+    //   })
+    //   .catch(error => {
+    //     app.toast("请求失败");
+    //   });
 
     //        console.log(this.$store.state)
     this.weather = this.$store.state.isLogin
