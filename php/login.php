@@ -22,10 +22,7 @@
      $res->status=404;
     if($name&&$psw){
          $res->status=200;
-         //php数据库操作
-         //准备好数据连接对象
-         $con = new mysqli('bdm274246623.my3w.com','bdm274246623','aA852233','bdm274246623_db'); 
-         mysqli_query($con,"set names 'utf8'");
+         require_once('connectMysql.php');
 
          //1获取当前所有的用户信息
          $sql = 'select * from information';

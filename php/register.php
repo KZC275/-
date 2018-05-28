@@ -19,12 +19,7 @@
          $res->status=200;
          //php数据库操作
          //准备好数据连接对象
-         $con = new mysqli('bdm274246623.my3w.com','bdm274246623','aA852233','bdm274246623_db'); 
-         mysqli_query($con,"set names 'utf8'");
-         // 检测连接
-         if ($con->connect_error) {
-             die("连接失败: " . $con->connect_error);
-         } 
+         require_once('connectMysql.php');
 
         //防止恶意注册，对比ip地址TODO
         $res->ipAddress=getclientip();
