@@ -19,6 +19,7 @@
        <span @touchend="logout">注销</span>
     </div>
 
+
     
   </div>
 </template>
@@ -32,16 +33,36 @@ export default {
       msg: "info",
       email:'',
       username: "qwqw",
-      psw: "123"
+      psw: "123",
+      show5:false,
+      ssww:'sdsds'
     };
   },
   components: {
-    "global-header": Pheader
+    "global-header": Pheader,
   },
   created() {
+
+    
    
   },
   methods: {
+    onCancel () {
+      console.log('on cancel')
+    },
+     onHide () {
+      console.log('on hide')
+    },
+    onShow () {
+      console.log('on show')
+    },
+    onShow5 () {
+      this.$refs.confirm5.setInputValue('default')
+    },
+    onConfirm5 (value) {
+      this.$refs.confirm5.setInputValue('')
+      this.$vux.toast.text('input value: ' + value)
+    },
     check(){
       console.log(222)
     },
@@ -64,6 +85,12 @@ export default {
             console.log(data.currentUid);
           } else {
             app.toast(data.returnCode);
+            if(data.returnDes=='wp'){
+              this.email=prompt('输入注册邮箱找回密码');
+              this.email&&this.findpsw(this.email)
+              
+            }
+            
           }
         })
         .catch(error => {
@@ -99,6 +126,21 @@ export default {
             app.toast("注销失败");
           }
         });
+    },
+    findpsw(email){
+      console.log('sd')
+      app
+        .post({
+          url: "/php/sent_mail.php",
+          data: { email: email }
+        })
+        .then(data => {
+          console.log(data)
+        })
+        .catch(error => {
+          app.toast("请求失败");
+        });
+      
     }
   }
 };
