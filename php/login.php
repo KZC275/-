@@ -97,7 +97,7 @@
                 $res->cookie=$_COOKIE;
 
          }else{
-            $res->returnCode='用户信息有误';
+            $res->returnCode= $bool_name?'密码错误':'用户没有注册';
          }
          //jsonp跨域方法
          // $callback_test=json_encode($res);

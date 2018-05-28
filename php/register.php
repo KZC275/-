@@ -7,6 +7,7 @@
 
     $name=$_REQUEST['username'];
     $psw=$_REQUEST['psw'];
+    $email=$_REQUEST['email'];
     class Res{  
        
      } 
@@ -62,7 +63,7 @@
             }
         }
         //1获取当前所有信息
-        $sql = 'insert into information (userName,psw) values("'.$name.'","'.$psw.'")';
+        $sql = 'insert into information (userName,psw,email) values("'.$name.'","'.$psw.'","'.$email.'")';
         // echo $sql;
         if($con->query($sql)){
             
