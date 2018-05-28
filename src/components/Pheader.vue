@@ -24,12 +24,14 @@ export default {
     'leftName':String,
     'name':String,
     'title':String,
-    'rightName':String
+    'rightName':String,
+    'value':String,  //父组件通过v-model绑定的可以得到
+
   },
   created(){
-        // console.log(this.name)
+        
   },
-  mounted(){
+  mounted(){console.log(this)
   },
   methods:{
       ...mapMutations([

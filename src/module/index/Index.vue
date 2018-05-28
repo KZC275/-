@@ -1,7 +1,7 @@
 <template>
     <div class="app_main">
       <div class="headerTop">
-          <global-header leftName="myNote" rightName="addNote">
+          <global-header leftName="myNote" rightName="addNote" v-model="jjkjjk">
             <span slot="left">my note</span>
             <span>index</span>
             <span slot="right">add</span>
@@ -32,7 +32,8 @@ export default {
   data() {
     return {
       my_Note: "",
-      weather: ""
+      weather: "",
+      jjkjjk:'sjsjjsjssjj'
     };
   },
   created() {
