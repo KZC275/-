@@ -6,6 +6,13 @@
     class Res{ 
     } ;
     $res=new Res(); 
+    if(!$_REQUEST['email']){
+        //没有收到邮箱
+        $res->returnCode=false;
+        $res->returnDes='邮箱不能为空';
+        print_r(json_encode($res));
+        return;
+    }
     //检查邮箱是否注册
     $temp=findEmail($_REQUEST['email'],$res);
     if(!$temp){
