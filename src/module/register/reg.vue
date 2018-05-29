@@ -45,6 +45,10 @@ export default {
   },
   methods: {
     register(u, p,email) {
+      if(!/^\w{2,20}@(163||126||qq||sina).com$/.test(email)){
+          app.toast('邮箱格式不正确');
+          return ;
+      }
       app
         .post({
           url: "/php/register.php",
