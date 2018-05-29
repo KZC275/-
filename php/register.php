@@ -89,6 +89,9 @@
             print_r(json_encode($res));
          //关闭数据库
          $con->close();
+    }else{
+        $res->returnCode='注册失败';
+        print_r(json_encode($res));
     }
 
 
