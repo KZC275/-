@@ -10,6 +10,7 @@ import World from '@/module/world/World'
 import AddNote from '@/module/addNote/AddNote'
 import Analysis from '@/module/analysis/Analysis'
 import info from '@/module/info/info'  //组件小写也可以
+import register from '@/module/register/reg'  //组件小写也可以
 
 import CouponCenter from '../module/cgb_coupon_center/router'
 
@@ -68,6 +69,11 @@ const router = new Router({
       path: '/world',
       name: 'appCouponCenter',
       component: World,
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register,
     },
 		...CouponCenter,
     {

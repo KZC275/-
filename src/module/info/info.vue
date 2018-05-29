@@ -4,12 +4,12 @@
         <!-- <span slot='left'>back</span> -->
     </global-header>
     <div class="msg" v-if="this.$store.state.isLogin==false">
-        <h3>登录/注册</h3>
-        <input  v-model="email" type="text" placeholder="example@163.com">
+        <div class="forget"><span @touchend="goReg(1)">忘记密码</span></div>
+        <h3>登录</h3>
         <input v-model="username" type="text" placeholder="username">
         <input v-model="psw" type="password" placeholder="password">
         <div class="button">
-          <span @touchend="register(username,psw,email)">register</span>
+          <span @touchend="goReg(2)">register</span>
           <span @touchend="login(username,psw)">login</span>
         </div>
     </div>
@@ -47,21 +47,8 @@ export default {
    
   },
   methods: {
-    onCancel () {
-      console.log('on cancel')
-    },
-     onHide () {
-      console.log('on hide')
-    },
-    onShow () {
-      console.log('on show')
-    },
-    onShow5 () {
-      this.$refs.confirm5.setInputValue('default')
-    },
-    onConfirm5 (value) {
-      this.$refs.confirm5.setInputValue('')
-      this.$vux.toast.text('input value: ' + value)
+    goReg(type){
+        this.$router.push({name:'register',params:{type:type}})
     },
     check(){
       console.log(222)

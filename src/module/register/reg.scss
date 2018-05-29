@@ -1,0 +1,36 @@
+.msg{
+	margin-top:1rem;
+    input{
+        width:70%;
+        height:0.5rem;
+        border:none;
+        border:1.5px solid #ccc; 
+        margin-top:0.1rem;
+    }
+    .button{
+        margin-top:0.1rem;
+    }
+    span{
+        display:inline-block;
+        height:0.5rem;
+        line-height:0.5rem;
+        background:#ccc;
+        padding:0.05rem 0.15rem;
+        // background:none;
+    }
+
+}
+.user{
+    h2{
+        margin-bottom: .5rem;
+    }
+    span{
+        display:block;
+        height:1rem;
+        line-height:1rem;
+        width:3rem;
+        background:#ccc;
+        margin:.5rem auto;
+
+    }
+}
