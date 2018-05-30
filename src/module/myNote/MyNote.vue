@@ -73,11 +73,11 @@
 		},
 		activated(){
 			// console.log(this.$route.params.isBack)
-			if(this.$store.state.backfromdetail){
+			// if(this.$store.state.backfromdetail){
 				this.$store.state.backfromdetail=false;
 				console.log(33333333)
 				this.pulldown()
-			}
+			// }
 		}
 	}
 </script>
