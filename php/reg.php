@@ -93,6 +93,30 @@ if($_SERVER['REQUEST_METHOD']){
             }
             // print_r(json_encode($result));
             
+        }else if($_REQUEST['type']=='analysis'){
+            //数据统计
+            include './checkLogin.php';
+            //delete from 表 where id between 1 and 5 #id为1-3的
+            $sql='SELECT count(*) FROM information
+                    UNION
+                    SELECT count(*) FROM users';  
+            $result = $con->query($sql);
+            // print_r(json_encode($result));
+            $arr=array();
+            class Note{};
+            //数据库查询结果的长度 $res->num_rows
+            if($result->num_rows>0){
+                //fetch_assoc() 执行第一次返回 第一条数据 执行第二次的时候返回第二数据
+                // $row 当前获取到的每一行数据
+                while ($row = $result->fetch_assoc()) {
+                    $cfg=new Note(); 
+                    $cfg->all=$row['COUNT(*)'];
+                    array_push($arr,$cfg);
+                    
+                }
+            }
+             print_r(json_encode($arr));
+            
         }
         //查询笔记
         else if($_REQUEST['type']=='checkNote'){
