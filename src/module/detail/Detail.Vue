@@ -11,7 +11,7 @@
 			<div><span>where：</span><span @click='increment'>{{msg.where}}</span></div>
 			<div><span>who：</span><span @click='increment'>{{msg.who}}</span></div>
 			<div><span>what：</span><span @click='increment'>{{msg.what}}</span></div>
-			<div><span>id：</span><span @click='increment'>{{msg.id}}</span></div>
+			<!-- <div><span>id：</span><span @click='increment'>{{msg.id}}</span></div> -->
 			<!-- <h2 @touchstart='add'>addadd</h2>
 			<h1>{{$store.state.count}}</h1>
 			<h1>{{evenOrOdd}}</h1> -->
