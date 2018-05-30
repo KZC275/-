@@ -101,7 +101,7 @@ if($_SERVER['REQUEST_METHOD']){
             $from = ($_REQUEST['from']);
             $to = ($_REQUEST['to']);
             //登录什么用户就查询那个表
-            $sql = 'select * from '.$userId.' limit '.$from.','.$to; //返回从from下标开始，to这么多条数据
+            $sql = 'select * from '.$userId.' order by id asc'.' limit '.$from.','.$to; //返回从from下标开始，to这么多条数据
             $res = $con->query($sql);
             if(!$con->query($sql)){
                 echo "false";
