@@ -4,19 +4,19 @@
         <!-- <span slot='left'>back</span> -->
     </global-header>
     <div class="msg" v-if="this.$store.state.isLogin==false">
-        <div class="forget"><span @touchend="goReg(1)">忘记密码</span></div>
+        <div class="forget"><span @click="goReg(1)">忘记密码</span></div>
         <h3>登录</h3>
         <input v-model="username" type="text" placeholder="username">
         <input v-model="psw" type="password" placeholder="password">
         <div class="button">
-          <span @touchend="goReg(2)">register</span>
-          <span @touchend="login(username,psw)">login</span>
+          <span @click="goReg(2)">register</span>
+          <span @click="login(username,psw)">login</span>
         </div>
     </div>
 
     <div v-else class="user">
        <h2>你已经登录</h2>
-       <span @touchend="logout">注销</span>
+       <span @click="logout">注销</span>
     </div>
 
 

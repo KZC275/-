@@ -9,7 +9,7 @@
         <input v-model="username" type="text" placeholder="username">
         <input v-model="psw" type="password" placeholder="password">
         <div class="button">
-          <span @touchend="register(username,psw,email)">register</span>
+          <span @click="register(username,psw,email)">register</span>
         </div>
     </div>
 
@@ -17,7 +17,7 @@
        <h2>找回密码</h2>
        <div>
          <input v-model="email" type="email" placeholder="请输入注册邮箱">
-         <span @touchend="findpsw(email)">确认</span>
+         <span @click="findpsw(email)">确认</span>
        </div>
     </div>
 
