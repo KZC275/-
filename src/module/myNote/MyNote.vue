@@ -28,57 +28,52 @@
 	import BScroll from 'better-scroll'
 
 	export default {
-		name: 'myNote',
-		data() {
-			return {
-			}
-		},
-		computed:mapGetters({
-			'dataList':'myNote/dataList',
-			'nodata':'myNote/nodata',
-		}),
-		beforeRouteUpdate() {
+	  name: 'myNote',
+	  data () {
+    return {
+    }
+  },
+	  computed: mapGetters({
+	    'dataList': 'myNote/dataList',
+	    'nodata': 'myNote/nodata'
+  }),
+	  beforeRouteUpdate () {
 			// console.log('beforeRouteEnter')
-		},
-		components: {
-			'global-header': Pheader,
-			'list': List
-		},
-		created() {
-			this.pulldown()
-			
-		},
-		methods: {
-			...mapActions({
-				'pulldown':'myNote/pulldown',
-				'pullup':'myNote/pullup'
-			}),
-			goTo(item) {
-				console.log(this.$router);
-				this.$router.push({
-					name: 'detail',
-					params: item
-				})
-			}
-		},
-		watch: {
+  },
+	  components: {
+	    'global-header': Pheader,
+	    'list': List
+  },
+	  created () {
+	    this.pulldown()
+  },
+	  methods: {
+	    ...mapActions({
+	      'pulldown': 'myNote/pulldown',
+	      'pullup': 'myNote/pullup'
+    }),
+	    goTo (item) {
+	      console.log(this.$router)
+	      this.$router.push({
+	        name: 'detail',
+	        params: item
+      })
+    }
+  },
+	  watch: {
 
-		},
-		mounted() {
-			console.log()
-
-		
-			
-
-		},
-		activated(){
+  },
+	  mounted () {
+	    console.log()
+  },
+	  activated () {
 			// console.log(this.$route.params.isBack)
 			// if(this.$store.state.backfromdetail){
-				this.$store.state.backfromdetail=false;
-				console.log(33333333)
-				this.pulldown()
+	    this.$store.state.backfromdetail = false
+	    console.log(33333333)
+	    this.pulldown()
 			// }
-		}
+  }
 	}
 </script>
 

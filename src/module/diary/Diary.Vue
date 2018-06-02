@@ -22,14 +22,14 @@
 </template>
 
 <script>
-import Pheader from "../../components/Pheader";
-import { mapGetters, mapActions, mapMutations } from "vuex";
-import List from "./list";
+import Pheader from '../../components/Pheader'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
+import List from './list'
 export default {
-  name: "Diary",
-  data() {
+  name: 'Diary',
+  data () {
     return {
-      msg: "Welcome2",
+      msg: 'Welcome2',
       dataList: [
         // {src:'123456'}
       ],
@@ -37,72 +37,72 @@ export default {
       to: 10,
       finishUp: false,
       finishDown: false,
-      baseUrl: ""
-    };
+      baseUrl: ''
+    }
   },
   components: {
-    "global-header": Pheader,
+    'global-header': Pheader,
     list: List
   },
-  computed: mapGetters(["evenOrOdd"]),
-  created() {
-    this.baseUrl = app.baseUrl + "/";
+  computed: mapGetters(['evenOrOdd']),
+  created () {
+    this.baseUrl = app.baseUrl + '/'
   },
-  mounted() {
+  mounted () {
     setTimeout(() => {
-      this.pulldown();
-    }, 100);
+      this.pulldown()
+    }, 100)
   },
   methods: {
-    ...mapActions(["increment_add", "decrement_add"]),
-    ...mapMutations(["increment", "decrement"]),
-    add() {
+    ...mapActions(['increment_add', 'decrement_add']),
+    ...mapMutations(['increment', 'decrement']),
+    add () {
       //    console.log(this.$store.dispatch({type:'incrementIfOdd'}))
-      this.increment_add();
+      this.increment_add()
     },
-    pulldown() {
-      this.from = 0;
+    pulldown () {
+      this.from = 0
       app
         .post({
-          url: "/php/reg.php",
+          url: '/php/reg.php',
           data: {
-            type: "checkImg",
+            type: 'checkImg',
             from: this.from,
             to: this.to
           }
         })
         .then(data => {
           if (data) {
-            this.dataList = data;
+            this.dataList = data
           } else {
-            app.toast("失败");
+            app.toast('失败')
           }
         })
         .catch(error => {
-          app.toast("请求失败");
-        });
+          app.toast('请求失败')
+        })
     },
-    pullup() {
-      console.log("upupupupup");
-      this.from += 5;
+    pullup () {
+      console.log('upupupupup')
+      this.from += 5
       app
         .post({
-          url: "/php/reg.php",
+          url: '/php/reg.php',
           data: {
-            type: "checkImg",
+            type: 'checkImg',
             from: this.from,
             to: this.to
           }
         })
         .then(data => {
-          this.dataList = this.dataList.concat(data);
+          this.dataList = this.dataList.concat(data)
         })
         .catch(error => {
-          app.toast("请求失败");
-        });
+          app.toast('请求失败')
+        })
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -25,112 +25,107 @@
 </template>
 
 <script>
-import Pheader from "../../components/Pheader";
+import Pheader from '../../components/Pheader'
 export default {
-  name: "info",
-  data() {
+  name: 'info',
+  data () {
     return {
-      msg: "info",
-      email:'',
-      username: "qwqw",
-      psw: "123",
-      show5:false,
-      ssww:'sdsds'
-    };
+      msg: 'info',
+      email: '',
+      username: 'qwqw',
+      psw: '123',
+      show5: false,
+      ssww: 'sdsds'
+    }
   },
   components: {
-    "global-header": Pheader,
+    'global-header': Pheader
   },
-  created() {
+  created () {
 
-    
-   
   },
   methods: {
-    goReg(type){
-        this.$router.push({name:'register',params:{type:type}})
+    goReg (type) {
+      this.$router.push({name: 'register', params: {type: type}})
     },
-    check(){
+    check () {
       console.log(222)
     },
-    login(u, p) {
-      let self = this;
+    login (u, p) {
+      let self = this
       app
         .post({
-          url: "/php/login.php",
+          url: '/php/login.php',
           data: { username: u, psw: p }
         })
         .then(data => {
-          console.log(data);
+          console.log(data)
           if (data.returnCode == true) {
-            self.$store.state.isLogin = true;
-            self.$store.state.username = u; //保存用户名
+            self.$store.state.isLogin = true
+            self.$store.state.username = u // 保存用户名
             self.$router.push({
-              name: "index",
-              params: "from info"
-            });
-            console.log(data.currentUid);
+              name: 'index',
+              params: 'from info'
+            })
+            console.log(data.currentUid)
           } else {
-            app.toast(data.returnCode);
-            if(data.returnDes=='wp'){
-              this.email=prompt('输入注册邮箱找回密码');
-              this.email&&this.findpsw(this.email)
-              
+            app.toast(data.returnCode)
+            if (data.returnDes == 'wp') {
+              this.email = prompt('输入注册邮箱找回密码')
+              this.email && this.findpsw(this.email)
             }
-            
           }
         })
         .catch(error => {
-          app.toast("请求失败");
-        });
+          app.toast('请求失败')
+        })
     },
-    register(u, p,email) {
+    register (u, p, email) {
       app
         .post({
-          url: "/php/register.php",
-          data: { username: u, psw: p,email:email}
+          url: '/php/register.php',
+          data: { username: u, psw: p, email: email}
         })
         .then(data => {
-          console.log(data);
+          console.log(data)
           if (data.returnCode == true) {
-            app.toast("注册成功");
-          }else{
-             app.toast(data.returnCode);
-          }
-        });
-    },
-    logout() {
-      let self = this;
-      app
-        .post({
-          url: "/php/loginOut.php"
-        })
-        .then(data => {
-          console.log(data);
-          if (data.returnCode == true) {
-            self.$store.state.isLogin = false;
+            app.toast('注册成功')
           } else {
-            app.toast("注销失败");
+            app.toast(data.returnCode)
           }
-        });
+        })
     },
-    findpsw(email){
+    logout () {
+      let self = this
+      app
+        .post({
+          url: '/php/loginOut.php'
+        })
+        .then(data => {
+          console.log(data)
+          if (data.returnCode == true) {
+            self.$store.state.isLogin = false
+          } else {
+            app.toast('注销失败')
+          }
+        })
+    },
+    findpsw (email) {
       console.log('sd')
       app
         .post({
-          url: "/php/sent_mail.php",
+          url: '/php/sent_mail.php',
           data: { email: email }
         })
         .then(data => {
           console.log(data)
         })
         .catch(error => {
-          app.toast("请求失败");
-        });
-      
+          app.toast('请求失败')
+        })
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

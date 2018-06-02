@@ -48,26 +48,26 @@
 </template>
 
 <script>
-import Pheader from "../../components/Pheader";
-import slider from "../diary/list.vue";
+import Pheader from '../../components/Pheader'
+import slider from '../diary/list.vue'
 export default {
-  name: "Friend",
-  data() {
+  name: 'Friend',
+  data () {
     return {
-      msg: "Welcome",
-      str: "",
+      msg: 'Welcome',
+      str: '',
       list: [],
       showt: false,
-      msg: "",
-      name: "",
-      i: ""
-    };
+      msg: '',
+      name: '',
+      i: ''
+    }
   },
   components: {
-    "global-header": Pheader,
+    'global-header': Pheader,
     slider
   },
-  created() {
+  created () {
     // this.location()
     // this.$vux.alert.show({
     //   title: "Vux is Cool",
@@ -81,65 +81,65 @@ export default {
     // });
     // window.open('http://www.baidu.com')
   },
-  mounted() {
+  mounted () {
     // console.log(vm_bank)
     setTimeout(() => {
-      this.askList();
-    }, 100);
+      this.askList()
+    }, 100)
   },
   methods: {
-    something() {
-      this.showt = true;
-      this.$store.state.showMask = true;
+    something () {
+      this.showt = true
+      this.$store.state.showMask = true
       this.$store.state.isShutDown = () => {
-        this.showt = false;
-        this.$store.state.showMask = false;
-      };
+        this.showt = false
+        this.$store.state.showMask = false
+      }
       // console.log(this.$refs.scroll.scroll.scrollTo(0,-3000))
       // console.log(this.$refs.scroll.scroll.maxScrollY)
       // console.log(this.$refs.scroll.scroll.y)
     },
-    gotobtm() {
-      this.move();
+    gotobtm () {
+      this.move()
     },
-    send(msg, name) {
-      //获取better-scroll实例
+    send (msg, name) {
+      // 获取better-scroll实例
 
-      var self = this;
+      var self = this
       if (msg) {
-        name = name.trim() ? name.trim() : "匿名者";
-        //如果已经登录，取用户名
-        if (self.$store.state.username && name == "匿名者") {
-          name = self.$store.state.username;
+        name = name.trim() ? name.trim() : '匿名者'
+        // 如果已经登录，取用户名
+        if (self.$store.state.username && name == '匿名者') {
+          name = self.$store.state.username
         }
         // name = "(" + ++self.i + " floor " + ")" + name;
-        //获取时间
-        var date = new Date();
+        // 获取时间
+        var date = new Date()
         // console.log(date);s
-        var year = date.getFullYear();
-        var month = date.getMonth();
-        var day = date.getDate();
-        var h = date.getHours();
-        var m = date.getMinutes();
-        var s = date.getSeconds();
+        var year = date.getFullYear()
+        var month = date.getMonth()
+        var day = date.getDate()
+        var h = date.getHours()
+        var m = date.getMinutes()
+        var s = date.getSeconds()
         var TimeStr =
           year +
-          "年" +
+          '年' +
           (month + 1) +
-          "月" +
+          '月' +
           day +
-          "日" +
+          '日' +
           h +
-          "时" +
+          '时' +
           m +
-          "分" +
+          '分' +
           s +
-          "秒";
+          '秒'
         app
           .post({
-            url: "/php/reg.php",
+            url: '/php/reg.php',
             data: {
-              type: "add",
+              type: 'add',
               // number: self.i,
               nickName: name,
               content: msg,
@@ -147,112 +147,112 @@ export default {
             }
           })
           .then(data => {
-            app.maskCallBack(self.$store.state.isShutDown);
+            app.maskCallBack(self.$store.state.isShutDown)
 
-            self.showt = false;
+            self.showt = false
             self.list.push({
               time: TimeStr,
               content: msg,
-              nickName: name,
+              nickName: name
               // number: self.i
-            });
-            app.toast("发送成功");
-            this.move();
+            })
+            app.toast('发送成功')
+            this.move()
           })
           .catch(error => {
-            app.maskCallBack(self.$store.state.isShutDown);
-            self.showt = false;
-          });
+            app.maskCallBack(self.$store.state.isShutDown)
+            self.showt = false
+          })
       } else {
-        app.toast("信息不能为空噢");
+        app.toast('信息不能为空噢')
       }
     },
-    move() {
-      var _scroll = this.$refs.scroll.scroll;
-      var temp = _scroll.y;
-      var timer = setInterval(function() {
+    move () {
+      var _scroll = this.$refs.scroll.scroll
+      var temp = _scroll.y
+      var timer = setInterval(function () {
         if (temp <= _scroll.maxScrollY) {
-          clearInterval(timer);
-          console.log(222);
+          clearInterval(timer)
+          console.log(222)
         } else {
-          temp -= 30;
-          _scroll.scrollTo(0, temp);
+          temp -= 30
+          _scroll.scrollTo(0, temp)
         }
-      }, 1);
+      }, 1)
     },
-    askList() {
+    askList () {
       app
         .post({
-          url: "/php/reg.php",
+          url: '/php/reg.php',
           data: {
-            type: "check"
+            type: 'check'
           }
         })
         .then(data => {
           // console.log(data)
           if (data.length > 0) {
-            this.list = data;
-            this.i = data.length;
+            this.list = data
+            this.i = data.length
           }
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    weather() {
-      if (app.isBrowser) return false;
-      //http://www.sojson.com/open/api/weather/json.shtml?city=%E9%A1%BA%E5%BE%B7
-      //http://api.map.baidu.com/telematics/v3/weather?location=广州&output=JSON&ak=uBuiwKr0QniXXXBw64r7pcghklP1ErLk
+    weather () {
+      if (app.isBrowser) return false
+      // http://www.sojson.com/open/api/weather/json.shtml?city=%E9%A1%BA%E5%BE%B7
+      // http://api.map.baidu.com/telematics/v3/weather?location=广州&output=JSON&ak=uBuiwKr0QniXXXBw64r7pcghklP1ErLk
     },
-    location() {
-      if (app.isBrowser) return false;
-      var self = this;
+    location () {
+      if (app.isBrowser) return false
+      var self = this
       plus.geolocation.getCurrentPosition(
         geoInf,
-        function(e) {
-          app.toast("获取定位位置信息失败：" + e.message);
+        function (e) {
+          app.toast('获取定位位置信息失败：' + e.message)
         },
         { geocode: true }
-      );
+      )
 
-      function geoInf(position) {
-        var str = "";
-        str += "地址：" + position.addresses + "\n"; //获取地址信息
-        str += "坐标类型：" + position.coordsType + "\n";
-        var timeflag = position.timestamp; //获取到地理位置信息的时间戳；一个毫秒数；
-        str += "时间戳：" + timeflag + "\n";
-        var codns = position.coords; //获取地理坐标信息；
-        var lat = codns.latitude; //获取到当前位置的纬度；
-        str += "纬度：" + lat + "\n";
-        var longt = codns.longitude; //获取到当前位置的经度
-        str += "经度：" + longt + "\n";
-        var alt = codns.altitude; //获取到当前位置的海拔信息；
-        str += "海拔：" + alt + "\n";
-        var accu = codns.accuracy; //地理坐标信息精确度信息；
-        str += "精确度：" + accu + "\n";
-        var altAcc = codns.altitudeAccuracy; //获取海拔信息的精确度；
-        str += "海拔精确度：" + altAcc + "\n";
-        var head = codns.heading; //获取设备的移动方向；
-        str += "移动方向：" + head + "\n";
-        var sped = codns.speed; //获取设备的移动速度；
-        str += "移动速度：" + sped;
-        console.log(str);
-        self.str = str;
+      function geoInf (position) {
+        var str = ''
+        str += '地址：' + position.addresses + '\n' // 获取地址信息
+        str += '坐标类型：' + position.coordsType + '\n'
+        var timeflag = position.timestamp // 获取到地理位置信息的时间戳；一个毫秒数；
+        str += '时间戳：' + timeflag + '\n'
+        var codns = position.coords // 获取地理坐标信息；
+        var lat = codns.latitude // 获取到当前位置的纬度；
+        str += '纬度：' + lat + '\n'
+        var longt = codns.longitude // 获取到当前位置的经度
+        str += '经度：' + longt + '\n'
+        var alt = codns.altitude // 获取到当前位置的海拔信息；
+        str += '海拔：' + alt + '\n'
+        var accu = codns.accuracy // 地理坐标信息精确度信息；
+        str += '精确度：' + accu + '\n'
+        var altAcc = codns.altitudeAccuracy // 获取海拔信息的精确度；
+        str += '海拔精确度：' + altAcc + '\n'
+        var head = codns.heading // 获取设备的移动方向；
+        str += '移动方向：' + head + '\n'
+        var sped = codns.speed // 获取设备的移动速度；
+        str += '移动速度：' + sped
+        console.log(str)
+        self.str = str
         // console.log(JSON.stringify(position));
         // outLine( str );
       }
     }
   },
-  watch:{
-    name(newval,old){
-      if(newval.length>8&&newval.length>old.length){
-          this.name=old;
-          console.log(newval,old)
-          app.toast("你的昵称太长了噢",'warn');
+  watch: {
+    name (newval, old) {
+      if (newval.length > 8 && newval.length > old.length) {
+        this.name = old
+        console.log(newval, old)
+        app.toast('你的昵称太长了噢', 'warn')
       }
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

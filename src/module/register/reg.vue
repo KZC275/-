@@ -27,66 +27,65 @@
 </template>
 
 <script>
-import Pheader from "../../components/Pheader";
+import Pheader from '../../components/Pheader'
 export default {
-  name: "info",
-  data() {
+  name: 'info',
+  data () {
     return {
-      msg: "info",
-      email:'',
-      username: "",
-      psw: "",
-    };
+      msg: 'info',
+      email: '',
+      username: '',
+      psw: ''
+    }
   },
   components: {
-    "global-header": Pheader,
+    'global-header': Pheader
   },
-  created() {
+  created () {
   },
   methods: {
-    register(u, p,email) {
-      if(!/^\w{2,20}@(163||126||qq||sina).com$/.test(email)){
-          app.toast('邮箱格式不正确');
-          return ;
+    register (u, p, email) {
+      if (!/^\w{2,20}@(163||126||qq||sina).com$/.test(email)) {
+        app.toast('邮箱格式不正确')
+        return
       }
       app
         .post({
-          url: "/php/register.php",
-          data: { username: u, psw: p,email:email}
+          url: '/php/register.php',
+          data: { username: u, psw: p, email: email}
         })
         .then(data => {
-          console.log(data);
+          console.log(data)
           if (data.returnCode == true) {
-            app.toast("注册成功");
-            this.$router.go(-1);
-          }else{
-             app.toast(data.returnCode);
+            app.toast('注册成功')
+            this.$router.go(-1)
+          } else {
+            app.toast(data.returnCode)
           }
-        });
+        })
     },
-    findpsw(email){
+    findpsw (email) {
       app
         .post({
-          url: "/php/sent_mail.php",
+          url: '/php/sent_mail.php',
           data: { email: email }
         })
         .then(data => {
-           data=JSON.parse(data)
-           console.log(data)
-           if (data.returnCode == true) {
-            app.toast("邮件发送成功，请检查邮箱");
-            this.$router.go(-1);
-          }else{
-             app.toast(data.returnDes);
+          data = JSON.parse(data)
+          console.log(data)
+          if (data.returnCode == true) {
+            app.toast('邮件发送成功，请检查邮箱')
+            this.$router.go(-1)
+          } else {
+            app.toast(data.returnDes)
           }
         })
         .catch(error => {
-          app.toast("请求失败");
-        });
-      
+          app.toast('请求失败')
+        })
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

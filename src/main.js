@@ -7,7 +7,7 @@ import router from './router'
 import store from './store'
 import app from './utils/common.js'
 
-import  { AlertPlugin,ToastPlugin,LoadingPlugin ,ConfirmPlugin} from 'vux'
+import { AlertPlugin, ToastPlugin, LoadingPlugin, ConfirmPlugin} from 'vux'
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
 Vue.use(LoadingPlugin)
@@ -17,17 +17,14 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 // console.log(store)
-//映射__store,router为全局对象
-window.__store=store;
-window.__router=router;
-window.app=app;
-window.vm_bank=new Vue({
+// 映射__store,router为全局对象
+window.__store = store
+window.__router = router
+window.app = app
+window.vm_bank = new Vue({
   el: '#app',
   store,
   router,
   template: '<App/>',
   components: { App }
 })
-
-
-

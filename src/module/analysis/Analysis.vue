@@ -12,34 +12,34 @@
 </template>
 
 <script>
-import Pheader from "../../components/Pheader";
-import { mapGetters, mapActions, mapMutations } from "vuex";
+import Pheader from '../../components/Pheader'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
-  name: "analysis",
-  data() {
-    return {};
+  name: 'analysis',
+  data () {
+    return {}
   },
 
   methods: {
-    init() {
+    init () {
       // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(document.getElementById("main"));
+      var myChart = echarts.init(document.getElementById('main'))
 
       // 指定图表的配置项和数据
       var option1 = {
-        backgroundColor: "yellow",
+        backgroundColor: 'yellow',
 
         title: {
-          text: "课程内容分布",
-          left: "center",
+          text: '课程内容分布',
+          left: 'center',
           top: 20,
           textStyle: {
-            color: "red"
+            color: 'red'
           }
         },
         tooltip: {
-          trigger: "item",
-          formatter: "{a} <br/>{b} : {d}%"
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {d}%'
         },
 
         // visualMap: {
@@ -52,37 +52,37 @@ export default {
         // },
         series: [
           {
-            name: "课程内容分布",
-            type: "pie",
-            clockwise: "true",
-            startAngle: "0",
-            radius: "50%",
+            name: '课程内容分布',
+            type: 'pie',
+            clockwise: 'true',
+            startAngle: '0',
+            radius: '50%',
             // center: ['50%', '50%'],
             data: [
               {
                 value: 70,
-                name: "语言"
+                name: '语言'
               },
               {
                 value: 10,
-                name: "美国科学&社会科学"
+                name: '美国科学&社会科学'
               },
               {
                 value: 20,
-                name: "美国数学"
+                name: '美国数学'
               }
             ]
           }
         ]
-      };
-      myChart.setOption(option1);
+      }
+      myChart.setOption(option1)
     }
   },
-  mounted() {
-    this.init();
+  mounted () {
+    this.init()
     app
         .post({
-          url: "/php/reg.php",
+          url: '/php/reg.php',
           data: { type: 'analysis' }
         })
         .then(data => {
@@ -90,9 +90,9 @@ export default {
         })
   },
   components: {
-    "global-header": Pheader
+    'global-header': Pheader
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
