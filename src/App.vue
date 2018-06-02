@@ -11,46 +11,43 @@
   </div>
 </template>
 <script>
-import { mapGetters,mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'app',
-  data(){
+  data () {
     return {
-      transition:'right-to-left'
+      transition: 'right-to-left'
     }
   },
   computed: mapGetters([
     // 'isBack'
   ]),
-  created(){
-    console.log(location.href=location.href)
-    this.$router.push({name:'index'})
-     
+  created () {
+    console.log(location.href = location.href)
+    this.$router.push({name: 'index'})
   },
-  methods:{
-      hideMask(){
-        window.app.maskCallBack(this.$store.state.isShutDown)
-      },
-      ...mapMutations([
-          'transitionChange',
-          'isBack'
-    
-      ]),
+  methods: {
+    hideMask () {
+      window.app.maskCallBack(this.$store.state.isShutDown)
+    },
+    ...mapMutations([
+      'transitionChange',
+      'isBack'
+
+    ])
   },
   watch: {
-  '$route' (to, from) {
-    if(this.$store.state.isBack){
-      this.transition='left-to-right';
-      this.$store.state.isBack=false;
-
-    }else{
-        this.transition='right-to-left';
-    }
+    '$route' (to, from) {
+      if (this.$store.state.isBack) {
+        this.transition = 'left-to-right'
+        this.$store.state.isBack = false
+      } else {
+        this.transition = 'right-to-left'
+      }
     // console.log(to, from)
-    
-  },
-}
-  
+    }
+  }
+
 }
 </script>
 
@@ -96,7 +93,7 @@ body {
 	-khtml-user-select: none;
 	user-select: none;
    font-size:0.3rem;
-   color: black;
+   color:black;
    overflow-x: hidden;
 }
 
