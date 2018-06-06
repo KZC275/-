@@ -20,12 +20,14 @@ user bxu2442290509 aA5262325
 binary
 hash
 # 服务器的目录
-cd htdocs
+# cd htdocs
+cd htdocs/php
 # 本地的目录
-lcd /Users/kezengcai/Documents/myproject/dist
+# lcd /Users/kezengcai/Documents/myproject/dist
+lcd /Users/kezengcai/Documents/myproject/php
 prompt
 # 上传的文件名
-mput output.zip
+mput login.php
 bye
 #here document
 EOF
