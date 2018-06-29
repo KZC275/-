@@ -14,50 +14,48 @@
 <script>
 import { mapMutations } from 'vuex'
 export default {
-  name:'Pheader',
-  data(){
+  name: 'Pheader',
+  data () {
     return {
-      
+
     }
   },
-  props:{
-    'leftName':String,
-    'name':String,
-    'title':String,
-    'rightName':String,
-    'value':String,  //父组件通过v-model绑定的可以得到
+  props: {
+    'leftName': String,
+    'name': String,
+    'title': String,
+    'rightName': String,
+    'value': String  // 父组件通过v-model绑定的可以得到
 
   },
-  created(){
-        
-  },
-  mounted(){console.log(this)
-  },
-  methods:{
-      ...mapMutations([
-    'transitionChange',
-    
-      ]),
-      back(name){
-        if(name){
-          this.$router.push({name:name,params:'home'})
-          return;
+  created () {
 
-        }
-        this.$store.state.isBack=true
-        this.$router.back()
-      },
-      home(type){
-        event.cancelBubble=true;
-        event.stopPropagation();
-        console.log('Pheader.scss')
-            if(type){
-            	console.log(type)
-            	this.$router.push({name:type,params:type});
-            	return;
+  },
+  mounted () {
+    console.log(this)
+  },
+  methods: {
+    ...mapMutations([
+      'transitionChange'
 
-            }
+    ]),
+    back (name) {
+      if (name) {
+        this.$router.push({name: name, params: 'home'})
+        return
       }
+      this.$store.state.isBack = true
+      this.$router.back()
+    },
+    home (type) {
+      event.cancelBubble = true
+      event.stopPropagation()
+      console.log('Pheader.scss')
+      if (type) {
+            	console.log(type)
+            	this.$router.push({name: type, params: type})
+      }
+    }
 
   }
 }

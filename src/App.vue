@@ -44,6 +44,8 @@ export default {
       } else {
         this.transition = 'right-to-left'
       }
+      navigator.userAgent.toLowerCase().indexOf('safari') > -1 ? this.transition = '' : ''
+
     // console.log(to, from)
     }
   }

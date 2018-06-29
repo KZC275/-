@@ -34,7 +34,7 @@ const mutations = {
   		state.transition = 'left-to-right'
   	} else {
   		state.transition = 'right-to-left'
-  	}
+  }
   }
 }
 // commit mutation
