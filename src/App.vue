@@ -24,7 +24,7 @@ export default {
   ]),
   created () {
     console.log(location.href = location.href)
-    this.$router.push({name: 'index'})
+    // this.$router.push({name: 'index'})
   },
   methods: {
     hideMask () {

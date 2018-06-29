@@ -57,6 +57,7 @@ export default {
     }
   },
   toast: (msg, type) => {
+    
     // $('.ac_toast').text(msg)
     // if($('.ac_toast').css('display')=='block')return;
     //  $('.ac_toast').css({
@@ -73,19 +74,20 @@ export default {
 
     // },20)
     if (type) {
-      vm_bank.$vux.toast.show({
+      $vux.toast.show({
         type: type,
         text: msg,
         width: '2rem'
       })
       return false
     }
-    vm_bank.$vux.toast.show({
+    $vux.toast.show({
       text: msg,
       width: '2rem'
     })
   },
   post: (params) => {
+    debugger
     // console.log(this)
     let param = {}
     if (app.isBrowser) {
@@ -103,18 +105,18 @@ export default {
     param.data = params.data
     param.beforeSend = function (xhr) { xhr.setRequestHeader('X-Test-Header', 'test-value') } // 这里设置header
     return new Promise((resolve, reject) => {
-      vm_bank.$vux.loading.show({
+      $vux.loading.show({
         text: 'Loading'
       })
       $.ajax(param)
         .done(function (data) {
           // console.log(data)
           resolve(data)
-          vm_bank.$vux.loading.hide()
+          $vux.loading.hide()
         })
         .fail(function (error) {
-          vm_bank.$vux.loading.hide()
-          vm_bank.$vux.toast.show({
+          $vux.loading.hide()
+          $vux.toast.show({
             text: '请求出错',
             width: '2rem'
           })

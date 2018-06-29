@@ -5,16 +5,10 @@ import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import store from './store'
+import init from './utils/init.js'
 import app from './utils/common.js'
 
-import { AlertPlugin, ToastPlugin, LoadingPlugin, ConfirmPlugin} from 'vux'
-Vue.use(AlertPlugin)
-Vue.use(ToastPlugin)
-Vue.use(LoadingPlugin)
-Vue.use(ConfirmPlugin)
-
 Vue.config.productionTip = false
-
 /* eslint-disable no-new */
 // console.log(store)
 // 映射__store,router为全局对象

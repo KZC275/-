@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Pheader from '../../components/Pheader'
+// import Pheader from '../../components/Pheader'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'analysis',
@@ -27,10 +27,9 @@ export default {
 
       // 指定图表的配置项和数据
       var option1 = {
-        backgroundColor: 'yellow',
-
+        backgroundColor: 'white',
         title: {
-          text: '课程内容分布',
+          text: '用户数据统计',
           left: 'center',
           top: 20,
           textStyle: {
@@ -52,7 +51,7 @@ export default {
         // },
         series: [
           {
-            name: '课程内容分布',
+            name: '注册邮箱',
             type: 'pie',
             clockwise: 'true',
             startAngle: '0',
@@ -61,15 +60,19 @@ export default {
             data: [
               {
                 value: 70,
-                name: '语言'
+                name: '网易邮箱'
               },
               {
                 value: 10,
-                name: '美国科学&社会科学'
+                name: 'qq邮箱'
               },
               {
-                value: 20,
-                name: '美国数学'
+                value: 5,
+                name: '其他邮箱'
+              },
+              {
+                value: 15,
+                name: '无邮箱'
               }
             ]
           }
@@ -90,7 +93,7 @@ export default {
         })
   },
   components: {
-    'global-header': Pheader
+    // 'global-header': Pheader
   }
 }
 </script>
