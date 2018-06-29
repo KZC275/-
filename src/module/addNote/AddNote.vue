@@ -17,7 +17,7 @@
 </keep-alive>
 </template>
 <script>
-	import Pheader from '../../components/Pheader'
+	 
 
 	export default {
 		name: 'addNote',
@@ -34,7 +34,6 @@
 			// console.log('beforeRouteEnter')
 		},
 		components: {
-			'global-header': Pheader,
 
 		},
 		created() {

@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import Pheader from '../../components/Pheader'
+ 
 import Slider from './slider.vue'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
@@ -78,7 +78,6 @@ export default {
     }
   },
   components: {
-    'global-header': Pheader,
     slider: Slider
   },
   computed: mapGetters(['evenOrOdd']),

@@ -20,10 +20,8 @@
 	</div>
 </template>
 <script>
-	import Pheader from '../../components/Pheader'
 	import List from './list'
 	import BScroll from 'better-scroll'
-
 	export default {
 		name: 'myNote',
 		data() {
@@ -35,7 +33,6 @@
 			// console.log('beforeRouteEnter')
 		},
 		components: {
-			'global-header': Pheader,
 			'list': List
 		},
 		created() {

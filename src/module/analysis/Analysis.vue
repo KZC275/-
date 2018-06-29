@@ -12,7 +12,6 @@
 </template>
 
 <script>
-// import Pheader from '../../components/Pheader'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'analysis',
@@ -93,7 +92,6 @@ export default {
         })
   },
   components: {
-    // 'global-header': Pheader
   }
 }
 </script>

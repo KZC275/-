@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Pheader from '../../components/Pheader'
+ 
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 import List from './list'
 export default {
@@ -41,7 +41,6 @@ export default {
     }
   },
   components: {
-    'global-header': Pheader,
     list: List
   },
   computed: mapGetters(['evenOrOdd']),

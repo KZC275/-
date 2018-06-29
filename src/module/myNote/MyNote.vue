@@ -23,10 +23,8 @@
 </template>
 <script>
 	import { mapGetters, mapActions, mapMutations } from 'vuex'
-	import Pheader from '../../components/Pheader'
 	import List from '../diary/list.vue'
 	import BScroll from 'better-scroll'
-
 	export default {
 	  name: 'myNote',
 	  data () {
@@ -41,7 +39,6 @@
 			// console.log('beforeRouteEnter')
   },
 	  components: {
-	    'global-header': Pheader,
 	    'list': List
   },
 	  created () {

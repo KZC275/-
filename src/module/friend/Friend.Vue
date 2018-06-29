@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import Pheader from '../../components/Pheader'
+ 
 import slider from '../diary/list.vue'
 export default {
   name: 'Friend',
@@ -64,7 +64,6 @@ export default {
     }
   },
   components: {
-    'global-header': Pheader,
     slider
   },
   created () {

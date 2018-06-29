@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import Pheader from '../../components/Pheader'
+ 
 export default {
   name: 'info',
   data () {
@@ -39,7 +39,7 @@ export default {
     }
   },
   components: {
-    'global-header': Pheader
+     
   },
   created () {
   },
