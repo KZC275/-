@@ -1,11 +1,10 @@
 <template>
   <div id="app">
     <transition :name="transition" >
-        <keep-alive include="info,addNote,myNote">  <!-- addNote组件会被缓存,为空的话缓存所有组件 -->
-            <router-view></router-view>
-        </keep-alive>
+      <keep-alive include="info,addNote,myNote">  <!-- addNote组件会被缓存,为空的话缓存所有组件 -->
+          <router-view></router-view>
+      </keep-alive>
     </transition>
-
     <div class="app_cover" v-if="$store.state.showMask" @touchend="hideMask"></div>
     <span class="ac_toast"></span>
   </div>
@@ -16,7 +15,8 @@ export default {
   name: 'app',
   data () {
     return {
-      transition: 'right-to-left'
+      transition: 'right-to-left',
+      isSafari: navigator.userAgent.toLowerCase().indexOf('safari') > -1
     }
   },
   computed: mapGetters([
@@ -44,7 +44,6 @@ export default {
       } else {
         this.transition = 'right-to-left'
       }
-      navigator.userAgent.toLowerCase().indexOf('safari') > -1 ? this.transition = '' : ''
 
     // console.log(to, from)
     }

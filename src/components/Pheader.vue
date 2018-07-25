@@ -9,16 +9,24 @@
           <div class="right" @touchend="home(rightName)">
               <slot name='right'></slot>
           </div>
+          <!-- 需要test组件提供slot出口 jjkk，kkll才能有用 -->
+          <!-- <test>
+              <slot name="jjkk"></slot>
+              <slot name="kkll"></slot>
+          </test> -->
       </div>
 </template>
 <script>
 import { mapMutations } from 'vuex'
+// import Test from './test.vue'
 export default {
   name: 'Pheader',
   data () {
     return {
-
     }
+  },
+  components: {
+    // 'test': Test
   },
   props: {
     'leftName': String,
@@ -32,7 +40,7 @@ export default {
 
   },
   mounted () {
-    console.log(this)
+    // console.log(this)
   },
   methods: {
     ...mapMutations([
@@ -50,9 +58,9 @@ export default {
     home (type) {
       event.cancelBubble = true
       event.stopPropagation()
-      console.log('Pheader.scss')
+      // console.log('Pheader.scss')
       if (type) {
-            	console.log(type)
+            	// console.log(type)
             	this.$router.push({name: type, params: type})
       }
     }

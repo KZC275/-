@@ -1,10 +1,12 @@
 <template>
     <div class="app_main">
       <div class="headerTop">
-          <global-header leftName="myNote" rightName="addNote" v-model="jjkjjk">
+          <global-header ref='gheader' leftName="myNote" rightName="addNote" v-model="jjkjjk">
             <span slot="left">my note</span>
             <span>index</span>
             <span slot="right">add</span>
+            <!-- <span slot="jjkk">啊啊啊烦</span> -->
+            <!-- <span slot="kkll">=-22ndndn</span> -->
           </global-header>
       </div>
       
@@ -26,17 +28,17 @@
     </div>
 </template>
 <script>
-import Pheader from "../../components/Pheader";
+import Pheader from '../../components/Pheader'
 export default {
-  name: "index",
-  data() {
+  name: 'index',
+  data () {
     return {
-      my_Note: "",
-      weather: "",
-      jjkjjk: "sjsjjsjssjj"
-    };
+      my_Note: '',
+      weather: '',
+      jjkjjk: 'sjsjjsjssjj'
+    }
   },
-  created() {
+  created () {
     // app
     //   .post({
     //     url: "/php/sent_mail.php",
@@ -52,13 +54,17 @@ export default {
     //        console.log(this.$store.state)
     this.weather = this.$store.state.isLogin
       ? this.$store.state.username
-      : "游客";
-    this.my_Note = this.$store.state.count;
+      : '游客'
+    this.my_Note = this.$store.state.count
+  },
+  mounted () {
+    debugger
+    this.$refs.gheader
   },
   components: {
-    "global-header": Pheader
+    'global-header': Pheader
   }
-};
+}
 </script>
 
 <style lang='scss'>

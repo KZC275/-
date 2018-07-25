@@ -57,7 +57,6 @@ export default {
     }
   },
   toast: (msg, type) => {
-    
     // $('.ac_toast').text(msg)
     // if($('.ac_toast').css('display')=='block')return;
     //  $('.ac_toast').css({
@@ -87,7 +86,6 @@ export default {
     })
   },
   post: (params) => {
-    debugger
     // console.log(this)
     let param = {}
     if (app.isBrowser) {

@@ -17,64 +17,60 @@
 </keep-alive>
 </template>
 <script>
-	 
 
-	export default {
-		name: 'addNote',
-		data() {
-			return {
-				when:'when',
-				where:'where',
-				who:'who',
-				what:'what happen',
+export default {
+  name: 'addNote',
+  data () {
+    return {
+      when: 'when',
+      where: 'where',
+      who: 'who',
+      what: 'what happen'
 
-			}
-		},
-		beforeRouteUpdate() {
+    }
+  },
+  beforeRouteUpdate () {
 			// console.log('beforeRouteEnter')
-		},
-		components: {
+  },
+  components: {
 
-		},
-		created() {
+  },
+  created () {
 
-		},
-		methods: {
-			goTo() {
-				console.log(this.$router)
-
-			},
-			save() {
-					app.post({
-						url:'/php/reg.php',
-						data:{
-							type: 'addNote',
-							when:this.when,
-							where:this.where,
-							who:this.who,
-							what:this.what
-						}
-					}).then((data)=>{
-						console.log(data)
-						app.toast('添加成功')
-						if(data==true){
-							this.$router.push({
+  },
+  methods: {
+    goTo () {
+      console.log(this.$router)
+    },
+    save () {
+      app.post({
+        url: '/php/reg.php',
+        data: {
+          type: 'addNote',
+          when: this.when,
+          where: this.where,
+          who: this.who,
+          what: this.what
+        }
+      }).then((data) => {
+        console.log(data)
+        app.toast('添加成功')
+        if (data == true) {
+          this.$router.push({
 							  name: 'myNote',
 							  params: 'from add'
-							})
-						}
-					})
-				
-				
-			}
-		},
-		watch: {
+          })
+        }
+      })
+    }
+  },
+  watch: {
 
-		},
-		mounted() {
+  },
+  mounted () {
 
-		}
-	}
+  }
+}
 </script>
 
 <style lang='scss'>
