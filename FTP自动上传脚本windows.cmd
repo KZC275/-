@@ -1,4 +1,4 @@
-﻿rem 注释语句 ftp自动上传bat脚本
+﻿REM ftp自动上传bat脚本
 
 
 @echo off
@@ -9,6 +9,6 @@ echo put "E:\MYPROJECT\dist\output.zip" "htdocs/output.zip" >> temp.txt
 REM echo put "E:\MYPROJECT\php\reg.php" "htdocs/php/reg.php" >> temp.txt
 echo bye >> temp.txt
 ftp -n -s:"temp.txt"
-rem del /q D:\MyData\Administrator\Desktop\dist-UAT.zip
+REM del /q D:\MyData\Administrator\Desktop\dist-UAT.zip
 pause
 del /q temp.txt
