@@ -51,4 +51,47 @@
     color: white;
     font-size: .6rem;
   }
+  .mask{
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: #ccc;
+    margin: auto;
+    opacity: 0.5;
+  }
+  .dialog{
+    z-index: 1000;
+    position: fixed;
+    width: 40%;
+    padding: 1rem 2rem;
+    margin-top: 4rem;
+    left: 50%;
+    transform:translateX(-50%);
+    .textarea{
+      height: 6rem;
+      display: block;
+      width: 100%;
+      margin-bottom: 0.2rem;
+      resize:none;
+    }
+    input{
+      display: inline-block;
+      height: 1rem;
+
+    }
+    .btn{
+      display: inline-block;
+      height: 1rem;
+      line-height: 1rem;
+      background: red;
+      border-radius: .1rem;
+      cursor: pointer;
+      padding: .1rem 1rem;
+      color: white;
+      font-size: .6rem;
+    }
+  }
 }

@@ -4,9 +4,7 @@
           <global-header ref='gheader' leftName="myNote" rightName="addNote" >
             <span slot="left"></span>
             <span>say something</span>
-            <span slot="right">我要说</span>
-            <!-- <span slot="jjkk">啊啊啊烦</span> -->
-            <!-- <span slot="kkll">=-22ndndn</span> -->
+            <span slot="right" @click="mask=true">我要说</span>
           </global-header>
       </div>
 
@@ -23,6 +21,13 @@
           </li>
         </ul>
       </div>
+      <div class="mask" v-if="mask" @click.stop.prevent="mask=false"></div>
+
+      <div class="dialog" v-if="mask">
+        <textarea class="textarea" v-model="result" placeholder="你想说什么"></textarea>
+        <input type="text" name="" placeholder="你的昵称">
+        <span class="btn" @click="send">发送</span>
+      </div>
 
       <div class="button" @click="move">到底部</div>
       
@@ -34,7 +39,9 @@ export default {
   name: 'index',
   data () {
     return {
-     data:[]
+     data:[],
+     mask: false,
+     result: ''
     }
   },
   created () {
@@ -67,8 +74,8 @@ export default {
         }
       },16)
     },
-    movement(){
-
+    send(){
+      
     }
   }
 }
