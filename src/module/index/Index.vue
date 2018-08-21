@@ -9,8 +9,13 @@
       </div>
 
       <div class="content">
+        <div class="dialog" v-if="mask">
+          <textarea class="textarea" v-model="result" placeholder="你想说什么"></textarea>
+          <input type="text" name="" placeholder="你的昵称" v-model="name">
+          <span class="btn" @click="send(result,name)">发送</span>
+        </div>
         <ul>
-          <li class="item" v-for="item in data">
+          <li class="item" v-for="item in data" :key="item.time">
             <div class="top">
               <p class="name">{{item.nickName}} 说：</p>
               <span class="time">{{item.time}}</span>
@@ -23,11 +28,7 @@
       </div>
       <div class="mask" v-if="mask" @click.stop.prevent="mask=false"></div>
 
-      <div class="dialog" v-if="mask">
-        <textarea class="textarea" v-model="result" placeholder="你想说什么"></textarea>
-        <input type="text" name="" placeholder="你的昵称" v-model="name">
-        <span class="btn" @click="send(result,name)">发送</span>
-      </div>
+      
 
       <div class="moveUp" @click="moveUp">到顶部</div>
       <div class="moveDown" @click="move">到底部</div>
