@@ -99,3 +99,13 @@ exports.createNotifierCallback = () => {
     })
   }
 }
+
+function HelloP(opt){
+  console.log(opt)
+}
+HelloP.prototype.apply=function(compiler){
+  compiler.plugin('done',function(){
+    console.log('done')
+  })
+}
+

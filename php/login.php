@@ -107,10 +107,7 @@
             $res->returnCode= $bool_name?'密码错误':'用户没有注册';
             $res->returnDes= $bool_name?'wp':'wn';
          }
-         //jsonp跨域方法
-         // $callback_test=json_encode($res);
-         // print_r('success_jsonpcallbak'.'('.$callback_test.')');
-         
+        //  header("Location: https://www.kzc275.top"); 
          print_r(json_encode($res));
          // session_destroy();
 

@@ -13,47 +13,43 @@
           <span @click="login(username,psw)">login</span>
         </div>
     </div>
-
     <div v-else class="user">
        <h2>你已经登录</h2>
        <span @click="logout">注销</span>
     </div>
-
-
-    
   </div>
 </template>
 
 <script>
  
 export default {
-  name: 'info',
-  data () {
-    return {
-      msg: 'info',
-      email: '',
-      username: 'qwqw',
-      psw: '123',
-      show5: false,
-      ssww: 'sdsds'
-    }
-  },
-  components: {
-     
-  },
-  created () {
+   name: 'info',
+   data () {
+     return {
+       msg: 'info',
+       email: '',
+       username: 'qwqw',
+       psw: '123',
+       show5: false,
+       ssww: 'sdsds'
+     }
+   },
+   components: {
+ 
+   },
+   created () {
 
-  },
-  methods: {
-    goReg (type) {
-      this.$router.push({name: 'register', params: {type: type}})
-    },
-    check () {
-      console.log(222)
-    },
-    login (u, p) {
-      let self = this
-      app
+   },
+   methods: {
+     goReg (type) {
+       this.$router.push({name: 'register', params: {type: type}})
+     },
+     check () {
+       console.log(222)
+     },
+     login (u, p) {
+       let self = this
+       app
         .post({
           url: '/php/login.php',
           data: { username: u, psw: p }
@@ -79,9 +75,9 @@ export default {
         .catch(error => {
           app.toast('请求失败')
         })
-    },
-    register (u, p, email) {
-      app
+     },
+     register (u, p, email) {
+       app
         .post({
           url: '/php/register.php',
           data: { username: u, psw: p, email: email}
@@ -94,10 +90,10 @@ export default {
             app.toast(data.returnCode)
           }
         })
-    },
-    logout () {
-      let self = this
-      app
+     },
+     logout () {
+       let self = this
+       app
         .post({
           url: '/php/loginOut.php'
         })
@@ -109,10 +105,10 @@ export default {
             app.toast('注销失败')
           }
         })
-    },
-    findpsw (email) {
-      console.log('sd')
-      app
+     },
+     findpsw (email) {
+       console.log('sd')
+       app
         .post({
           url: '/php/sent_mail.php',
           data: { email: email }
@@ -123,8 +119,8 @@ export default {
         .catch(error => {
           app.toast('请求失败')
         })
-    }
-  }
+     }
+   }
 }
 </script>
 

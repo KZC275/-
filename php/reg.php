@@ -97,9 +97,7 @@ if($_SERVER['REQUEST_METHOD']){
             //数据统计
             include './checkLogin.php';
             //delete from 表 where id between 1 and 5 #id为1-3的
-            $sql='SELECT count(*) FROM information
-                    UNION
-                    SELECT count(*) FROM users';  
+            $sql='SELECT * FROM information';  
             $result = $con->query($sql);
             // print_r(json_encode($result));
             $arr=array();
@@ -110,7 +108,8 @@ if($_SERVER['REQUEST_METHOD']){
                 // $row 当前获取到的每一行数据
                 while ($row = $result->fetch_assoc()) {
                     $cfg=new Note(); 
-                    $cfg->all=$row['COUNT(*)'];
+                    $cfg->userName=$row['userName'];
+                    $cfg->email=$row['email'];
                     array_push($arr,$cfg);
                     
                 }

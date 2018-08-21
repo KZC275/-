@@ -26,7 +26,7 @@
        <h1>{{evenOrOdd}}</h1>
     </div>
     <!-- //click 改为touchstart后无法全屏 -->
-    <button @touchstart="fullscreen" style="height:0.5rem;background:#ccc;margin-top:0.5rem">全屏</button>
+    <!-- <button @touchstart="fullscreen" style="height:0.5rem;background:#ccc;margin-top:0.5rem">全屏</button> -->
     
 
     <div class="videotag">
