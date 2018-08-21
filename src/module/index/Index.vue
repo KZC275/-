@@ -30,6 +30,8 @@
       </div>
 
       <div class="button" @click="move">到底部</div>
+
+      <img src="@/assets/img/background.jpg" class="bgpic">
       
     </div>
 </template>
