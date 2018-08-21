@@ -7,14 +7,14 @@
 
 }
 .header{
-      height:0.88rem;
-      line-height:0.88rem;
+      height:1.88rem;
+      line-height:1.88rem;
       width:100%;
       background-color:$bgcolor;
       flex-shrink:0; /*不缩小*/
-      // position: fixed;
-      // top: 0;
-      // z-index: 9999;
+      position: fixed;
+      top: 0;
+      z-index: 9999;
       display: flex;
       .left{
         width: 20%;
@@ -22,8 +22,8 @@
         text-align: left;
         .icon{
           display:inline-block;
-          height:0.88rem;
-          width:0.88rem;
+          height:1.88rem;
+          width:1.88rem;
           img{
             width:100%;
             vertical-align:middle;
@@ -38,5 +38,10 @@
       .right{
         width: 20%;
         height: 100%;
+      }
+      .right:hover{
+        background: blue;
+        color: white;
+        cursor: pointer;
       }
     }

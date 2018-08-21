@@ -6,25 +6,49 @@
   .headerTop{
 
   }
-  .message {
-    // margin-top: 1rem;
-    flex-grow:2;
-  }
-  .bottom {
-    width: 100%;
-    // position: fixed;
-    // bottom: 0;
-    display: flex;
-    // justify-content: space-around;
-    a {
-      flex-grow:1;
-      text-decoration: none;
-      width: 25%;
-      height: 0.88rem;
-      line-height: 0.88rem;
-      display: inline-block;
-      background-color: #ccc;
-      color: green;
+  .content{
+    margin-top: 1.9rem;
+    .item{
+      width: 70%;
+      margin: auto;
+      margin-top: 0.1rem;
+      background: #ccc;
+      display: flex;
+      flex-direction: column;
+      .top{
+        display: flex;
+        height: 1.5rem;
+        align-items: center;
+        .name{
+          padding-left: 0.2rem;
+          flex-grow:2;
+          text-align: left;
+          font-weight: bold;
+        }
+        .time{
+          flex-shrink:0;
+          font-size: 0.5rem;
+          padding-right: 0.2rem;
+        }
+      }
+      .bottom{
+        padding: 0.4rem 0.2rem;
+        text-align: left;
+        p{
+        }
+      }
     }
+  }
+  .button{
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    background: red;
+    opacity: 0.5;
+    border-radius: .1rem;
+    cursor: pointer;
+    padding: .2rem .3rem;
+    color: white;
+    font-size: .6rem;
   }
 }

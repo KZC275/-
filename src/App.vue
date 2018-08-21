@@ -93,7 +93,7 @@ body {
 	-ms-user-select: none;
 	-khtml-user-select: none;
 	user-select: none;
-   font-size:0.3rem;
+   font-size:0.7rem;
    color:black;
    overflow-x: hidden;
 }

@@ -1,30 +1,31 @@
 <template>
     <div class="app_main">
       <div class="headerTop">
-          <global-header ref='gheader' leftName="myNote" rightName="addNote" v-model="jjkjjk">
-            <span slot="left">my note</span>
-            <span>index</span>
-            <span slot="right">add</span>
+          <global-header ref='gheader' leftName="myNote" rightName="addNote" >
+            <span slot="left"></span>
+            <span>say something</span>
+            <span slot="right">我要说</span>
             <!-- <span slot="jjkk">啊啊啊烦</span> -->
             <!-- <span slot="kkll">=-22ndndn</span> -->
           </global-header>
       </div>
+
+      <div class="content">
+        <ul>
+          <li class="item" v-for="item in data">
+            <div class="top">
+              <p class="name">{{item.nickName}} 说：</p>
+              <span class="time">{{item.time}}</span>
+            </div>
+            <div class="bottom">
+                <p>{{item.content}}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="button" @click="move">到底部</div>
       
-      <div class="message">
-          <h3>Today is nice</h3>
-          <h3>vuex test {{my_Note}}</h3>
-          <p>当前状态：{{weather}}</p>
-      </div>
-      <div class="bottom">
-          <router-link to="/experience">组件</router-link>
-          <router-link to="/analysis">统计</router-link>
-          <router-link to="/diary">上拉下拉</router-link>
-          <router-link to="/friend">留言板</router-link>
-          <router-link to="/info">注册登录</router-link>
-      </div>
-      <div>
-          <router-view></router-view>
-      </div>
     </div>
 </template>
 <script>
@@ -33,36 +34,42 @@ export default {
   name: 'index',
   data () {
     return {
-      my_Note: '',
-      weather: '',
-      jjkjjk: 'sjsjjsjssjj'
+     data:[]
     }
   },
   created () {
-    // app
-    //   .post({
-    //     url: "/php/sent_mail.php",
-    //     data:{email:'1142308041@qq.com'}
-    //   })
-    //   .then(data => {
-    //     console.log( JSON.parse(data));
-    //   })
-    //   .catch(error => {
-    //     app.toast("请求失败");
-    //   });
+    app
+      .post({
+        url: "/php/reg.php",
+        data:{type:'check'}
+      })
+      .then(data => {
+        this.data=data
+        console.log( data);
+      })
 
-    //        console.log(this.$store.state)
-    this.weather = this.$store.state.isLogin
-      ? this.$store.state.username
-      : '游客'
-    this.my_Note = this.$store.state.count
+    
   },
   mounted () {
-    debugger
-    this.$refs.gheader
   },
-  components: {
-    'global-header': Pheader
+  methods:{
+    move (){
+      console.log('move')
+      let scrollTop= document.documentElement.scrollTop;
+      let docHeight= document.documentElement.scrollHeight
+      let clientHeight= document.documentElement.clientHeight
+
+      setTimeout(()=>{
+        // 缓冲运动
+        window.scrollTo(0,scrollTop=scrollTop+((docHeight-clientHeight-scrollTop)/6<1? 1 : (docHeight-clientHeight-scrollTop)/6))
+        if(scrollTop<=docHeight-clientHeight-1){
+          this.move()
+        }
+      },16)
+    },
+    movement(){
+
+    }
   }
 }
 </script>
