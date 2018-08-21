@@ -6,7 +6,7 @@
           <div class="middle">
               <slot>{{name}}</slot>
           </div>
-          <div class="right" @touchend="home(rightName)">
+          <div class="right" >
               <slot name='right'></slot>
           </div>
           <!-- 需要test组件提供slot出口 jjkk，kkll才能有用 -->

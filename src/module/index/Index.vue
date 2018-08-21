@@ -4,7 +4,7 @@
           <global-header ref='gheader' leftName="myNote" rightName="addNote" >
             <span slot="left"></span>
             <span>say something</span>
-            <span slot="right" @click="mask=true">我要说</span>
+            <span class="right" slot="right" @click="mask=true">我要说</span>
           </global-header>
       </div>
 
@@ -25,8 +25,8 @@
 
       <div class="dialog" v-if="mask">
         <textarea class="textarea" v-model="result" placeholder="你想说什么"></textarea>
-        <input type="text" name="" placeholder="你的昵称">
-        <span class="btn" @click="send">发送</span>
+        <input type="text" name="" placeholder="你的昵称" v-model="name">
+        <span class="btn" @click="send(result,name)">发送</span>
       </div>
 
       <div class="button" @click="move">到底部</div>
@@ -41,6 +41,7 @@ export default {
     return {
      data:[],
      mask: false,
+     name: '',
      result: ''
     }
   },
@@ -74,13 +75,66 @@ export default {
         }
       },16)
     },
-    send(){
-      
-    }
+    send (msg, name) {
+      // 获取better-scroll实例
+      if (msg) {
+        name = name.trim() ? name.trim() : '匿名者'
+        // name = "(" + ++self.i + " floor " + ")" + name;
+        // 获取时间
+        var date = new Date()
+        // console.log(date);s
+        var year = date.getFullYear()
+        var month = date.getMonth()
+        var day = date.getDate()
+        var h = date.getHours()
+        var m = date.getMinutes()
+        var s = date.getSeconds()
+        var TimeStr =
+          year +
+          '年' +
+          (month + 1) +
+          '月' +
+          day +
+          '日' +
+          h +
+          '时' +
+          m +
+          '分' +
+          s +
+          '秒'
+        app
+          .post({
+            url: '/php/reg.php',
+            data: {
+              type: 'add',
+              nickName: name,
+              content: msg,
+              time: TimeStr
+            }
+          })
+          .then(data => {
+
+            this.data.push({
+              time: TimeStr,
+              content: msg,
+              nickName: name
+            })
+            app.toast('发送成功')
+            this.mask = false
+            this.move()
+          })
+          .catch(error => {
+            this.mask = false
+            app.toast('error')
+          })
+      } else {
+        app.toast('信息不能为空噢')
+      }
+    },
   }
 }
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 @import "./index.scss";
 </style>

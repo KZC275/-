@@ -76,13 +76,13 @@ export default {
       $vux.toast.show({
         type: type,
         text: msg,
-        width: '2rem'
+        width: '6rem'
       })
       return false
     }
     $vux.toast.show({
       text: msg,
-      width: '2rem'
+      width: '6rem'
     })
   },
   post: (params) => {
