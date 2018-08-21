@@ -2,8 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="screen-orientation" content="portrait"><!-- uc强制竖屏 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="static/animate.css">
     <link rel="stylesheet" href="static/css/video-js.css">
     <!-- <link rel="stylesheet" href="static/css/mui.min.css"> -->
@@ -22,11 +20,7 @@
                     window.videojs=videojs
                     var clientWidth = docEl.clientWidth;
                     if (!clientWidth) return;
-                    if(clientWidth>=640){
-                        docEl.style.fontSize = '100px';
-                    }else{
-                        docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
-                    }
+                    docEl.style.fontSize =20 * (clientWidth / 1200) + 'px';
                 };
 
             if (!doc.addEventListener) return;
