@@ -10,7 +10,7 @@
       height:1.88rem;
       line-height:1.88rem;
       width:100%;
-      background-color:$bgcolor;
+      background: linear-gradient(#a57676, #bdadad); /* Safari 5.1 - 6.0 */
       flex-shrink:0; /*不缩小*/
       position: fixed;
       top: 0;

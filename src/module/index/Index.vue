@@ -4,7 +4,7 @@
           <global-header ref='gheader' leftName="myNote" rightName="addNote" >
             <span slot="left"></span>
             <span>say something</span>
-            <span class="right" slot="right" @click="mask=true">我要说</span>
+            <span class="right_hover" slot="right" @click="mask=true">我要说</span>
           </global-header>
       </div>
 
@@ -29,7 +29,8 @@
         <span class="btn" @click="send(result,name)">发送</span>
       </div>
 
-      <div class="button" @click="move">到底部</div>
+      <div class="moveUp" @click="moveUp">到顶部</div>
+      <div class="moveDown" @click="move">到底部</div>
 
       <img src="@/assets/img/background.jpg" class="bgpic">
       
@@ -41,6 +42,7 @@ export default {
   name: 'index',
   data () {
     return {
+     isOx:navigator.appVersion.toLowerCase().indexOf('safari')>-1&&navigator.appVersion.toLowerCase().indexOf('chrome')==-1,
      data:[],
      mask: false,
      name: '',
@@ -55,7 +57,6 @@ export default {
       })
       .then(data => {
         this.data=data
-        console.log( data);
       })
 
     
@@ -63,12 +64,24 @@ export default {
   mounted () {
   },
   methods:{
-    move (){
-      console.log('move')
-      let scrollTop= document.documentElement.scrollTop;
-      let docHeight= document.documentElement.scrollHeight
+    moveUp (){
+      let scrollTop= window.scrollY;
+      let docHeight= this.isOx?document.body.scrollHeight:document.documentElement.scrollHeight
       let clientHeight= document.documentElement.clientHeight
 
+      setTimeout(()=>{
+        // 缓冲运动
+        window.scrollTo(0,scrollTop=scrollTop-((docHeight-clientHeight-scrollTop)/6<1? 1 : (docHeight-clientHeight-scrollTop)/6))
+        if(scrollTop>0){
+          this.moveUp()
+        }
+      },16)
+    },
+    move (){
+      let scrollTop= window.scrollY;
+      let docHeight= this.isOx?document.body.scrollHeight:document.documentElement.scrollHeight
+      let clientHeight= document.documentElement.clientHeight
+      // debugger
       setTimeout(()=>{
         // 缓冲运动
         window.scrollTo(0,scrollTop=scrollTop+((docHeight-clientHeight-scrollTop)/6<1? 1 : (docHeight-clientHeight-scrollTop)/6))
@@ -84,7 +97,6 @@ export default {
         // name = "(" + ++self.i + " floor " + ")" + name;
         // 获取时间
         var date = new Date()
-        // console.log(date);s
         var year = date.getFullYear()
         var month = date.getMonth()
         var day = date.getDate()

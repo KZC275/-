@@ -23,8 +23,16 @@ export default {
     // 'isBack'
   ]),
   created () {
-    console.log(location.href = location.href)
-    // this.$router.push({name: 'index'})
+    // confirm(navigator.userAgent.toLowerCase());
+    if (navigator.userAgent.toLowerCase().indexOf('andriod') > -1 ||
+        navigator.userAgent.toLowerCase().indexOf('iphone') > -1||
+        navigator.userAgent.toLowerCase().indexOf('pad') > -1||
+        screen.width<640
+        ) {
+        // 手机打开
+        console.log('手机打开')
+        location.href = './index_test.html';
+    }
   },
   methods: {
     hideMask () {
