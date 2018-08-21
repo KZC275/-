@@ -43,6 +43,7 @@ export default {
   data () {
     return {
      isOx:navigator.appVersion.toLowerCase().indexOf('safari')>-1&&navigator.appVersion.toLowerCase().indexOf('chrome')==-1,
+     isIe:navigator.appVersion.toLowerCase().indexOf('trident')>-1,
      data:[],
      mask: false,
      name: '',
@@ -65,7 +66,7 @@ export default {
   },
   methods:{
     moveUp (){
-      let scrollTop= window.scrollY;
+      let scrollTop= this.isIe?document.documentElement.scrollTop: window.scrollY;
       let docHeight= this.isOx?document.body.scrollHeight:document.documentElement.scrollHeight
       let clientHeight= document.documentElement.clientHeight
 
@@ -78,7 +79,8 @@ export default {
       },16)
     },
     move (){
-      let scrollTop= window.scrollY;
+
+      let scrollTop= this.isIe?document.documentElement.scrollTop: window.scrollY;
       let docHeight= this.isOx?document.body.scrollHeight:document.documentElement.scrollHeight
       let clientHeight= document.documentElement.clientHeight
       // debugger
