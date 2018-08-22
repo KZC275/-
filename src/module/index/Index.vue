@@ -3,7 +3,7 @@
       <div class="headerTop">
           <global-header ref='gheader' leftName="myNote" rightName="addNote" v-model="jjkjjk">
             <span slot="left">my note</span>
-            <span>index</span>
+            <span>猕猴桃</span>
             <span slot="right">add</span>
             <!-- <span slot="jjkk">啊啊啊烦</span> -->
             <!-- <span slot="kkll">=-22ndndn</span> -->
@@ -58,7 +58,6 @@ export default {
     this.my_Note = this.$store.state.count
   },
   mounted () {
-    debugger
     this.$refs.gheader
   },
   components: {

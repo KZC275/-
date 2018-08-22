@@ -26,7 +26,6 @@ export default {
 
       // 指定图表的配置项和数据
       var option1 = {
-        backgroundColor: 'white',
         title: {
           text: '用户数据统计',
           left: 'center',

@@ -11,6 +11,7 @@
     flex-grow:2;
   }
   .bottom {
+      background: -webkit-linear-gradient(left, #a9a744, #20b12b);
     width: 100%;
     // position: fixed;
     // bottom: 0;
@@ -23,8 +24,7 @@
       height: 0.88rem;
       line-height: 0.88rem;
       display: inline-block;
-      background-color: #ccc;
-      color: green;
+      color: black;
     }
   }
 }

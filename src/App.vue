@@ -109,6 +109,7 @@ html {
 }
 #app{
   height: 100%;
+  background: -webkit-linear-gradient(left, #cac71d, #2fef3e);
 }
 #app>div{
   position:absolute;
