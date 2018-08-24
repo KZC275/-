@@ -15,7 +15,7 @@
           <span class="btn" @click="send(result,name)">发送</span>
         </div>
         <ul>
-          <li class="item" v-for="item in data" :key="item.time">
+          <li class="item" v-for="item in data" >
             <div class="top">
               <p class="name">{{item.nickName}} 说：</p>
               <span class="time">{{item.time}}</span>
