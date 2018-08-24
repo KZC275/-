@@ -1,16 +1,14 @@
 <template>
   <div class="experience">
     <global-header>
-        <span >组件</span>
+        <span >猕猴桃</span>
     </global-header>
     <div class="second">
-        <h2>左右滑动组件</h2>
     <slider style="background:red;" :menu="arrList">
       <li  v-for="(item,index) in arrList">
         <span>{{item.text}}</span>
       </li>
     </slider>
-    <h2>轮播图组件</h2>
     <div class="lunbo">
       <div class="wrapper">
         <span></span>

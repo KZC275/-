@@ -32,6 +32,8 @@
         </slider>
 
         <div class="btn" @touchend='gotobtm'>到底部</div>
+        <div class="btn gotoTop" @touchend='gotoTop'>到顶部</div>
+
         
 
     </div>
@@ -99,7 +101,10 @@ export default {
       // console.log(this.$refs.scroll.scroll.y)
     },
     gotobtm () {
-      this.move()
+      this.move('maxScrollY')
+    },
+    gotoTop () {
+      this.move('minScrollY')
     },
     send (msg, name) {
       // 获取better-scroll实例
@@ -156,7 +161,7 @@ export default {
               // number: self.i
             })
             app.toast('发送成功')
-            this.move()
+            this.move('maxScrollY')
           })
           .catch(error => {
             app.maskCallBack(self.$store.state.isShutDown)
@@ -166,18 +171,19 @@ export default {
         app.toast('信息不能为空噢')
       }
     },
-    move () {
+    move (y) {
       var _scroll = this.$refs.scroll.scroll
-      var temp = _scroll.y
-      var timer = setInterval(function () {
-        if (temp <= _scroll.maxScrollY) {
-          clearInterval(timer)
-          console.log(222)
-        } else {
-          temp -= 30
-          _scroll.scrollTo(0, temp)
-        }
-      }, 1)
+      // var temp = _scroll.y
+      // var timer = setInterval(function () {
+      //   if (temp <= _scroll.maxScrollY) {
+      //     clearInterval(timer)
+      //     console.log(222)
+      //   } else {
+      //     temp -= 30
+      //     _scroll.scrollTo(0, temp)
+      //   }
+      // }, 1)
+      _scroll.scrollTo(0, _scroll[y]||0,1500)
     },
     askList () {
       app

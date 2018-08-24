@@ -11,17 +11,21 @@
     font-size: 0.23rem; // -webkit-overflow-scrolling:touch;
     .btn {
       position: absolute;
-      bottom: 1rem;
-      right: 0.6rem;
+      bottom: 0.6rem;
+      right: 0.3rem;
       padding: .1rem .3rem;
       background: red;
       color: white;
       border-radius: .1rem;
       opacity: 0.5;
     }
+    .gotoTop{
+      bottom: 1.2rem;
+
+    }
     .listNum {
       min-height: 50px;
-      background: #ccc;
+      background: rgba(195, 210, 52, 0.5);
       position: relative; // width: 70%;
       padding: 5px 15px;
       margin-bottom: 5px;
@@ -40,7 +44,7 @@
       }
     }
     .listNum:nth-child(odd) {
-      background: #eee;
+      background: rgba(144, 139, 36, 0.5);
     }
     .listNum:first-child {
       // background: #eee;

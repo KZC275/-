@@ -12,8 +12,11 @@
   ul{
   	li{
   		height:60px;
-  		background:#ccc;
+      background: rgba(195, 210, 52, 0.5);
   		margin-bottom:5px;
   	}
+    li:nth-child(odd) {
+      background: rgba(144, 139, 36, 0.5);
+    }
   }
 }
