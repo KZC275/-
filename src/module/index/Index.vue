@@ -43,55 +43,52 @@ export default {
   name: 'index',
   data () {
     return {
-     isOx:navigator.appVersion.toLowerCase().indexOf('safari')>-1&&navigator.appVersion.toLowerCase().indexOf('chrome')==-1,
-     isIe:navigator.appVersion.toLowerCase().indexOf('trident')>-1,
-     data:[],
-     mask: false,
-     name: '',
-     result: ''
+      isOx: navigator.appVersion.toLowerCase().indexOf('safari') > -1 && navigator.appVersion.toLowerCase().indexOf('chrome') == -1,
+      isIe: navigator.appVersion.toLowerCase().indexOf('trident') > -1,
+      data: [],
+      mask: false,
+      name: '',
+      result: ''
     }
   },
   created () {
     app
       .post({
-        url: "/php/reg.php",
-        data:{type:'check'}
+        url: '/php/reg.php',
+        data: {type: 'check'}
       })
       .then(data => {
-        this.data=data
+        this.data = data
       })
-
-    
   },
   mounted () {
   },
-  methods:{
-    moveUp (){
-      let scrollTop= this.isIe?document.documentElement.scrollTop: window.scrollY;
-      let docHeight= this.isOx?document.body.scrollHeight:document.documentElement.scrollHeight
-      let clientHeight= document.documentElement.clientHeight
+  methods: {
+    moveUp () {
+      let scrollTop = this.isIe ? document.documentElement.scrollTop : window.scrollY
+      let docHeight = this.isOx ? document.body.scrollHeight : document.documentElement.scrollHeight
+      let clientHeight = document.documentElement.clientHeight
 
-      setTimeout(()=>{
+      setTimeout(() => {
         // 缓冲运动
-        window.scrollTo(0,scrollTop=scrollTop-((docHeight-clientHeight-scrollTop)/6<1? 1 : (docHeight-clientHeight-scrollTop)/6))
-        if(scrollTop>0){
+        window.scrollTo(0, scrollTop = scrollTop - ((docHeight - clientHeight - scrollTop) / 6 < 1 ? 1 : (docHeight - clientHeight - scrollTop) / 6))
+        if (scrollTop > 0) {
           this.moveUp()
         }
-      },16)
+      }, 16)
     },
-    move (){
-
-      let scrollTop= this.isIe?document.documentElement.scrollTop: window.scrollY;
-      let docHeight= this.isOx?document.body.scrollHeight:document.documentElement.scrollHeight
-      let clientHeight= document.documentElement.clientHeight
+    move () {
+      let scrollTop = this.isIe ? document.documentElement.scrollTop : window.scrollY
+      let docHeight = this.isOx ? document.body.scrollHeight : document.documentElement.scrollHeight
+      let clientHeight = document.documentElement.clientHeight
       // debugger
-      setTimeout(()=>{
+      setTimeout(() => {
         // 缓冲运动
-        window.scrollTo(0,scrollTop=scrollTop+((docHeight-clientHeight-scrollTop)/6<1? 1 : (docHeight-clientHeight-scrollTop)/6))
-        if(scrollTop<=docHeight-clientHeight-1){
+        window.scrollTo(0, scrollTop = scrollTop + ((docHeight - clientHeight - scrollTop) / 6 < 1 ? 1 : (docHeight - clientHeight - scrollTop) / 6))
+        if (scrollTop <= docHeight - clientHeight - 1) {
           this.move()
         }
-      },16)
+      }, 16)
     },
     send (msg, name) {
       // 获取better-scroll实例
@@ -130,7 +127,6 @@ export default {
             }
           })
           .then(data => {
-
             this.data.push({
               time: TimeStr,
               content: msg,
@@ -147,7 +143,7 @@ export default {
       } else {
         app.toast('信息不能为空噢')
       }
-    },
+    }
   }
 }
 </script>
