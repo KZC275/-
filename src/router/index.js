@@ -9,10 +9,12 @@ import Detail from '@/module/detail/Detail'
 import World from '@/module/world/World'
 import AddNote from '@/module/addNote/AddNote'
 import Analysis from '@/module/analysis/Analysis'
-import info from '@/module/info/info'  //组件小写也可以
-import register from '@/module/register/reg'  //组件小写也可以
+import info from '@/module/info/info'  // 组件小写也可以
+import register from '@/module/register/reg'  // 组件小写也可以
 
 import CouponCenter from '../module/cgb_coupon_center/router'
+
+import store from '../store'
 
 Vue.use(Router)
 
@@ -21,69 +23,67 @@ const router = new Router({
     {
       path: '/index',
       name: 'index',
-      component: Index,
+      component: Index
     },
     {
       path: '/experience',
       name: 'Experience',
-      component: Experience,
-     
+      component: Experience
+
     },
     {
       path: '/analysis',
       name: 'Analysis',
-      component: Analysis,
-     
+      component: Analysis
+
     },
     {
       path: '/friend',
       name: 'Friend',
-      component: Friend,
+      component: Friend
     },
     {
       path: '/info',
       name: 'info',
-      component: info,
+      component: info
     },
     {
       path: '/diary',
       name: 'Diary',
-      component: Diary,
+      component: Diary
     },
     {
       path: 'detail',
       name: 'detail',
-      component: Detail,
+      component: Detail
     },
     {
       path: '/myNote',
       name: 'myNote',
-      component: MyNote,
+      component: MyNote
     },
     {
       path: '/addNote',
       name: 'addNote',
-      component: AddNote,
+      component: AddNote
     },
     {
       path: '/world',
       name: 'appCouponCenter',
-      component: World,
+      component: World
     },
     {
       path: '/register',
       name: 'register',
-      component: register,
+      component: register
     },
-		...CouponCenter,
+    ...CouponCenter,
     {
-    	path:'*',
-    	redirect:Index
+    	path: '*',
+    	redirect: Index
     }
   ]
 })
-
-import store from '../store'
 // 全局路由守卫
 router.beforeEach((to, from, next) => {
   // console.log('navigation-guards');
@@ -91,15 +91,15 @@ router.beforeEach((to, from, next) => {
   // from: Route: 当前导航正要离开的路由
   // next: Function: 一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。
 
-  const nextRoute = ['addNote', 'myNote'];
-  let isLogin = store.state.isLogin;  // 是否登录
+  const nextRoute = ['addNote', 'myNote']
+  let isLogin = store.state.isLogin  // 是否登录
   // 未登录状态；当路由到nextRoute指定页时，跳转至login
-  if (nextRoute.indexOf(to.name) >= 0) {  
+  if (nextRoute.indexOf(to.name) >= 0) {
     if (!isLogin) {
       router.push({ name: 'info' })
     }
   }
-  
-  next();
-});
+
+  next()
+})
 export default router

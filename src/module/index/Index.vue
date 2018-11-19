@@ -16,7 +16,7 @@
           <p>当前状态：{{weather}}</p>
       </div>
       <div class="bottom">
-          <router-link to="/experience">组件</router-link>
+          <router-link to="/world">关于</router-link>
           <router-link to="/analysis">统计</router-link>
           <router-link to="/diary">上拉下拉</router-link>
           <router-link to="/friend">留言板</router-link>

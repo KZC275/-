@@ -1,16 +1,38 @@
 <template>
-      <div class="header">
-      		<span>kkkkkkkkkdddddddddd</span>
-      </div>
+  <div class="experience">
+    <global-header>
+        <span >关于</span>
+    </global-header>
+    <p>联系网站所有者：kzc275@163.com</p>
+    <p>All Rights Reserved</p>
+  </div>
+
 </template>
+
 <script>
-
+ 
 export default {
-  name:'world',
-
+   name: 'Experience',
+   data () {
+     return {
+       msg: 'Welcome'
+ 
+     }
+   },
+   components: {
+   },
+   methods: {
+ 
+   },
+   created () {},
+   destroyed () {
+   },
+   mounted () {
+ 
+   }
 }
 </script>
 
-<style lang='scss' scoped>
-
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss" scoped>
 </style>
