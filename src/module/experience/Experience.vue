@@ -23,24 +23,7 @@
        <h1>state：{{$store.state.count}}</h1>
        <h1>{{evenOrOdd}}</h1>
     </div>
-    <!-- //click 改为touchstart后无法全屏 -->
-    <!-- <button @touchstart="fullscreen" style="height:0.5rem;background:#ccc;margin-top:0.5rem">全屏</button> -->
-    
-
-    <div class="videotag">
-      <video id='video' 
-      ref='video'
-      preload="auto" 
-      src="@static/video/movie.mp4"
-      controls="controls" 
-      webkit-playsinline="true"
-      playsinline="true"
-      x5-playsinline
-      poster="@static/video/1234.png"></video>
     </div>
-    </div>
-    
-    
   </div>
 </template>
 
@@ -49,12 +32,12 @@
 import Slider from './slider.vue'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
-  name: 'Experience',
-  data () {
-    return {
-      msg: 'Welcome',
-      timer_ac: null,
-      arrList: [
+   name: 'Experience',
+   data () {
+     return {
+       msg: 'Welcome',
+       timer_ac: null,
+       arrList: [
         { text: 123 },
         { text: 456 },
         { text: 66 },
@@ -72,27 +55,27 @@ export default {
         { text: 'gdfg' },
         { text: 'sdsds' },
         { text: 'asdas' }
-      ]
-    }
-  },
-  components: {
-    slider: Slider
-  },
-  computed: mapGetters(['evenOrOdd']),
-  methods: {
-    ...mapActions(['increment_add', 'decrement_add']),
-    ...mapMutations(['increment', 'decrement']),
-    add () {
+       ]
+     }
+   },
+   components: {
+     slider: Slider
+   },
+   computed: mapGetters(['evenOrOdd']),
+   methods: {
+     ...mapActions(['increment_add', 'decrement_add']),
+     ...mapMutations(['increment', 'decrement']),
+     add () {
       //    console.log(this.$store.dispatch({type:'incrementIfOdd'}))
-      this.increment_add()
-    },
+       this.increment_add()
+     },
     // video 播放需要
-    initVideo () {
+     initVideo () {
       // let videoObj = document.getElementById("video");
-      let videoObj = this.$refs.video
+       let videoObj = this.$refs.video
       // console.log(videoObj);
       // 监听全屏变化
-      videoObj.addEventListener(
+       videoObj.addEventListener(
         'webkitfullscreenchange', // ios 触发不了这个事件÷
         () => {
           app.toast('3333')
@@ -110,9 +93,9 @@ export default {
         },
         false
       )
-    },
+     },
     // 全屏（安卓可以）
-    fullscreen () {
+     fullscreen () {
       // var myPlayer = videojs("video");
       // myPlayer.ready(function() {
         // 在回调函数中，this代表当前播放器，
@@ -120,72 +103,70 @@ export default {
         // myPlayer.enterFullScreen()
       // });
 
-      let element = this.$refs.video
-      if (element.requestFullscreen) {
-        element.requestFullscreen()
-      } else if (element.mozRequestFullScreen) {
-        element.mozRequestFullScreen()
-      } else if (element.webkitRequestFullscreen) {
-        element.webkitRequestFullscreen()
-      } else if (element.msRequestFullscreen) {
-        element.msRequestFullscreen()
-      }
-    }
-  },
-  created () {},
-  destroyed () {
-    clearInterval(this.timer_ac)
+       let element = this.$refs.video
+       if (element.requestFullscreen) {
+         element.requestFullscreen()
+       } else if (element.mozRequestFullScreen) {
+         element.mozRequestFullScreen()
+       } else if (element.webkitRequestFullscreen) {
+         element.webkitRequestFullscreen()
+       } else if (element.msRequestFullscreen) {
+         element.msRequestFullscreen()
+       }
+     }
+   },
+   created () {},
+   destroyed () {
+     clearInterval(this.timer_ac)
     // console.log('fllfllf')
-  },
-  mounted () {
-    this.initVideo()
-
-    var _this = this;
-    (function ($) {
+   },
+   mounted () {
+     var _this = this;
+     (function ($) {
       // console.log(_this)
-      $.slide = function (opts) {
-        obj.init(opts)
-      }
-      var timer_ac = null // 定時器
-      var params = null // 全局参数
-      var status_img = 0 // 輪播位置初始化
-      var start_time = 0 // 手指接触屏幕时间点
-      var end_time = 0 // 手指离开屏幕时间点
-      var obj = {
-        init: function (opts) {
-          var _default = {
-            wrapper: null,
-            item: {
-              width: '300px',
-              height: '150px'
-            }
-          }
-          params = $.extend(true, {}, _default, opts)
-          if (!params.item || !params.wrapper) {
-            alert('参数错误')
-            return false
-          }
-          this.shapeUp(params)
+       $.slide = function (opts) {
+         obj.init(opts)
+       }
+       var timer_ac = null // 定時器
+       var params = null // 全局参数
+       var status_img = 0 // 輪播位置初始化
+       var start_time = 0 // 手指接触屏幕时间点
+       var end_time = 0 // 手指离开屏幕时间点
+       var obj = {
+         init: function (opts) {
+           var _default = {
+             wrapper: null,
+             item: {
+               width: '300px',
+               height: '150px'
+             }
+           }
+           params = $.extend(true, {}, _default, opts)
+           if (!params.item || !params.wrapper) {
+             alert('参数错误')
+             return false
+           }
+           this.shapeUp(params)
 
-          this.auto_move(params, status_img)
+           this.auto_move(params, status_img)
           // this.go_to_destination(params);
-          setTimeout(() => {
-            this.intervene(params)
-          }, 2000)
-        },
-        shapeUp: function (params) {
+           setTimeout(() => {
+             this.intervene(params)
+           }, 2000)
+         },
+         shapeUp: function (params) {
           // item元素浮动同时重设宽高
-          params.wrapper.children().css({
-            float: 'left',
-            width: params.item.width,
-            height: params.item.height
-          })
+           params.wrapper.children().css({
+             float: 'left',
+             width: params.item.width,
+             height: params.item.height
+           })
           // 计算wrapper长度
-          var length =
+           var length =
             parseInt(params.item.width) *
             (params.wrapper.children().length + 1)
           // 复制一张图片在最后达到无缝连接的效果
-          params.wrapper.append(
+           params.wrapper.append(
             params.wrapper
               .children()
               .eq(0)
@@ -193,12 +174,12 @@ export default {
               .css('background', 'yellow')
           )
 
-          params.wrapper.css({
-            width: length,
-            height: params.item.height
-          })
+           params.wrapper.css({
+             width: length,
+             height: params.item.height
+           })
           // content宽高
-          params.wrapper
+           params.wrapper
             .parents('div')
             .eq(0)
             .css({
@@ -207,19 +188,19 @@ export default {
               overflow: 'hidden',
               position: 'relative'
             })
-        },
-        auto_move: function (params, status) {
-          if (_this.timer_ac) clearInterval(_this.timer_ac)
+         },
+         auto_move: function (params, status) {
+           if (_this.timer_ac) clearInterval(_this.timer_ac)
           // 根据offset().left判断轮播图的当前位置
           // 轮播
-          var i = parseInt(Math.abs(status) / parseInt(params.item.width))
-          params.wrapper.css('position', 'absolute')
-          var self = this
-          if (i == 0) {
-            self.isDot(params, i)
-          }
-          _this.timer_ac = setInterval(function () {
-            i++
+           var i = parseInt(Math.abs(status) / parseInt(params.item.width))
+           params.wrapper.css('position', 'absolute')
+           var self = this
+           if (i == 0) {
+             self.isDot(params, i)
+           }
+           _this.timer_ac = setInterval(function () {
+             i++
             // if(i>=4){
             //  i=1;
             //  // 回到开始位置
@@ -231,58 +212,58 @@ export default {
             // params.wrapper.css('transition', "0.7s ease");
             // i++;
 
-            if (i >= params.wrapper.children().length) {
-              i = 1
+             if (i >= params.wrapper.children().length) {
+               i = 1
               // 回到开始位置
-              params.wrapper.css({
-                left: 0
-              })
+               params.wrapper.css({
+                 left: 0
+               })
               // return;
-            }
+             }
 
-            params.wrapper.animate(
-              {
-                left: -parseInt(params.item.width) * i
-              },
+             params.wrapper.animate(
+               {
+                 left: -parseInt(params.item.width) * i
+               },
               100,
               'linear',
               function () {
                 self.isDot(params, i)
               }
             )
-          }, params.time)
-        },
-        intervene: function (params) {
-          var self = this
+           }, params.time)
+         },
+         intervene: function (params) {
+           var self = this
 
-          var initX = 0
-          var status_left = 0
-          var current = 0
-          params.wrapper[0].addEventListener('touchstart', function (event) {
-            if (event.touches.length > 1) {
+           var initX = 0
+           var status_left = 0
+           var current = 0
+           params.wrapper[0].addEventListener('touchstart', function (event) {
+             if (event.touches.length > 1) {
               // 多根手指触摸干扰排除
-              clearInterval(_this.timer_ac) // 清除定時器
-              if (navigator.userAgent.toLowerCase().indexOf('iphone') > -1) {
-                obj.auto_move(params, status_left)
-              }
-              return false
-            }
-            current = 0 // 每次点击都需要把差值置零，防止快速点击频繁触发轮播
+               clearInterval(_this.timer_ac) // 清除定時器
+               if (navigator.userAgent.toLowerCase().indexOf('iphone') > -1) {
+                 obj.auto_move(params, status_left)
+               }
+               return false
+             }
+             current = 0 // 每次点击都需要把差值置零，防止快速点击频繁触发轮播
 
-            start_time = new Date().getTime() // 记录时间点
-            initX = event.touches[0].pageX
-            params.wrapper.css('transition', 'none')
-            clearInterval(_this.timer_ac) // 清除定時器
+             start_time = new Date().getTime() // 记录时间点
+             initX = event.touches[0].pageX
+             params.wrapper.css('transition', 'none')
+             clearInterval(_this.timer_ac) // 清除定時器
 
-            status_left = parseInt(params.wrapper.css('left')) // 记录wrapper位置，拖动时实时改变
-          })
-          params.wrapper[0].addEventListener('touchmove', function (event) {
-            if (event.touches.length > 1) {
-              clearInterval(_this.timer_ac) // 清除定時器
-              return false
-            }
+             status_left = parseInt(params.wrapper.css('left')) // 记录wrapper位置，拖动时实时改变
+           })
+           params.wrapper[0].addEventListener('touchmove', function (event) {
+             if (event.touches.length > 1) {
+               clearInterval(_this.timer_ac) // 清除定時器
+               return false
+             }
             // 光标移出有效范围
-            if (
+             if (
               event.touches[0].pageX >
                 params.wrapper
                   .parents('div')
@@ -296,51 +277,51 @@ export default {
                   .offset().top +
                   parseInt(params.item.height)
             ) {
-              return false
-            }
+               return false
+             }
             // 安卓手机不加上阻止默认事件，无法拖动
-            event.preventDefault()
-            current = event.touches[0].pageX - initX
+             event.preventDefault()
+             current = event.touches[0].pageX - initX
 
             // 当前是第一张图片而且是滑动到上一张的时候，马上把wrapper的克隆的那张图片置于可视区域
-            if (current > 0 && status_left == 0) {
-              status_left =
+             if (current > 0 && status_left == 0) {
+               status_left =
                 -(params.wrapper.children().length - 1) *
                 parseInt(params.item.width)
-              params.wrapper.css('left', status_left)
-            }
+               params.wrapper.css('left', status_left)
+             }
             // 当前是最后一张（克隆）图片而且是滑动到下一张的时候，马上把wrapper的第一张图片置于可视区域
-            if (
+             if (
               current < 0 &&
               status_left ==
                 -(params.wrapper.children().length - 1) *
                   parseInt(params.item.width)
             ) {
-              status_left = 0
-              params.wrapper.css('left', status_left)
-            }
+               status_left = 0
+               params.wrapper.css('left', status_left)
+             }
 
             // css3方式
             // params.wrapper.css('transform', "translateX(" + (current + 'px') + ")");
-            params.wrapper.css('left', current + status_left)
-          })
-          params.wrapper[0].addEventListener('touchend', function (event) {
-            if (event.touches.length > 1) {
-              clearInterval(_this.timer_ac) // 清除定時器
-              return false
-            }
+             params.wrapper.css('left', current + status_left)
+           })
+           params.wrapper[0].addEventListener('touchend', function (event) {
+             if (event.touches.length > 1) {
+               clearInterval(_this.timer_ac) // 清除定時器
+               return false
+             }
 
-            if (_this.timer_ac) clearInterval(_this.timer_ac) // 清除定時器
+             if (_this.timer_ac) clearInterval(_this.timer_ac) // 清除定時器
 
-            end_time = new Date().getTime() // 记录时间点
-            var distance = end_time - start_time // 记录时间差,判断是否是快速滑动
+             end_time = new Date().getTime() // 记录时间点
+             var distance = end_time - start_time // 记录时间差,判断是否是快速滑动
             // 没有移动，不做任何处理
-            if (current == 0) {
-              obj.auto_move(params, status_left)
-              return false
-            }
+             if (current == 0) {
+               obj.auto_move(params, status_left)
+               return false
+             }
             // 切换到下一张
-            if (
+             if (
               (distance < params.quickSlide && current < 0) ||
               (Math.abs(current) > parseInt(params.item.width) / 2 &&
                 current < 0)
@@ -358,28 +339,28 @@ export default {
               // }
 
               // 状态点随动
-              self.isDot(
+               self.isDot(
                 params,
                 parseInt(
                   Math.abs(parseInt(params.wrapper.css('left'))) /
                     parseInt(params.item.width)
                 ) + 1
               )
-              params.wrapper.css(
+               params.wrapper.css(
                 'left',
                 status_left - parseInt(params.item.width)
               )
 
-              obj.auto_move(params, status_left - parseInt(params.item.width))
-            } else if (
+               obj.auto_move(params, status_left - parseInt(params.item.width))
+             } else if (
               Math.abs(current) <= parseInt(params.item.width) / 2 &&
               distance >= params.quickSlide
             ) {
               // 回到原位
-              params.wrapper.css('left', status_left)
+               params.wrapper.css('left', status_left)
 
-              obj.auto_move(params, status_left)
-            } else if (
+               obj.auto_move(params, status_left)
+             } else if (
               (distance < params.quickSlide && current > 0) ||
               (Math.abs(current) > parseInt(params.item.width) / 2 &&
                 current > 0)
@@ -397,7 +378,7 @@ export default {
               // }
 
               // 状态点随动
-              self.isDot(
+               self.isDot(
                 params,
                 parseInt(
                   Math.abs(parseInt(params.wrapper.css('left'))) /
@@ -405,62 +386,62 @@ export default {
                 )
               )
 
-              params.wrapper.css(
+               params.wrapper.css(
                 'left',
                 status_left + parseInt(params.item.width)
               )
 
-              obj.auto_move(params, status_left + parseInt(params.item.width))
-            }
-          })
-          params.wrapper[0].addEventListener('touchcancel', function (event) {})
-        },
-        isDot: function (params, num) {
-          if (params.is_point == false) {
-            return false
-          }
-          if ($('.dot_wrapper')[0]) {
-            $('.dot_wrapper em').css('background-color', 'white')
-            num = num >= params.wrapper.children().length - 1 ? 0 : num
-            $('.dot_wrapper em')
+               obj.auto_move(params, status_left + parseInt(params.item.width))
+             }
+           })
+           params.wrapper[0].addEventListener('touchcancel', function (event) {})
+         },
+         isDot: function (params, num) {
+           if (params.is_point == false) {
+             return false
+           }
+           if ($('.dot_wrapper')[0]) {
+             $('.dot_wrapper em').css('background-color', 'white')
+             num = num >= params.wrapper.children().length - 1 ? 0 : num
+             $('.dot_wrapper em')
               .eq(num)
               .css('background-color', 'purple')
-            return false
-          }
-          var dot_num = params.wrapper.children().length - 1
-          var html = '<div class="dot_wrapper">'
-          for (var n = 0; n < dot_num; n++) {
-            html += '<em></em>'
-          }
-          html += '</div>'
-          params.wrapper
+             return false
+           }
+           var dot_num = params.wrapper.children().length - 1
+           var html = '<div class="dot_wrapper">'
+           for (var n = 0; n < dot_num; n++) {
+             html += '<em></em>'
+           }
+           html += '</div>'
+           params.wrapper
             .parents('div')
             .eq(0)
             .append(html)
-          $('.dot_wrapper em').css({
-            'background-color': 'white',
-            'border-radius': '50%',
-            display: 'inline-block',
-            width: '10px',
-            height: '10px'
-          })
+           $('.dot_wrapper em').css({
+             'background-color': 'white',
+             'border-radius': '50%',
+             display: 'inline-block',
+             width: '10px',
+             height: '10px'
+           })
 
-          $('.dot_wrapper').css({
-            width: '50%',
-            position: 'absolute',
-            bottom: '20px',
-            left: '50%',
-            '-webkit-transform': 'translateX(-50%)',
-            display: '-webkit-flex',
-            'flex-wrap': 'nowrap',
-            'justify-content': 'space-around'
-          })
-          $('.dot_wrapper em').css('background-color', 'white')
-          num = num >= params.wrapper.children().length - 1 ? 0 : num
-          $('.dot_wrapper em')
+           $('.dot_wrapper').css({
+             width: '50%',
+             position: 'absolute',
+             bottom: '20px',
+             left: '50%',
+             '-webkit-transform': 'translateX(-50%)',
+             display: '-webkit-flex',
+             'flex-wrap': 'nowrap',
+             'justify-content': 'space-around'
+           })
+           $('.dot_wrapper em').css('background-color', 'white')
+           num = num >= params.wrapper.children().length - 1 ? 0 : num
+           $('.dot_wrapper em')
             .eq(num)
             .css('background-color', 'purple')
-        }
+         }
         // go_to_destination: function(params) {
         //  var target=params.wrapper.children()[0].nodeName.toLowerCase();
         //  params.wrapper.on('touchend',target,function(event){
@@ -470,22 +451,22 @@ export default {
         //  })
 
         // }
-      }
-    })(jQuery)
-    setTimeout(() => {
-      $.slide({
-        wrapper: $('.wrapper'),
-        item: {
-          width: window.screen.width,
-          height: window.screen.height / 4
-        },
+       }
+     })(jQuery)
+     setTimeout(() => {
+       $.slide({
+         wrapper: $('.wrapper'),
+         item: {
+           width: window.screen.width,
+           height: window.screen.height / 4
+         },
         // url: ['http://www.baidu.com/', 'http://www.qq.com/'],
-        quickSlide: 200,
-        time: 1500,
-        is_point: true
-      })
-    }, 200)
-  }
+         quickSlide: 200,
+         time: 1500,
+         is_point: true
+       })
+     }, 200)
+   }
 }
 </script>
 
