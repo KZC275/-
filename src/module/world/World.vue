@@ -3,6 +3,8 @@
     <global-header>
         <span >关于</span>
     </global-header>
+    <img style="width:50%;margin:1rem auto;" src="https://www.kzc275.top/img/3.jpg">
+    <p>本站仅供测试</p>
     <p>联系网站所有者：kzc275@163.com</p>
     <p>All Rights Reserved</p>
   </div>
