@@ -47,6 +47,21 @@ let originalConfig = {
         loader: 'vue-loader',
         options: vueLoaderConfig
       },
+      // 自定义loader
+      {
+        test: /\.*$/,
+        exclude: [
+          path.join(__dirname, '../node_modules')
+        ],
+        use: [
+          {
+            loader: './loaders/testLoader.js',
+            options: {
+              output: 'fileName'
+            }
+          }
+        ]
+      },
       {
         test: /\.js$/,
         loader: 'babel-loader',
