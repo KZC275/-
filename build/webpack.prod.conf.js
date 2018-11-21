@@ -175,7 +175,6 @@ if (config.build.outputZip) {
   )
 
 }
-console.log('www'+path.join(__dirname,'../dist')+'wwww')
 if (config.build.bundleAnalyzerReport) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
