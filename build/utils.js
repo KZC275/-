@@ -78,6 +78,20 @@ exports.styleLoaders = function (options) {
       use: loader
     })
   }
+  output.push({
+    test: /\.scss$/,
+    exclude: [
+      path.join(__dirname, '../node_modules')
+    ],
+    use: [
+      {
+        loader: './loaders/testLoader.js',
+        options: {
+          base: 37.5
+        }
+      }
+    ]
+  })
 
   return output
 }

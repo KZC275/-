@@ -16,7 +16,11 @@ const ParallelUglifyPlugin=require('webpack-parallel-uglify-plugin')
 const env = process.env.NODE_ENV === 'testing' ?
   require('../config/test.env') :
   require('../config/prod.env')
-
+// console.log (JSON.stringify(utils.styleLoaders({
+//   sourceMap: config.build.productionSourceMap,
+//   extract: true,
+//   usePostCSS: true
+// }),'mmmnnnddddd'))
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
