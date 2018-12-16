@@ -44,8 +44,7 @@ export default {
       } else {
         this.transition = 'right-to-left'
       }
-
-    
+      console.log(to, from, '23423423423')
     }
   }
 

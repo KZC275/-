@@ -29,7 +29,7 @@ prompt
 # 上传的文件名
 # mput login.php
 
-mput output.zip
+mput pdfTest.pdf
 bye
 #here document
 EOF
