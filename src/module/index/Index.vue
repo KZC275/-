@@ -2,8 +2,9 @@
     <div class="app_main">
       <div class="headerTop">
           <global-header ref='gheader' leftName="myNote" rightName="addNote" >
-            <span slot="left"></span>
+            <span></span>
             <span>say something</span>
+            <span class="right_hover" slot="right"  @click='gotogame'>贪吃蛇</span>
             <span class="right_hover" slot="right" @click="mask=true">我要说</span>
           </global-header>
       </div>
@@ -38,7 +39,6 @@
     </div>
 </template>
 <script>
-import Pheader from '../../components/Pheader'
 export default {
   name: 'index',
   data () {
@@ -64,6 +64,9 @@ export default {
   mounted () {
   },
   methods: {
+    gotogame () {
+      this.$router.push({name: 'game'})
+    },
     moveUp () {
       let scrollTop = this.isIe ? document.documentElement.scrollTop : window.scrollY
       let docHeight = this.isOx ? document.body.scrollHeight : document.documentElement.scrollHeight
