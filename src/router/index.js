@@ -12,7 +12,10 @@ import Index from '@/module/index/Index'
 // import info from '@/module/info/info'  //组件小写也可以
 // import register from '@/module/register/reg'  //组件小写也可以
 
-import CouponCenter from '../module/cgb_coupon_center/router'
+// import CouponCenter from '../module/cgb_coupon_center/router'
+import Game from '../module/game/Game'
+
+import store from '../store'
 
 Vue.use(Router)
 
@@ -21,19 +24,19 @@ const router = new Router({
     {
       path: '/index',
       name: 'index',
-      component: Index,
+      component: Index
     },
-  //   {
-  //     path: '/experience',
-  //     name: 'Experience',
-  //     component: Experience,
-     
-  //   },
+    {
+      path: '/game',
+      name: 'game',
+      component: Game
+
+    },
   //   {
   //     path: '/analysis',
   //     name: 'Analysis',
   //     component: Analysis,
-     
+
   //   },
   //   {
   //     path: '/friend',
@@ -77,13 +80,11 @@ const router = new Router({
   //   },
 		// ...CouponCenter,
     {
-    	path:'*',
-    	redirect:Index
+    	path: '*',
+    	redirect: Index
     }
   ]
 })
-
-import store from '../store'
 // 全局路由守卫
 router.beforeEach((to, from, next) => {
   // console.log('navigation-guards');
@@ -91,15 +92,15 @@ router.beforeEach((to, from, next) => {
   // from: Route: 当前导航正要离开的路由
   // next: Function: 一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。
 
-  const nextRoute = ['addNote', 'myNote'];
-  let isLogin = store.state.isLogin;  // 是否登录
+  const nextRoute = ['addNote', 'myNote']
+  let isLogin = store.state.isLogin  // 是否登录
   // 未登录状态；当路由到nextRoute指定页时，跳转至login
-  if (nextRoute.indexOf(to.name) >= 0) {  
+  if (nextRoute.indexOf(to.name) >= 0) {
     if (!isLogin) {
       router.push({ name: 'info' })
     }
   }
-  
-  next();
-});
+
+  next()
+})
 export default router
