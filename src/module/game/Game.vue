@@ -16,12 +16,12 @@ export default {
         byColor: 'red',
         fdColor: 'green',
         id: 'canvas',
-        width: '500',
-        height: '500',
+        width: '300',
+        height: '300',
         size: 10,
         lens: 3,
         direction: 'bottom',
-        speed: 100
+        speed: 300
       }
       this.ctx = null
       this.timer = null
@@ -34,29 +34,29 @@ export default {
           return
         }
                 // 向左
-        if (event.keyCode == 37) {
-          if (this.params.direction != 'left' && this.params.direction != 'right') {
+        if (event.keyCode === 37) {
+          if (this.params.direction !== 'left' && this.params.direction !== 'right') {
             this.params.direction = 'left'
             this.draw()
           }
         }
                 // 向上
-        if (event.keyCode == 38) {
-          if (this.params.direction != 'top' && this.params.direction != 'bottom') {
+        if (event.keyCode === 38) {
+          if (this.params.direction !== 'top' && this.params.direction !== 'bottom') {
             this.params.direction = 'top'
             this.draw()
           }
         }
                 // 向右
-        if (event.keyCode == 39) {
-          if (this.params.direction != 'right' && this.params.direction != 'left') {
+        if (event.keyCode === 39) {
+          if (this.params.direction !== 'right' && this.params.direction !== 'left') {
             this.params.direction = 'right'
             this.draw()
           }
         }
                 // 向下
-        if (event.keyCode == 40) {
-          if (this.params.direction != 'bottom' && this.params.direction != 'top') {
+        if (event.keyCode === 40) {
+          if (this.params.direction !== 'bottom' && this.params.direction !== 'top') {
             this.params.direction = 'bottom'
             this.draw()
           }
@@ -76,10 +76,10 @@ export default {
     Snake.prototype.initBody = function () {
       this.ctx.fillStyle = this.params.byColor
       for (let i = 0; i < this.params.lens; i++) {
-        if (this.params.direction == 'right') {
+        if (this.params.direction === 'right') {
           this.bodyArr.push({x: i * this.params.size, y: 0})
           this.ctx.fillRect(i * this.params.size, 0, this.params.size, this.params.size)
-        } else if (this.params.direction == 'bottom') {
+        } else if (this.params.direction === 'bottom') {
           this.bodyArr.push({x: 0, y: i * this.params.size})
           this.ctx.fillRect(0, i * this.params.size, this.params.size, this.params.size)
         }
@@ -107,7 +107,7 @@ export default {
       }, this.params.speed)
     }
     Snake.prototype.eat = function () {
-      if (JSON.stringify(this.bodyArr[this.bodyArr.length - 1]) == JSON.stringify(this.foodPos)) {
+      if (JSON.stringify(this.bodyArr[this.bodyArr.length - 1]) === JSON.stringify(this.foodPos)) {
                 // this.bodyArr.unshift(JSON.parse(JSON.stringify(this.bodyArr[0])))
         this.generateFood()
         return true
@@ -122,19 +122,19 @@ export default {
       }
             // 向右
       let len = this.bodyArr.length
-      if (this.params.direction == 'right') {
+      if (this.params.direction === 'right') {
         this.bodyArr[len - 1].x += this.params.size
       }
             // 向左
-      if (this.params.direction == 'left') {
+      if (this.params.direction === 'left') {
         this.bodyArr[len - 1].x -= this.params.size
       }
             // 向上
-      if (this.params.direction == 'top') {
+      if (this.params.direction === 'top') {
         this.bodyArr[len - 1].y -= this.params.size
       }
             // 向下
-      if (this.params.direction == 'bottom') {
+      if (this.params.direction === 'bottom') {
         this.bodyArr[len - 1].y += this.params.size
       }
       if (this.eat()) {
@@ -145,6 +145,7 @@ export default {
       if (this.collapse()) {
         clearTimeout(this.timer)
         this.isStop = true
+        app.toast('游戏结束')
                 // this.reset()
                 // alert(this.score())
         return false
@@ -184,7 +185,7 @@ export default {
             // 碰自己
       let tempArr = JSON.parse(JSON.stringify(this.bodyArr))
       for (let n = 0; n < len - 1; n++) {
-        if (JSON.stringify(tempArr[len - 1]) == JSON.stringify(tempArr[n])) {
+        if (JSON.stringify(tempArr[len - 1]) === JSON.stringify(tempArr[n])) {
           return true
         }
       }
