@@ -1,15 +1,23 @@
 <template>
     <div class="header">
+        <h2>键盘上下左右键控制</h2>
         <div>
             <canvas style="border:1px solid #ccc;" height="400px" width="400px" id="canvas">你的浏览器不支持canvas</canvas>
         </div>
+        <h2>你的分数：{{score}}</h2>
     </div>
 </template>
 <script>
 
 export default {
   name: 'game',
+  data () {
+    return {
+      score: 0
+    }
+  },
   mounted () {
+    let self = this
     function Snake (opt) {
       opt = opt || {}
       let defaultOpt = {
@@ -21,7 +29,7 @@ export default {
         size: 10,
         lens: 3,
         direction: 'bottom',
-        speed: 300
+        speed: 200
       }
       this.ctx = null
       this.timer = null
@@ -138,7 +146,8 @@ export default {
         this.bodyArr[len - 1].y += this.params.size
       }
       if (this.eat()) {
-        console.log(temp)
+        // console.log(temp)
+        self.score++
         this.bodyArr.unshift(temp)
       }
             // 是否碰撞
