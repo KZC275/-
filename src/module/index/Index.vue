@@ -29,7 +29,7 @@
       </div>
       <div class="mask" v-if="mask" @click.stop.prevent="mask=false"></div>
 
-      
+
 
       <div class="moveUp" @click="moveUp">到顶部</div>
       <div class="moveDown" @click="move">到底部</div>
