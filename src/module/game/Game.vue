@@ -23,17 +23,18 @@ export default {
       score: 0,
       name: '',
       $snake: null,
-      arrScore: [{name:'ssdsd',score:222}]
-      
+      arrScore: [{ name: 'ssdsd', score: 222 }]
+
     }
   },
   methods: {
-    reset(){
+    reset() {
+      clearTimeout(this.$snake.timer)
       this.$snake.reset()
     },
     record() {
       app.post({
-        url: 'https://www.kzc275.top/php/reg.php',
+        url: 'php/reg.php',
         data: {
           type: 'addScore',
           name: this.name,
@@ -46,9 +47,9 @@ export default {
 
         })
     },
-    getst(){
+    getst() {
       app.post({
-        url: 'https://www.kzc275.top/php/reg.php',
+        url: 'php/reg.php',
         data: {
           type: 'getScore',
         }
@@ -64,7 +65,7 @@ export default {
     let self = this
     function Snake(opt) {
       opt = opt || {}
-      let defaultOpt = {
+      this.defaultOpt = {
         byColor: 'red',
         fdColor: 'green',
         id: 'canvas',
@@ -75,12 +76,7 @@ export default {
         direction: 'bottom',
         speed: 150
       }
-      this.ctx = null
-      this.timer = null
-      this.isStop = false
-      this.bodyArr = []  // 身体元素
-      this.foodPos = {}  // 食物位置
-      this.params = Object.assign(defaultOpt, opt)
+      this.params = Object.assign(this.defaultOpt, opt)
       this.keydoenFun = (event) => {
         if (this.isStop) {
           return
@@ -116,6 +112,11 @@ export default {
       }
     }
     Snake.prototype.init = function () {
+      this.ctx = null
+      this.timer = null
+      this.isStop = false
+      this.bodyArr = []  // 身体元素
+      this.foodPos = {}  // 食物位置
       let $ctx = document.getElementById(this.params.id)
       if ($ctx) {
         $ctx.width = this.params.width
@@ -224,15 +225,22 @@ export default {
       return true
     }
     Snake.prototype.reset = function () {
+      debugger
+      clearTimeout(this.timer)
       this.ctx.clearRect(0, 0, this.params.width, this.params.height) // 清空所有的内容
       document.removeEventListener('keydown', this.keydoenFun)
-      var obj = new Snake({})
-      obj.init()
-      obj.move()
+      // var obj = new Snake({})
+      this.params = this.defaultOpt
+      this.init()
+      this.move()
     }
     Snake.prototype.score = function () {
       // debugger
       return this.bodyArr.length - this.params.lens
+    }
+    Snake.prototype.stop = function () {
+      // debugger
+      clearTimeout(this.timer)
     }
     Snake.prototype.collapse = function () {
       // 碰墙
@@ -259,18 +267,22 @@ export default {
   created() {
     this.getst()
   },
+  destroyed() {
+    console.log(3333)
+    this.$snake.stop()
+  },
 
 
 }
 </script>
 
 <style lang='scss' scoped>
-.box{
+.box {
   display: flex;
   // flex-direction: column;
   height: 100%;
   overflow: auto;
-  .left{
+  .left {
     font-size: 0.9rem;
     padding: 1rem;
     text-align: left;
@@ -279,7 +291,7 @@ export default {
     overflow: auto;
     box-sizing: border-box;
   }
-  .right{
+  .right {
     margin: 1rem 2rem;
   }
 }
