@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     reset() {
-      clearTimeout(this.$snake.timer)
+      // clearTimeout(this.$snake.timer)
       this.$snake.reset()
     },
     record() {
@@ -76,7 +76,7 @@ export default {
         direction: 'bottom',
         speed: 150
       }
-      this.params = Object.assign(this.defaultOpt, opt)
+      this.params = Object.assign(JSON.parse(JSON.stringify(this.defaultOpt)), opt)
       this.keydoenFun = (event) => {
         if (this.isStop) {
           return
@@ -200,14 +200,14 @@ export default {
         clearTimeout(this.timer)
         this.isStop = true
         app.toast('游戏结束')
-        var rrt = prompt('留下你的呢称：')
-        if (rrt) {
-          self.name = rrt
-          self.record()
-        } else {
-          self.name = '游客-' + new Date().toLocaleString()
-          self.record()
-        }
+        // var rrt = prompt('留下你的呢称：')
+        // if (rrt) {
+        //   self.name = rrt
+        //   self.record()
+        // } else {
+        //   self.name = '游客-' + new Date().toLocaleString()
+        //   self.record()
+        // }
         return false
       }
 
@@ -228,7 +228,7 @@ export default {
       this.ctx.clearRect(0, 0, this.params.width, this.params.height) // 清空所有的内容
       document.removeEventListener('keydown', this.keydoenFun)
       // var obj = new Snake({})
-      this.params = this.defaultOpt
+      this.params = JSON.parse(JSON.stringify(this.defaultOpt))
       this.init()
       this.move()
     }
