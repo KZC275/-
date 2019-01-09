@@ -200,8 +200,6 @@ export default {
         clearTimeout(this.timer)
         this.isStop = true
         app.toast('游戏结束')
-        // this.reset()
-        // alert(this.score())
         var rrt = prompt('留下你的呢称：')
         if (rrt) {
           self.name = rrt
