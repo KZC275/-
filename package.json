@@ -2,6 +2,7 @@
   "name": "introduce-project",
   "version": "1.0.0",
   "description": "A Vue.js project",
+  "project": "myproject",
   "author": "KZC275 <KZC275@163.com>",
   "private": true,
   "scripts": {
@@ -53,6 +54,7 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
+    "gulp-sftp": "^0.1.5",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^21.2.0",
     "jest-serializer-vue": "^0.3.0",

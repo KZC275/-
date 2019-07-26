@@ -9,6 +9,8 @@ import Detail from '@/module/detail/Detail'
 import World from '@/module/world/World'
 import AddNote from '@/module/addNote/AddNote'
 import Analysis from '@/module/analysis/Analysis'
+import Game from '@/module/game/Game'
+import Rank from '@/module/game/rank'
 import info from '@/module/info/info'  // 组件小写也可以
 import register from '@/module/register/reg'  // 组件小写也可以
 
@@ -29,6 +31,18 @@ const router = new Router({
       path: '/experience',
       name: 'Experience',
       component: Experience
+
+    },
+    {
+      path: '/game',
+      name: 'game',
+      component: Game
+
+    },
+    {
+      path: '/rank',
+      name: 'rank',
+      component: Rank
 
     },
     {

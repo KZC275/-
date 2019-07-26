@@ -3,7 +3,7 @@ import store from '../store'
 export default {
   baseUrl: 'https://www.kzc275.top',
   isBrowser: process.env.NODE_ENV == 'development',
-  maskCallBack: (fn) => {
+  maskCallBack: fn => {
     // 点击遮罩回调方法
     if (fn && typeof fn === 'function') {
       fn()
@@ -37,7 +37,7 @@ export default {
       alert('参数有问题')
     }
   },
-  getCookie: (name) => {
+  getCookie: name => {
     var str = document.cookie
     var arr = str.split('; ')
     for (var i = 0; i < arr.length; i++) {
@@ -85,7 +85,7 @@ export default {
       width: '2rem'
     })
   },
-  post: (params) => {
+  post: params => {
     // console.log(this)
     let param = {}
     if (app.isBrowser) {
@@ -95,13 +95,18 @@ export default {
           withCredentials: true
         },
         crossDomain: true
-
       }
     }
     param.type = 'POST'
-    param.url = params.url
+    if (app.isBrowser) {
+      param.url = params.url
+    } else {
+      param.url = 'https://www.kzc275.top' + params.url
+    }
     param.data = params.data
-    param.beforeSend = function (xhr) { xhr.setRequestHeader('X-Test-Header', 'test-value') } // 这里设置header
+    param.beforeSend = function (xhr) {
+      xhr.setRequestHeader('X-Test-Header', 'test-value')
+    } // 这里设置header
     return new Promise((resolve, reject) => {
       $vux.loading.show({
         text: 'Loading'
@@ -125,7 +130,7 @@ export default {
           // console.log(complete);
           // console.log("complete");
         })
-    }).catch((err) => {
+    }).catch(err => {
       console.log(err)
     })
   }

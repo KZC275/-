@@ -9,52 +9,54 @@
 <template>
   <div class="friend">
     <div>
-        <global-header name='sayings' >
-            <!-- <span slot="left">back</span> -->
-            <span slot="right" @touchend.stop="something">留言</span>
-        </global-header>
+      <global-header name='sayings'>
+        <!-- <span slot="left">back</span> -->
+        <span slot="right"
+              @touchend.stop="something">留言</span>
+      </global-header>
     </div>
-    
+
     <div class="friendList">
-        <slider 
-        ref=scroll
-        :pullDown="false"
-        :pullUp="false"
-        :data="list"
-        >
-            <div>
-                <div class="listNum" v-for="(item,index) in list">
-                <strong>{{item.nickName}} 说：</strong>
-                <p>{{item.content}} </p>
-                <span>{{item.time}}</span>
-                </div>
-            </div>
-        </slider>
+      <slider ref=scroll
+              :pullDown="false"
+              :pullUp="false"
+              :data="list">
+        <div>
+          <div class="listNum"
+               v-for="(item,index) in list"
+               :key="index">
+            <strong>{{item.nickName}} 说：</strong>
+            <p>{{item.content}} </p>
+            <span>{{item.time}}</span>
+          </div>
+        </div>
+      </slider>
 
-        <div class="btn" @touchend='gotobtm'>到底部</div>
-        <div class="btn gotoTop" @touchend='gotoTop'>到顶部</div>
-
-        
+      <div class="btn"
+           @touchend='gotobtm'>到底部</div>
+      <div class="btn gotoTop"
+           @touchend='gotoTop'>到顶部</div>
 
     </div>
-    <div class="content" v-if="showt">
-        <textarea v-model="msg" placeholder="你想说什么？"></textarea>
-        <input v-model="name" type="text" placeholder="你的昵称？">
-        <span @touchend="send(msg,name)">发送</span>
+    <div class="content"
+         v-if="showt">
+      <textarea v-model="msg"
+                placeholder="你想说什么？"></textarea>
+      <input v-model="name"
+             type="text"
+             placeholder="你的昵称？">
+      <span @touchend="send(msg,name)">发送</span>
     </div>
-    
 
-    
-    
   </div>
 </template>
 
 <script>
- 
+
 import slider from '../diary/list.vue'
 export default {
   name: 'Friend',
-  data () {
+  data() {
     return {
       msg: 'Welcome',
       str: '',
@@ -68,7 +70,7 @@ export default {
   components: {
     slider
   },
-  created () {
+  created() {
     // this.location()
     // this.$vux.alert.show({
     //   title: "Vux is Cool",
@@ -82,14 +84,14 @@ export default {
     // });
     // window.open('http://www.baidu.com')
   },
-  mounted () {
+  mounted() {
     // console.log(vm_bank)
     setTimeout(() => {
       this.askList()
     }, 100)
   },
   methods: {
-    something () {
+    something() {
       this.showt = true
       this.$store.state.showMask = true
       this.$store.state.isShutDown = () => {
@@ -100,13 +102,13 @@ export default {
       // console.log(this.$refs.scroll.scroll.maxScrollY)
       // console.log(this.$refs.scroll.scroll.y)
     },
-    gotobtm () {
+    gotobtm() {
       this.move('maxScrollY')
     },
-    gotoTop () {
+    gotoTop() {
       this.move('minScrollY')
     },
-    send (msg, name) {
+    send(msg, name) {
       // 获取better-scroll实例
 
       var self = this
@@ -171,7 +173,7 @@ export default {
         app.toast('信息不能为空噢')
       }
     },
-    move (y) {
+    move(y) {
       var _scroll = this.$refs.scroll.scroll
       // var temp = _scroll.y
       // var timer = setInterval(function () {
@@ -183,9 +185,9 @@ export default {
       //     _scroll.scrollTo(0, temp)
       //   }
       // }, 1)
-      _scroll.scrollTo(0, _scroll[y]||0,1500)
+      _scroll.scrollTo(0, _scroll[y] || 0, 1500)
     },
-    askList () {
+    askList() {
       app
         .post({
           url: '/php/reg.php',
@@ -204,12 +206,12 @@ export default {
           console.log(err)
         })
     },
-    weather () {
+    weather() {
       if (app.isBrowser) return false
       // http://www.sojson.com/open/api/weather/json.shtml?city=%E9%A1%BA%E5%BE%B7
       // http://api.map.baidu.com/telematics/v3/weather?location=广州&output=JSON&ak=uBuiwKr0QniXXXBw64r7pcghklP1ErLk
     },
-    location () {
+    location() {
       if (app.isBrowser) return false
       var self = this
       plus.geolocation.getCurrentPosition(
@@ -220,7 +222,7 @@ export default {
         { geocode: true }
       )
 
-      function geoInf (position) {
+      function geoInf(position) {
         var str = ''
         str += '地址：' + position.addresses + '\n' // 获取地址信息
         str += '坐标类型：' + position.coordsType + '\n'
@@ -249,7 +251,7 @@ export default {
     }
   },
   watch: {
-    name (newval, old) {
+    name(newval, old) {
       if (newval.length > 8 && newval.length > old.length) {
         this.name = old
         console.log(newval, old)
@@ -262,5 +264,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='scss' scoped>
-@import "./friend.scss";
+@import './friend.scss';
 </style>

@@ -27,9 +27,8 @@ lcd /Users/kezengcai/Documents/myproject/dist
 # lcd /Users/kezengcai/Documents/myproject/php
 prompt
 # 上传的文件名
-# mput login.php
-
-mput pdfTest.pdf
+# mput reg.php
+mput output.zip
 bye
 #here document
 EOF
