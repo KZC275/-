@@ -42,19 +42,6 @@ export default {
     }
   },
   created() {
-    // app
-    //   .post({
-    //     url: "/php/sent_mail.php",
-    //     data:{email:'1142308041@qq.com'}
-    //   })
-    //   .then(data => {
-    //     console.log( JSON.parse(data));
-    //   })
-    //   .catch(error => {
-    //     app.toast("请求失败");
-    //   });
-
-    //        console.log(this.$store.state)
     this.weather = this.$store.state.isLogin
       ? this.$store.state.username
       : '游客'
@@ -63,8 +50,55 @@ export default {
   mounted() {
     this.$refs.gheader
   },
-  components: {
-    'global-header': Pheader
+  methods: {
+    getLocation() {
+      var x = {}
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+          x.innerHTML = 'Geolocation is not supported by this browser.';
+        }
+      }
+      function showPosition(position) {
+        // x.innerHTML =
+        //   'Latitude: ' +
+        //   position.coords.latitude +
+        //   '<br />Longitude: ' +
+        //   position.coords.longitude;
+        x.latitude = position.coords.latitude
+        x.longitude = position.coords.longitude
+      }
+      function showError(error) {
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            x.innerHTML = 'User denied the request for Geolocation.';
+            break;
+          case error.POSITION_UNAVAILABLE:
+            x.innerHTML = 'Location information is unavailable.';
+            break;
+          case error.TIMEOUT:
+            x.innerHTML = 'The request to get user location timed out.';
+            break;
+          case error.UNKNOWN_ERROR:
+            x.innerHTML = 'An unknown error occurred.';
+            break;
+          default:
+            x.innerHTML = 'unsupposed error';
+        }
+      }
+    },
+    postLocation() {
+      app.post({
+        url: "/php/getLocation.php",
+        data: x,
+      }).then(data => {
+        console.log(data);
+
+      }).catch(error => {
+        app.toast("请求失败");
+      });
+    }
   }
 }
 </script>
