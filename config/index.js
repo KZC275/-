@@ -6,7 +6,6 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
@@ -44,16 +43,14 @@ module.exports = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     proxyTable: {
-      '/php':{
+      '/php': {
         // target:'https://www.kzc275.top/',
-        target:'http://localhost/',
-
-        
-        secure:true, //https协议
-        changeOrigin: true  //跨域
+        target: 'http://localhost:80/',
+        secure: true, // https协议
+        changeOrigin: true // 跨域
       }
     },
-    cssSourceMap: false,
+    cssSourceMap: false
   },
 
   build: {
@@ -79,7 +76,7 @@ module.exports = {
     // npm install --save-dev compression-webpack-plugin
     productionGzip: false,
     productionGzipExtensions: ['js', 'css'],
-    outputZip:true,//输出压缩包
+    outputZip: false, // 输出压缩包
 
     // Run the build command with an extra argument to
     // View the bundle analyzer report after build finishes:

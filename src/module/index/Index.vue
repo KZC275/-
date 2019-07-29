@@ -6,7 +6,7 @@
                      rightName="addNote"
                      v-model="jjkjjk">
         <span slot="left">my note</span>
-        <span>猕猴桃</span>
+        <span>test</span>
         <span slot="right">add</span>
         <!-- <span slot="jjkk">啊啊啊烦</span> -->
         <!-- <span slot="kkll">=-22ndndn</span> -->
@@ -38,7 +38,8 @@ export default {
     return {
       my_Note: '',
       weather: '',
-      jjkjjk: 'sjsjjsjssjj'
+      jjkjjk: 'sjsjjsjssjj',
+
     }
   },
   created() {
@@ -48,57 +49,66 @@ export default {
     this.my_Note = this.$store.state.count
   },
   mounted() {
-    this.$refs.gheader
+    this.getLocation();
   },
   methods: {
     getLocation() {
-      var x = {}
+      var geograph = {
+        latitude: 22.912416990282885,
+        longitude: 113.20451426251753,
+      };
+
+      function postLocation() {
+        app.post({
+          url: "/php/getLocation.php",
+          data: geograph,
+        }).then(data => {
+          console.log(data);
+        }).catch(error => {
+          app.toast("请求失败");
+        });
+      }
       function getLocation() {
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition, showError);
+          navigator.geolocation.getCurrentPosition(showPosition.bind(this), showError.bind(this));
         } else {
-          x.innerHTML = 'Geolocation is not supported by this browser.';
+          geograph.innerHTML = 'Geolocation is not supported by this browser.';
         }
       }
       function showPosition(position) {
-        // x.innerHTML =
+        debugger;
+        // geograph.innerHTML =
         //   'Latitude: ' +
         //   position.coords.latitude +
         //   '<br />Longitude: ' +
         //   position.coords.longitude;
-        x.latitude = position.coords.latitude
-        x.longitude = position.coords.longitude
+        geograph.latitude = position.coords.latitude;
+        geograph.longitude = position.coords.longitude;
+        postLocation()
       }
       function showError(error) {
+        debugger;
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            x.innerHTML = 'User denied the request for Geolocation.';
+            geograph.innerHTML = 'User denied the request for Geolocation.';
             break;
           case error.POSITION_UNAVAILABLE:
-            x.innerHTML = 'Location information is unavailable.';
+            geograph.innerHTML = 'Location information is unavailable.';
             break;
           case error.TIMEOUT:
-            x.innerHTML = 'The request to get user location timed out.';
+            geograph.innerHTML = 'The request to get user location timed out.';
             break;
           case error.UNKNOWN_ERROR:
-            x.innerHTML = 'An unknown error occurred.';
+            geograph.innerHTML = 'An unknown error occurred.';
             break;
           default:
-            x.innerHTML = 'unsupposed error';
+            geograph.innerHTML = 'unsupposed error';
         }
+        postLocation()
       }
+      getLocation();
     },
-    postLocation() {
-      app.post({
-        url: "/php/getLocation.php",
-        data: x,
-      }).then(data => {
-        console.log(data);
 
-      }).catch(error => {
-        app.toast("请求失败");
-      });
-    }
   }
 }
 </script>
