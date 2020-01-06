@@ -10,6 +10,10 @@
     bottom: 0;
     top: 0;
     z-index: -11;
+    background: -webkit-linear-gradient(#a57676, #bdadad); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#a57676, #bdadad); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#a57676, #bdadad); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#a57676, #bdadad); /* 标准的语法（必须放在最后） */
   }
   .headerTop{
     .right_hover{
