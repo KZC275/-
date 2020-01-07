@@ -4,15 +4,38 @@ var path = require('path')
 
 var c = new Client()
 c.on('ready', function () {
+
+
   var tpath = path.resolve(__dirname, '..') + '/dist'
   getFile(tpath, function (err, results) {
     if (err) throw err
     results.forEach(function (filename) {
       ; (function (filename) {
         // var spath = '根据filename 获取文件名'
-        // console.log(filename)
+        // console.log('本地文件', filename)
+
+
+
         c.put(filename, getServerPath(filename), function (err) {
-          if (err) throw err
+          if (err) {
+            console.log('服务器不存在该文件夹', filename);
+            var dir = getServerPath(filename).slice(0, getServerPath(filename).lastIndexOf('/') + 1)
+            console.log(dir, 'dir');
+            c.mkdir(dir, true, function (err1) {
+              if (err1) {
+                console.log('创建文件夹失败', err);
+                throw err1
+              }
+              c.put(filename, getServerPath(filename), function (err) {
+                if (err) {
+                  console.log('创建文件夹成功，上传失败', err)
+                }
+                console.dir('创建文件夹并上传文件' + getServerPath(filename))
+                c.end()
+              })
+            })
+            return;
+          }
           console.dir('上传文件' + getServerPath(filename))
           c.end()
         })
