@@ -97,7 +97,9 @@
                 }
 
                 //登录成功只返回随机uid，设置客户端cookie  24小时过期
+                // setcookie(name,value,expire,path,domain,secure)
                 setcookie("uid",$cfg->randomId, time()+3600*24,'/');
+                setcookie("test",$cfg->randomId, time()+3600*24,'/','www.baidu.com'); // 设置不了
                 // setcookie("uid",$cfg->randomId, time()+3600*24,'/','localhost:8080');
                 $res->currentUid=$cfg->randomId;
                 $res->sess=$user_info;
