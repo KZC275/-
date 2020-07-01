@@ -95,6 +95,7 @@ export default {
         return (window.devicePixelRatio || 1) / backingStore
       }
       var ratio = getPixelRatio(ctx)
+      debugger
       var clientHeight = window.innerHeight
       var clientWidth = window.innerWidth
       oC.style.display = 'block'
@@ -256,7 +257,10 @@ export default {
         return str
       }
     }
-    window.addEventListener('load', execFun)
+    this.execFun = execFun
+  },
+  updated () {
+    this.execFun()
   },
   methods: {
     gotogame () {
