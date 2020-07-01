@@ -35,10 +35,9 @@
         <source src="./horse.ogv" />
     </audio> -->
     <script>
-
         function execFun() {
-            var oC = document.getElementById("c1");
-            var ctx = oC.getContext("2d");
+            var oC = document.getElementById('c1')
+            var ctx = oC.getContext('2d')
 
             var getPixelRatio = function (context) {
                 var backingStore = context.backingStorePixelRatio ||
@@ -46,113 +45,111 @@
                     context.mozBackingStorePixelRatio ||
                     context.msBackingStorePixelRatio ||
                     context.oBackingStorePixelRatio ||
-                    context.backingStorePixelRatio || 1;
-                return (window.devicePixelRatio || 1) / backingStore;
-            };
-            var ratio = getPixelRatio(ctx);
-            var clientHeight = document.documentElement.clientHeight;
-            var clientWidth = document.documentElement.clientWidth;
-            oC.style.display = 'block';
-            oC.style.height = clientHeight + 'px';
-            oC.style.width = clientWidth + 'px';
+                    context.backingStorePixelRatio || 1
+                return (window.devicePixelRatio || 1) / backingStore
+            }
+            var ratio = getPixelRatio(ctx)
+            var clientHeight = document.documentElement.clientHeight
+            var clientWidth = document.documentElement.clientWidth
+            oC.style.display = 'block'
+            oC.style.height = clientHeight + 'px'
+            oC.style.width = clientWidth + 'px'
             // oC.height = clientHeight;
             // oC.width = clientWidth;
 
-            oC.height = clientHeight * ratio;
-            oC.width = clientWidth * ratio;
-            ctx.scale(ratio, ratio);  // 消除图形模糊边角问题
+            oC.height = clientHeight * ratio
+            oC.width = clientWidth * ratio
+            ctx.scale(ratio, ratio)  // 消除图形模糊边角问题
 
-
-            var circleX = clientWidth / 2;
-            var circleY = clientHeight / 2;
-
+            var circleX = clientWidth / 2
+            var circleY = clientHeight / 2
 
             var coreFun = function () {
-                ctx.clearRect(0, 0, clientWidth, clientHeight);
+                ctx.clearRect(0, 0, clientWidth, clientHeight)
                 // ctx.save();
 
-                const circleRadius = 200;
-                //每秒刻度
+                const circleRadius = 200
+                // 每秒刻度
                 for (var i = 0; i < 60; i++) {
-                    //扇形
-                    ctx.beginPath();
-                    ctx.moveTo(circleX, circleY);
-                    ctx.arc(circleX, circleY, circleRadius, i * 6 * Math.PI / 180, (i + 1) * 6 * Math.PI / 180, false);
+                    // 扇形
+                    ctx.beginPath()
+                    ctx.moveTo(circleX, circleY)
+                    ctx.arc(circleX, circleY, circleRadius, i * 6 * Math.PI / 180, (i + 1) * 6 * Math.PI / 180, false)
                     ctx.closePath()
-                    ctx.lineWidth = 1;
+                    ctx.lineWidth = 1
 
-                    ctx.stroke();
+                    ctx.stroke()
                 }
 
-                //每秒刻度盖盘
-                ctx.beginPath();
-                ctx.arc(circleX, circleY, circleRadius - 10, 0, 360 * Math.PI / 180, false);
-                ctx.fillStyle = "white";
+                // 每秒刻度盖盘
+                ctx.beginPath()
+                ctx.arc(circleX, circleY, circleRadius - 10, 0, 360 * Math.PI / 180, false)
+                ctx.fillStyle = 'white'
                 ctx.closePath()
-                ctx.fill();
-                //每5秒刻度
+                ctx.fill()
+                // 每5秒刻度
                 for (var i = 0; i < 12; i++) {
-                    //扇形
-                    ctx.beginPath();
-                    ctx.moveTo(circleX, circleY);
-                    ctx.arc(circleX, circleY, circleRadius, i * 30 * Math.PI / 180, (i + 1) * 30 * Math.PI / 180, false);
-                    ctx.strokeStyle = "green";
+                    // 扇形
+                    ctx.beginPath()
+                    ctx.moveTo(circleX, circleY)
+                    ctx.arc(circleX, circleY, circleRadius, i * 30 * Math.PI / 180, (i + 1) * 30 * Math.PI / 180, false)
+                    ctx.strokeStyle = 'green'
                     ctx.closePath()
-                    ctx.lineWidth = 3;
+                    ctx.lineWidth = 3
 
-                    ctx.stroke();
+                    ctx.stroke()
                 }
-                //每5秒刻度盖盘
-                ctx.beginPath();
-                ctx.arc(circleX, circleY, circleRadius - 15, 0, 360 * Math.PI / 180, false);
-                ctx.fillStyle = "white";
+                // 每5秒刻度盖盘
+                ctx.beginPath()
+                ctx.arc(circleX, circleY, circleRadius - 15, 0, 360 * Math.PI / 180, false)
+                ctx.fillStyle = 'white'
                 ctx.closePath()
 
-                ctx.fill();
+                ctx.fill()
 
                 // 秒针
                 // ctx.clearRect(circleX, circleY, oC.width, oC.height);
-                var date = new Date();
-                var second = date.getSeconds();
-                var millSecs = date.getMilliseconds();
+                var date = new Date()
+                var second = date.getSeconds()
+                var millSecs = date.getMilliseconds()
                 // console.log(second);
-                var secMAtchPos = second * 6;
-                var millSecsMAtchPos = millSecs / 1000 * 6;
-                var SecSum = (secMAtchPos + millSecsMAtchPos) * 20;
+                var secMAtchPos = second * 6
+                var millSecsMAtchPos = millSecs / 1000 * 6
+                var SecSum = (secMAtchPos + millSecsMAtchPos) * 20
                 // ctx.setLineDash([8, 8]);
-                ctx.beginPath();
-                ctx.moveTo(circleX, circleY);
-                ctx.arc(circleX, circleY, 280, (SecSum + 270) * Math.PI / 180, (SecSum + 270) * Math.PI / 180, false);
-                ctx.lineWidth = 1;
-                ctx.strokeStyle = "black";
-                ctx.closePath();
-                ctx.stroke();
+                ctx.beginPath()
+                ctx.moveTo(circleX, circleY)
+                ctx.arc(circleX, circleY, 280, (SecSum + 270) * Math.PI / 180, (SecSum + 270) * Math.PI / 180, false)
+                ctx.lineWidth = 1
+                ctx.strokeStyle = 'black'
+                ctx.closePath()
+                ctx.stroke()
 
                 // 正方形
-                ctx.beginPath();
-                ctx.moveTo(circleX - (circleRadius + 20), circleY - (circleRadius + 20));
-                ctx.lineTo(circleX + (circleRadius + 20), circleY - (circleRadius + 20));
-                ctx.lineTo(circleX + (circleRadius + 20), circleY + (circleRadius + 20));
-                ctx.lineTo(circleX - (circleRadius + 20), circleY + (circleRadius + 20));
-                ctx.lineTo(circleX - (circleRadius + 20), circleY - (circleRadius + 20));
-                ctx.lineWidth = 4;
-                ctx.strokeStyle = "black";
-                ctx.closePath();
-                ctx.stroke();
+                // ctx.beginPath()
+                // ctx.moveTo(circleX - (circleRadius + 20), circleY - (circleRadius + 20))
+                // ctx.lineTo(circleX + (circleRadius + 20), circleY - (circleRadius + 20))
+                // ctx.lineTo(circleX + (circleRadius + 20), circleY + (circleRadius + 20))
+                // ctx.lineTo(circleX - (circleRadius + 20), circleY + (circleRadius + 20))
+                // ctx.lineTo(circleX - (circleRadius + 20), circleY - (circleRadius + 20))
+                // ctx.lineWidth = 4
+                // ctx.strokeStyle = 'black'
+                // ctx.closePath()
+                // ctx.stroke()
 
                 let flag = false
                 targetArr.forEach((item) => {
                     if (item.posX < clientWidth) {
-                        flag = true;
+                        flag = true
                     }
                 })
                 if (!flag) {
                     // 重新生成target
-                    var len = parseInt(Math.random() * 10) + 10;
-                    targetArr = [];
-                    missileArr = [];
+                    var len = parseInt(Math.random() * 10) + 10
+                    targetArr = []
+                    missileArr = []
                     // boomArr = [];
-                    // todo划分平行轨道 
+                    // todo划分平行轨道
                     for (var i = 0; i < len; i++) {
                         targetArr.push({
                             id: new Date().getTime().toString() + Math.random(),
@@ -167,100 +164,88 @@
                 }
                 targetArr.forEach((res, targetIndex) => {
                     // 实心圆形 target
-                    ctx.beginPath();
-                    ctx.fillStyle = res.color;
-                    res.posX += res.speed;
-                    ctx.closePath();
-                    ctx.arc(res.posX, res.posY, res.radius, 0, 360 * Math.PI / 180, false);
-                    ctx.fill();
+                    ctx.beginPath()
+                    ctx.fillStyle = res.color
+                    res.posX += res.speed
+                    ctx.closePath()
+                    ctx.arc(res.posX, res.posY, res.radius, 0, 360 * Math.PI / 180, false)
+                    ctx.fill()
                     // ctx.fillRect(res.posX, res.posY, res.radius, res.radius);
 
                     // 判断距离 是否小于半径
-                    var distance = Math.sqrt(Math.pow(circleX - res.posX, 2) + Math.pow(circleY - res.posY, 2));
+                    var distance = Math.sqrt(Math.pow(circleX - res.posX, 2) + Math.pow(circleY - res.posY, 2))
                     if (distance < circleRadius) {
-                        res.color = 'green';
-                        ctx.beginPath();
-                        ctx.moveTo(circleX, circleY);
+                        res.color = 'green'
+                        ctx.beginPath()
+                        ctx.moveTo(circleX, circleY)
                         // ctx.lineTo(res.posX + res.radius / 2, res.posY + res.radius / 2);
-                        ctx.lineTo(res.posX, res.posY);
-                        ctx.lineWidth = 1;
-                        ctx.strokeStyle = "black";
-                        ctx.closePath();
-                        ctx.stroke();
+                        ctx.lineTo(res.posX, res.posY)
+                        ctx.lineWidth = 1
+                        ctx.strokeStyle = 'black'
+                        ctx.closePath()
+                        ctx.stroke()
                         // 添加追踪
                         if (!res.isTrack) {
-                            res.isTrack = true;
-                            missileArr.push(generateMissile());
+                            res.isTrack = true
+                            missileArr.push(generateMissile())
                         }
                     } else {
-                        res.color = 'red';
+                        res.color = 'red'
                     }
-
-
                 })
 
                 // missile飞行
                 missileArr.forEach((missileItemArr) => {
-
                     missileItemArr.forEach((missile, missileIndex) => {
                         // track
                         // 随机地下shoot
                         missile.posX = missile.posX + missile.vx * (date.getTime() - missile.t0) / 1000
                         missile.posY = missile.posY + missile.vy * (date.getTime() - missile.t0) / 1000
-                        ctx.beginPath();
-                        ctx.arc(missile.posX, missile.posY, missile.radius, 0, 360 * Math.PI / 180, false);
-                        ctx.fillStyle = missile.color;
+                        ctx.beginPath()
+                        ctx.arc(missile.posX, missile.posY, missile.radius, 0, 360 * Math.PI / 180, false)
+                        ctx.fillStyle = missile.color
                         ctx.closePath()
-                        ctx.fill();
-                        missile.vy = missile.vy + missile.g * (date.getTime() - missile.t0) / 1000;
+                        ctx.fill()
+                        missile.vy = missile.vy + missile.g * (date.getTime() - missile.t0) / 1000
 
                         // 检查碰撞
                         targetArr.forEach((res, targetIndex) => {
-                            var distance = Math.sqrt(Math.pow(res.posX - missile.posX, 2) + Math.pow(res.posY - missile.posY, 2));
+                            var distance = Math.sqrt(Math.pow(res.posX - missile.posX, 2) + Math.pow(res.posY - missile.posY, 2))
                             if (distance <= missile.radius) {
                                 // 击中 boom
                                 boomArr.push(generateBoom(res))
-                                delete targetArr[targetIndex];
+                                delete targetArr[targetIndex]
                                 // delete missileArr[missileIndex];
                             }
                         })
-
                     })
                 })
 
                 // boom
                 // Vt = V0+at
                 boomArr.forEach((boomItemArr, boomItemIndex) => {
-                    var flag = true;
-                    boomItemArr.forEach((res => {
+                    var flag = true
+                    boomItemArr.forEach(res => {
                         res.posX = res.posX + res.vx * (date.getTime() - res.t0) / 1000
                         res.posY = res.posY + res.vy * (date.getTime() - res.t0) / 1000
-                        ctx.beginPath();
-                        ctx.arc(res.posX, res.posY, res.radius, 0, 360 * Math.PI / 180, false);
-                        ctx.fillStyle = res.color;
+                        ctx.beginPath()
+                        ctx.arc(res.posX, res.posY, res.radius, 0, 360 * Math.PI / 180, false)
+                        ctx.fillStyle = res.color
                         ctx.closePath()
-                        ctx.fill();
-                        res.vy = res.vy + res.g * (date.getTime() - res.t0) / 1000;
+                        ctx.fill()
+                        res.vy = res.vy + res.g * (date.getTime() - res.t0) / 1000
                         // 清除item 时机
                         if (res.posY <= clientHeight) {
-                            flag = false;
+                            flag = false
                         }
-                    }))
+                    })
                     if (flag) {
-                        delete boomArr[boomItemIndex];
+                        delete boomArr[boomItemIndex]
                     }
                 })
 
-
-
-
-
-
-
-
                 // ctx.restore();
                 requestAnimationFrame(coreFun)
-
             }
 
             // 加速度向下为正，Vy速度向下为正，Vx向右为正
@@ -271,7 +256,7 @@
             // 生成missile
             function generateMissile() {
                 var arr = []
-                var len = parseInt(Math.random() * 10) + 50;
+                var len = parseInt(Math.random() * 10) + 50
                 for (var i = 0; i < len; i++) {
                     arr.push({
                         // posX: parseInt(Math.random() * clientWidth),
@@ -287,12 +272,12 @@
                         color: 'yellow'
                     })
                 }
-                return arr;
+                return arr
             }
             // 生成碎片
             function generateBoom(obj) {
                 var arr = []
-                var len = parseInt(Math.random() * 10) + 10;
+                var len = parseInt(Math.random() * 10) + 10
                 for (var i = 0; i < len; i++) {
                     arr.push({
                         posX: obj.posX, // 开始位置
@@ -305,21 +290,19 @@
                         t0: new Date().getTime()
                     })
                 }
-                return arr;
+                return arr
             }
             // 随机颜色
             function getColor() {
-                var str = '#';
-                var arr = ['a', 'b', 'c', 'd', 'e', 'f', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+                var str = '#'
+                var arr = ['a', 'b', 'c', 'd', 'e', 'f', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                 for (var k = 0; k < 6; k++) {
                     str += arr[parseInt(Math.random() * 17)]
                 }
                 return str
-
             }
         }
         window.addEventListener('load', execFun)
-
     </script>
 </body>
 
