@@ -95,8 +95,8 @@ export default {
         return (window.devicePixelRatio || 1) / backingStore
       }
       var ratio = getPixelRatio(ctx)
-      var clientHeight = document.documentElement.clientHeight
-      var clientWidth = document.documentElement.clientWidth
+      var clientHeight = window.innerHeight
+      var clientWidth = window.innerWidth
       oC.style.display = 'block'
       oC.style.height = clientHeight + 'px'
       oC.style.width = clientWidth + 'px'
