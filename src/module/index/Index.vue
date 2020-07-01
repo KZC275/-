@@ -196,16 +196,16 @@ export default {
         ctx.stroke()
 
         // 正方形
-        ctx.beginPath()
-        ctx.moveTo(circleX - (circleRadius + 20), circleY - (circleRadius + 20))
-        ctx.lineTo(circleX + (circleRadius + 20), circleY - (circleRadius + 20))
-        ctx.lineTo(circleX + (circleRadius + 20), circleY + (circleRadius + 20))
-        ctx.lineTo(circleX - (circleRadius + 20), circleY + (circleRadius + 20))
-        ctx.lineTo(circleX - (circleRadius + 20), circleY - (circleRadius + 20))
-        ctx.lineWidth = 4
-        ctx.strokeStyle = 'black'
-        ctx.closePath()
-        ctx.stroke()
+        // ctx.beginPath()
+        // ctx.moveTo(circleX - (circleRadius + 20), circleY - (circleRadius + 20))
+        // ctx.lineTo(circleX + (circleRadius + 20), circleY - (circleRadius + 20))
+        // ctx.lineTo(circleX + (circleRadius + 20), circleY + (circleRadius + 20))
+        // ctx.lineTo(circleX - (circleRadius + 20), circleY + (circleRadius + 20))
+        // ctx.lineTo(circleX - (circleRadius + 20), circleY - (circleRadius + 20))
+        // ctx.lineWidth = 4
+        // ctx.strokeStyle = 'black'
+        // ctx.closePath()
+        // ctx.stroke()
 
         if (second % 15 === 0 && millSecs < 20) {
           // 重新生成boom
