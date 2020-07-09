@@ -55,14 +55,20 @@
          class="bgpic"> -->
     <canvas id="c1"
             class="bgpic"></canvas>
+    <img :src="imgsrc"
+         id='lamp'
+         style="opacity:0; display:none;"
+         alt="">
 
   </div>
 </template>
 <script>
+import imgsrc from '@/assets/img/4.jpg'
 export default {
   name: 'index',
   data () {
     return {
+      imgsrc: imgsrc,
       isOx: navigator.appVersion.toLowerCase().indexOf('safari') > -1 && navigator.appVersion.toLowerCase().indexOf('chrome') == -1,
       isIe: navigator.appVersion.toLowerCase().indexOf('trident') > -1,
       data: [],
@@ -95,7 +101,6 @@ export default {
         return (window.devicePixelRatio || 1) / backingStore
       }
       var ratio = getPixelRatio(ctx)
-      debugger
       var clientHeight = window.innerHeight
       var clientWidth = window.innerWidth
       oC.style.display = 'block'
@@ -122,6 +127,7 @@ export default {
           ctx.beginPath()
           ctx.moveTo(circleX, circleY)
           ctx.arc(circleX, circleY, circleRadius, i * 6 * Math.PI / 180, (i + 1) * 6 * Math.PI / 180, false)
+          ctx.strokeStyle = 'green'
           ctx.closePath()
           ctx.lineWidth = 1
 
@@ -149,9 +155,16 @@ export default {
         // 每5秒刻度盖盘
         ctx.beginPath()
         ctx.arc(circleX, circleY, circleRadius - 15, 0, 360 * Math.PI / 180, false)
-        ctx.fillStyle = '#a57676'
+        // ctx.fillStyle = '#a57676'
         ctx.closePath()
 
+        ctx.fill()
+
+        // ctx.clearRect(0, 0, oC.width, oC.height)
+        var img = document.getElementById('lamp')
+        var pat = ctx.createPattern(img, 'no-repeat')
+        // ctx.rect(0, 0, 0, 0)
+        ctx.fillStyle = pat
         ctx.fill()
 
         // 秒针
@@ -168,7 +181,7 @@ export default {
         ctx.moveTo(circleX, circleY)
         ctx.arc(circleX, circleY, circleRadius * 0.8, (SecSum + 270) * Math.PI / 180, (SecSum + 270) * Math.PI / 180, false)
         ctx.lineWidth = 1
-        ctx.strokeStyle = 'black'
+        ctx.strokeStyle = 'red'
         ctx.closePath()
         ctx.stroke()
 
@@ -180,7 +193,7 @@ export default {
         ctx.moveTo(circleX, circleY)
         ctx.arc(circleX, circleY, circleRadius / 2, (minPos + 270) * Math.PI / 180, (minPos + 270) * Math.PI / 180, false)
         ctx.lineWidth = 1.5
-        ctx.strokeStyle = 'black'
+        ctx.strokeStyle = 'red'
         ctx.closePath()
         ctx.stroke()
 
@@ -192,7 +205,7 @@ export default {
         ctx.moveTo(circleX, circleY)
         ctx.arc(circleX, circleY, circleRadius / 3, (hoursPos + 270) * Math.PI / 180, (hoursPos + 270) * Math.PI / 180, false)
         ctx.lineWidth = 4
-        ctx.strokeStyle = 'black'
+        ctx.strokeStyle = 'red'
         ctx.closePath()
         ctx.stroke()
 
@@ -208,17 +221,20 @@ export default {
         // ctx.closePath()
         // ctx.stroke()
 
-        if (second % 15 === 0 && millSecs < 20) {
+        if (second % 2 === 0 && millSecs < 20) {
           // 重新生成boom
-          var len = parseInt(Math.random() * 30) + 30
+          var len = parseInt(Math.random() * 250) + 50
           boomArr = []
           for (var i = 0; i < len; i++) {
             boomArr.push({
               posX: circleX, // 开始位置
               posY: circleY,
-              vx: parseInt(Math.random() * 201) - 100, // -100 --100
-              vy: parseInt(Math.random() * 100) - 80,   // -80---20
-              g: 2,
+              vx: parseInt(Math.random() * 20) - 10, // -100 --100
+              vy: parseInt(Math.random() * 20) - 10,   // -20---20
+              gy: 0.01,
+              gx: -0.04,
+              // gy: [0.05, 0.1, 0.2, 0.25][Number(parseInt(Math.random() * 4))], // 0.05～0.2
+              // gx: [-0.05, -0.06, -0.08, -0.1][Number(parseInt(Math.random() * 4))], // 0.05～0.2
               radius: parseInt(Math.random() * 10) + 4,
               color: getColor(),
               t0: new Date().getTime()
@@ -236,14 +252,19 @@ export default {
           ctx.fillStyle = res.color
           ctx.closePath()
           ctx.fill()
-          res.vy = res.vy + res.g * (date.getTime() - res.t0) / 1000
+
+          if (res.vx > 0 && (res.vx + res.gx * (date.getTime() - res.t0) / 1000) > 0) {
+            res.vx = res.vx + res.gx * (date.getTime() - res.t0) / 1000
+          }
+          if (res.vx < 0 && (res.vx + res.gx * (date.getTime() - res.t0) / 1000) < 0) {
+            res.vx = res.vx - res.gx * (date.getTime() - res.t0) / 1000
+          }
+          res.vy = res.vy + res.gy * (date.getTime() - res.t0) / 1000
         })
 
         // ctx.restore();
         requestAnimationFrame(coreFun)
       }
-      var arr = [
-      ]
       // 加速度向下为正，Vy速度向下为正，Vx向右为正
       var boomArr = []
       coreFun()
