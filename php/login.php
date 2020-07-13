@@ -97,7 +97,9 @@
                 }
 
                 //登录成功只返回随机uid，设置客户端cookie  24小时过期
+                // setcookie(name,value,expire,path,domain,secure)
                 setcookie("uid",$cfg->randomId, time()+3600*24,'/');
+                setcookie("test",$cfg->randomId, time()+3600*24,'/','www.baidu.com');
                 // setcookie("uid",$cfg->randomId, time()+3600*24,'/','localhost:8080');
                 $res->currentUid=$cfg->randomId;
                 $res->sess=$user_info;
@@ -107,7 +109,10 @@
             $res->returnCode= $bool_name?'密码错误':'用户没有注册';
             $res->returnDes= $bool_name?'wp':'wn';
          }
-        //  header("Location: https://www.kzc275.top"); 
+         //jsonp跨域方法
+         // $callback_test=json_encode($res);
+         // print_r('success_jsonpcallbak'.'('.$callback_test.')');
+         
          print_r(json_encode($res));
          // session_destroy();
 
