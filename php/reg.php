@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD']){
 
         if($_REQUEST['type']=='add'){
             $name = ($_REQUEST['nickName']);
-            $psw = ($_REQUEST['content']);
+            $psw = emoji_encode($_REQUEST['content']);
             $time = ($_REQUEST['time']);
 
             //1获取当前所有信息
@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_METHOD']){
                     // $cfg = new StdClass();
                     $cfg=new Cat(); 
                     $cfg->nickName=$row['username'];
-                    $cfg->content=$row['password'];
+                    $cfg->content=emoji_decode($row['password']);
                     $cfg->time=$row['age'];
                     array_push($arr,$cfg);
                 }

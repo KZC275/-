@@ -2,7 +2,7 @@
     //php数据库操作
     //准备好数据连接对象
     // $con = new mysqli('127.0.0.1','root','yy789789','myproject'); //连接地址不可加上http协议开头
-    $con = new mysqli('bdm274246623.my3w.com','bdm274246623','aA852233','bdm274246623_db'); 
+    $con = new mysqli('bdm682328549.my3w.com','bdm682328549','pP789789','bdm682328549_db'); 
     if (mysqli_connect_errno()){
         echo '数据库连接错误'.mysqli_connect_error();
         exit();
@@ -60,6 +60,33 @@
             $realip = !empty($onlineip[0]) ? $onlineip[0] : '0.0.0.0';
             return $realip;
      }
+
+     //对emoji表情转义
+    function emoji_encode($str){
+        $strEncode = '';
+
+        $length = mb_strlen($str,'utf-8');
+
+        for ($i=0; $i < $length; $i++) {
+            $_tmpStr = mb_substr($str,$i,1,'utf-8');    
+            if (strlen($_tmpStr) >= 4){
+                $strEncode .= '[[EMOJI:'.rawurlencode($_tmpStr).']]';
+            } else {
+                $strEncode .= $_tmpStr;
+            }
+        }
+
+        return $strEncode;
+    }
+
+    //对emoji表情转反义
+    function emoji_decode($str){
+        $strDecode = preg_replace_callback('|\[\[EMOJI:(.*?)\]\]|', function($matches){  
+            return rawurldecode($matches[1]);
+        }, $str);
+
+        return $strDecode;
+    }
 
         
    
