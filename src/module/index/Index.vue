@@ -221,10 +221,11 @@ export default {
         // ctx.closePath()
         // ctx.stroke()
 
-        if (second % 2 === 0 && millSecs < 20) {
+        if (second % 5 === 0 && isGenerate) {
+          isGenerate = false
           // 重新生成boom
-          var len = parseInt(Math.random() * 250) + 50
-          boomArr = []
+          var len = parseInt(Math.random() * 150) + 50
+          // boomArr = []
           for (var i = 0; i < len; i++) {
             boomArr.push({
               posX: circleX, // 开始位置
@@ -241,10 +242,15 @@ export default {
             })
           }
         }
+        if (second % 5 !== 0) {
+          isGenerate = true
+        }
 
         // boom
         // Vt = V0+at
+        const tempArr = []
         boomArr.forEach(res => {
+
           res.posX = res.posX + res.vx * (date.getTime() - res.t0) / 1000
           res.posY = res.posY + res.vy * (date.getTime() - res.t0) / 1000
           ctx.beginPath()
@@ -260,13 +266,22 @@ export default {
             res.vx = res.vx - res.gx * (date.getTime() - res.t0) / 1000
           }
           res.vy = res.vy + res.gy * (date.getTime() - res.t0) / 1000
+
+          // 清除item 时机
+          if (res.posY <= clientHeight) {
+            console.log(res.posX, 'res.posX')
+            console.log(res.posY, 'res.posY')
+            tempArr.push(res)
+          }
         })
+        boomArr = tempArr
 
         // ctx.restore();
         requestAnimationFrame(coreFun)
       }
       // 加速度向下为正，Vy速度向下为正，Vx向右为正
       var boomArr = []
+      var isGenerate = true
       coreFun()
 
       function getColor () {
