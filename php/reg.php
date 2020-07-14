@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD']){
     if(isset($_REQUEST['type'])){
 
         if($_REQUEST['type']=='add'){
-            $name = ($_REQUEST['nickName']);
+            $name = emoji_encode($_REQUEST['nickName']);
             $psw = emoji_encode($_REQUEST['content']);
             $time = ($_REQUEST['time']);
 
@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD']){
                 while ($row = $res->fetch_assoc()) {
                     // $cfg = new StdClass();
                     $cfg=new Cat(); 
-                    $cfg->nickName=$row['username'];
+                    $cfg->nickName=emoji_decode($row['username']);
                     $cfg->content=emoji_decode($row['password']);
                     $cfg->time=$row['age'];
                     array_push($arr,$cfg);
@@ -63,10 +63,10 @@ if($_SERVER['REQUEST_METHOD']){
         //新增笔记
         }else if($_REQUEST['type']=='addNote'){
             include './checkLogin.php';
-            $when = ($_REQUEST['when']);
-            $who = ($_REQUEST['who']);
-            $where = ($_REQUEST['where']);
-            $what = ($_REQUEST['what']);
+            $when = emoji_encode($_REQUEST['when']);
+            $who = emoji_encode($_REQUEST['who']);
+            $where = emoji_encode($_REQUEST['where']);
+            $what = emoji_encode($_REQUEST['what']);
 
             // mysqli_query($con,"set names 'utf8'");
             $sql = 'insert into '.$userId.' (`when_`,`where_`,`who_`,`what_`) values("'.$when.'","'.$where.'","'.$who.'","'.$what.'")';
@@ -146,10 +146,10 @@ if($_SERVER['REQUEST_METHOD']){
                 // $row 当前获取到的每一行数据
                 while ($row = $res->fetch_assoc()) {
                     $cfg=new Note(); 
-                    $cfg->when=$row['when_'];
-                    $cfg->where=$row['where_'];
-                    $cfg->who=$row['who_'];
-                    $cfg->what=$row['what_'];
+                    $cfg->when=emoji_decode($row['when_']);
+                    $cfg->where=emoji_decode($row['where_']);
+                    $cfg->who=emoji_decode($row['who_']);
+                    $cfg->what=emoji_decode($row['what_']);
                     $cfg->id=$row['id'];
                     array_push($arr,$cfg);
                 }
