@@ -11,7 +11,38 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-const ParallelUglifyPlugin=require('webpack-parallel-uglify-plugin')
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
+
+
+function FileListPlugin (options) { }
+
+FileListPlugin.prototype.apply = function (compiler) {
+  compiler.plugin('afterEmit', function (compilation, callback) {
+    console.log('filelist==filelist==filelist')
+    // 在生成文件中，创建一个头部字符串：
+    var filelist = 'In this build:\n\n';
+
+    // 遍历所有编译过的资源文件，
+    // 对于每个文件名称，都添加一行内容。
+    for (var filename in compilation.assets) {
+      filelist += ('- ' + filename + '\n');
+    }
+
+    // 将这个列表作为一个新的文件资源，插入到 webpack 构建中：
+    compilation.assets['filelist.md'] = {
+      source: function () {
+        return filelist;
+      },
+      size: function () {
+        return filelist.length;
+      }
+    };
+
+    callback();
+  });
+};
+
+
 
 const env = process.env.NODE_ENV === 'testing' ?
   require('../config/test.env') :
@@ -40,13 +71,14 @@ const webpackConfig = merge(baseWebpackConfig, {
       uglifyOptions: {
         compress: {
           warnings: false,
-          drop_debugger: true,  
+          drop_debugger: true,
           drop_console: true
         }
       },
       sourceMap: config.build.productionSourceMap,
       parallel: true
     }),
+    new FileListPlugin(),
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css'),
@@ -96,7 +128,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks(module) {
+      minChunks (module) {
         // any required modules inside node_modules are extracted to vendor
         return (
           module.resource &&
@@ -132,15 +164,15 @@ const webpackConfig = merge(baseWebpackConfig, {
     new ParallelUglifyPlugin({
       cacheDir: '.cache/',
       // sourceMap: true,
-      uglifyJS:{
-      output: {
-      comments: false
-      },
-      compress: {
-      warnings: false
+      uglifyJS: {
+        output: {
+          comments: false
+        },
+        compress: {
+          warnings: false
+        }
       }
-      }
-      })
+    })
   ]
 })
 
@@ -170,7 +202,7 @@ if (config.build.outputZip) {
       initialFile: `dist/`, // 需要打包的文件夹(一般为dist)
       endPath: `./build/zip/`, // 打包到对应目录（一般为当前目录'./'）
       filename: 'output.zip', // 打包生成的文件名
-      
+
     })
   )
 
