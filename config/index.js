@@ -30,7 +30,7 @@ module.exports = {
      */
 
     // https://webpack.js.org/configuration/devtool/#development
-    devtool: 'eval-source-map',
+    // devtool: 'eval-source-map',
 
     // If you have problems debugging vue-files in devtools,
     // set this to false - it *may* help
@@ -44,8 +44,8 @@ module.exports = {
     // just be aware of this issue when enabling this option.
     proxyTable: {
       '/php': {
-        // target:'https://www.kzc275.top/',
-        target: 'http://localhost:80/',
+        target: 'https://www.kzc275.top/',
+        // target: 'http://localhost:80/',
         secure: true, // https协议
         changeOrigin: true // 跨域
       }

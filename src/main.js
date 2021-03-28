@@ -7,6 +7,7 @@ import router from './router'
 import store from './store'
 import init from './utils/init.js'
 import app from './utils/common.js'
+
 // 测试
 import VConsole from 'vconsole'
 let vConsole = new VConsole()

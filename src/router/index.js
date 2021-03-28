@@ -11,6 +11,7 @@ import AddNote from '@/module/addNote/AddNote'
 import Analysis from '@/module/analysis/Analysis'
 import Game from '@/module/game/Game'
 import Rank from '@/module/game/rank'
+import demo from '@/module/demo/demo'
 import info from '@/module/info/info'  // 组件小写也可以
 import register from '@/module/register/reg'  // 组件小写也可以
 
@@ -91,10 +92,15 @@ const router = new Router({
       name: 'register',
       component: register
     },
+    {
+      path: '/demo',
+      name: 'demo',
+      component: demo
+    },
     ...CouponCenter,
     {
-    	path: '*',
-    	redirect: Index
+      path: '*',
+      redirect: Index
     }
   ]
 })
